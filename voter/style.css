@@ -1,0 +1,446 @@
+/* Nav item color */
+.main-nav a {
+  color: #3d3636 !important;
+  transition-duration: 0.4s;
+  font-size: 18px;
+}
+
+/* Nav item hover color */
+.main-nav .nav-item a:hover {
+  color: rgb(172, 46, 223) !important;
+  transition-duration: 0.4s;
+}
+
+/* Nav item active color */
+.main-nav .active {
+  color: rgb(0, 47, 255) !important;
+  font-weight: 600;
+}
+
+/*Add Rica*/
+/*navbar*/
+.sticky-top {
+  top: 50px;
+}
+
+/*Add Rica*/
+/*Modal*/
+.modal-login .modal-content {
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+
+}
+
+.modal-login .modal-header {
+  border-bottom: none;
+  justify-content: center;
+}
+
+.modal-login .btn:hover,
+.modal-login .btn:focus {
+  background: #315ff3ee;
+}
+
+.modal-login .modal-footer {
+  background: #ecf0f1;
+  border-color: #dee4e7;
+  text-align: center;
+  margin: 0 -20px -20px;
+  border-radius: 5px;
+  font-size: 13px;
+  justify-content: center;
+}
+
+.modal-login .modal-footer a {
+  color: #999;
+}
+
+.trigger-btn {
+  display: inline-block;
+  margin: 100px auto;
+}
+
+.mb-3 .btn-primary {
+  text-align: center;
+}
+
+.mb-3 .btn-primary:hover {
+  transform: scale(0.9);
+}
+
+
+
+/*Add Rica*/
+/*Event Table*/
+
+
+/* Dates */
+.agenda .agenda-date {
+  width: 170px;
+}
+
+.agenda .agenda-date .dayofmonth {
+  width: 40px;
+  font-size: 36px;
+  line-height: 36px;
+  float: left;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.agenda .agenda-date .shortdate {
+  font-size: 0.75em;
+}
+
+
+/* Times */
+.agenda .agenda-time {
+  width: 140px;
+}
+
+
+
+/*Add Rica*/
+/*Card*/
+#owl {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  text-align: center;
+
+}
+
+.slider {
+  max-width: 1150px;
+  display: flex;
+}
+
+.slider .card {
+  flex: 1;
+  margin: 0 10px;
+  border-radius: 10px;
+}
+
+.slider .card:hover {
+  transform: scale(0.9);
+}
+
+.slider .card .img {
+  height: 300px;
+  width: 100%;
+}
+
+.slider .card .img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.slider .card .content {
+  padding: 10px 20px;
+}
+
+.card .content .title {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.card .content p {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.btn .btn-primary {
+  background: #1a75d1;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn .btn-primary:hover {
+  transform: scale(0.9);
+}
+
+/*End Card*/
+
+
+/* Color of the links BEFORE scroll */
+.navbar-scroll .nav-link,
+.navbar-scroll .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+  color: #262626;
+}
+
+/* Color of the navbar BEFORE scroll */
+.navbar-scroll {
+  background-color: #FFC017;
+}
+
+/* Color of the links AFTER scroll */
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+  color: #262626;
+}
+
+/* Color of the navbar AFTER scroll */
+.navbar-scrolled {
+  background-color: #fff;
+}
+
+/* An optional height of the navbar AFTER scroll */
+.navbar.navbar-scroll.navbar-scrolled {
+  padding-top: auto;
+  padding-bottom: auto;
+}
+
+.navbar-brand {
+  font-size: unset;
+  height: 3.5rem;
+}
+
+/*Navbar*/
+
+.reg-section .reg-section-text {
+  padding: 3rem
+}
+
+.reg-section .showcase-img {
+  min-height: 30rem;
+  background-size: cover
+}
+
+@media(min-width: 768px) {
+  .reg-section .reg-section-text {
+    padding: 2rem
+  }
+}
+
+.reg-section form .already,
+.vote-photo form .already {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6f7a85;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+
+.vote-photo {
+  background: #f1f7fc;
+  padding: 80px 0;
+}
+
+.vote-photo .image-holder {
+  display: table-cell;
+  width: auto;
+  background: url(../../../assets/img/vote-hands.jpg);
+  background-size: cover;
+}
+
+.vote-photo .form-container {
+  display: table;
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.vote-photo form {
+  display: table-cell;
+  width: 400px;
+  background-color: #ffffff;
+  padding: 40px 60px;
+  color: #505e6c;
+}
+
+@media (max-width:991px) {
+  .vote-photo form {
+    padding: 40px;
+  }
+}
+
+.vote-photo form h2 {
+  font-size: 28px;
+  line-height: 1.5;
+  margin-bottom: 1px;
+}
+
+.vote-photo form h5 {
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.vote-photo form .form-control {
+  background: #f7f9fc;
+  border: none;
+  border-bottom: 1px solid #dfe7f1;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+  text-indent: 6px;
+  height: 40px;
+}
+
+.vote-photo form .btn-primary {
+  background: #f4476a;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 35px;
+  text-shadow: none;
+  outline: none !important;
+}
+
+.vote-photo form .btn-primary:hover,
+.vote-photo form .btn-primary:active {
+  background: #833143;
+}
+
+.vote-photo form .btn-primary:active {
+  transform: translateY(1px);
+}
+
+:root {
+  --main-text-color: #1a75d1;
+  --second-text-color: #0a246b;
+}
+
+.primary-text {
+  color: var(--main-text-color);
+}
+
+.second-text {
+  color: var(--second-text-color);
+}
+
+.rounded-full {
+  border-radius: 100%;
+}
+
+
+/*add rica*/
+/*Sidebar*/
+#wrapper {
+  display: flex;
+  align-items: stretch;
+  overflow-x: hidden;
+  background-color: rgba(124, 156, 216, 0.233);
+}
+
+#sidebar {
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 100vh;
+  position: fixed;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -17rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 0rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 17rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+#menu-toggle {
+  cursor: pointer;
+}
+
+.list-group-item {
+  border: none;
+  padding: 20px 30px;
+}
+
+.list-group-item.active {
+  background-color: transparent;
+  color: var(--main-text-color);
+  font-weight: bold;
+  border: none;
+}
+
+#sidbar-wrapper .sidebar-heading a {
+  color: #833143;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 103%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -17rem;
+  }
+}
+
+/*countdown*/
+
+.countdown {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.bg-gradient-4 {
+  background: #004b91;
+  background: -webkit-linear-gradient(to right, #0169f0bf, #62def4);
+  background: linear-gradient(to right, #0169f0bf, #62def4);
+}
+
+/*divider countdown*/ 
+
+.divider
+{
+position: relative;
+margin-top: 20px;
+height: 1px;
+}
+
+.div-transparent:before
+{
+content: "";
+position: absolute;
+top: 0;
+left: 5%;
+right: 5%;
+width: 90%;
+height: 1.5px;
+background-image: linear-gradient(to right, transparent, rgb(17, 86, 223), transparent);
+}
+

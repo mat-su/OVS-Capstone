@@ -1,0 +1,64 @@
+   /*Reg Form*/
+   .form {
+    padding: 30px 40px;	
+  }
+  
+  .form-control {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  
+  .form-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  
+  .form-control input {
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .form-control input:focus {
+    outline: 0;
+    border-color: #777;
+  }
+  /*Flex Container Reg Form*/
+  .flex-container{
+    display: flex;
+    flex-direction: row;
+  }
+  .flex-child{
+    flex:1;
+    padding-left: 1em;
+  }
+  #reg-section .flex-container .form-group{
+    padding-bottom: 20px;
+  }
+ 
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+
+.reg-section .reg-section-text {
+    padding: 3rem
+  }
+  
+  .reg-section .showcase-img {
+    min-height: 30rem;
+    background-size: cover
+  }
+  
+  @media(min-width: 768px) {
+    .reg-section .reg-section-text {
+      padding: 3.5rem
+    }
+  }
