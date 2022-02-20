@@ -8,7 +8,7 @@ $(function () {
         $('input').removeClass('is-invalid');
         $('select').removeClass('is-invalid');
     }
-    
+
     function draw_data() {
         if ($.fn.dataTable.isDataTable('#org_struct_tbl') && orgstruct_Tbl != '') {
             orgstruct_Tbl.draw(true);
@@ -66,13 +66,30 @@ $(function () {
                             alert("An error occured while fetching single data");
                         },
                         success: function (resp) {
-                            if (!!resp.status) {
+                            if (!!resp.status) { //To cast your JavaScript variables to boolean, simply use two exclamation signs
                                 Object.keys(resp.data[0]).map(k => {
                                     if ($('#staticBackdropView').find('input[name="' + k + '"]').length > 0)
                                         $('#staticBackdropView').find('input[name="' + k + '"]').val(resp.data[0][k]);
                                 });
                                 $('#staticBackdropView').modal('show');
+                                $('#staticBackdropView').find('select[id="seats"]').val(resp.data[0]['seats']);
                                 $('#staticBackdropView').find('input[name="pos_id"]').val(resp.data[0]['id']);
+                                let parent = document.getElementById('DrpDwn2');
+                                let seats = parent.children[1];
+                                const regex1 = new RegExp(/^president$/i);
+                                const regex2 = new RegExp(/^vice president$/i);
+                                const regex3 = new RegExp(/^secretary$/i);
+                                if (regex1.test(resp.data[0]['position']) || regex2.test(resp.data[0]['position']) || regex3.test(resp.data[0]['position'])) {
+                                    seats.options[1].disabled = true;
+                                    seats.options[2].disabled = true;
+                                    seats.options[3].disabled = true;
+                                    seats.options[4].disabled = true;
+                                } else {
+                                    seats.options[1].disabled = false;
+                                    seats.options[2].disabled = false;
+                                    seats.options[3].disabled = false;
+                                    seats.options[4].disabled = false;
+                                }
                             } else {
                                 alert("An error occured while fetching single data");
                             }
@@ -159,7 +176,7 @@ $(function () {
                             _el.text(resp.msg);
                             $('#frm_create').prepend(_el);
                             _el.show('slow');
-                            
+
                         } else {
                             var _el = $('<div>');
                             _el.hide();
@@ -171,7 +188,7 @@ $(function () {
                                 _el.hide('slow')
                                     .remove();
                             }, 10000);
-                            
+
                         }
                     } else {
                         alert("An error occurred. Please check the source code and try again");
@@ -195,7 +212,7 @@ $(function () {
         unhighlight: function (element, errorClass, validClass) {
             $(element).addClass("is-valid").removeClass("is-invalid");
         },
-        submitHandler: function() {
+        submitHandler: function () {
             $('#staticBackdropView #btn-cancel').remove();
             $('#staticBackdropView button[form="frm_edit"]').text("");
             $('#staticBackdropView button').attr('disabled', true);
@@ -238,7 +255,7 @@ $(function () {
                             _el.text(resp.msg);
                             $('#frm_edit').prepend(_el);
                             _el.show('slow');
-                            
+
                         } else {
                             var _el = $('<div>');
                             _el.hide();
@@ -250,7 +267,7 @@ $(function () {
                                 _el.hide('slow')
                                     .remove();
                             }, 10000);
-                            
+
                         }
                     } else {
                         alert("An error occurred. Please check the source code and try again");
@@ -317,3 +334,41 @@ $(function () {
         });
     });
 });
+
+let seat1 = document.getElementById('DrpDwn1').children[1];
+let seat2 = document.getElementById('DrpDwn2').children[1];
+let position1 = document.getElementById('IP1').children[1];
+let position2 = document.getElementById('IP2').children[1];
+position1.addEventListener('keyup', function () {
+    oneSeatOnly(seat1, position1)
+});
+position2.addEventListener('keyup', function () {
+    oneSeatOnly(seat2, position2)
+});
+position1.addEventListener('blur', function () {
+    oneSeatOnly(seat1, position1)
+});
+position2.addEventListener('blur', function () {
+    oneSeatOnly(seat2, position2)
+});
+
+function oneSeatOnly(seatNum, posiVal) {
+    let seat = seatNum;
+    let positionValue = posiVal.value.trim();
+
+    const regex1 = new RegExp(/^president$/i);
+    const regex2 = new RegExp(/^vice president$/i);
+    const regex3 = new RegExp(/^secretary$/i);
+    if (regex1.test(positionValue) || regex2.test(positionValue) || regex3.test(positionValue)) {
+        seat.options[0].selected = true;
+        seat.options[1].disabled = true;
+        seat.options[2].disabled = true;
+        seat.options[3].disabled = true;
+        seat.options[4].disabled = true;
+    } else {
+        seat.options[1].disabled = false;
+        seat.options[2].disabled = false;
+        seat.options[3].disabled = false;
+        seat.options[4].disabled = false;
+    }
+}

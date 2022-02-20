@@ -122,13 +122,14 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
                         <div class="container-fluid">
                             <form method="post" id="frm_create" action="save_new_pos.php">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" id="IP1">
                                         <label for="position" class="form-label">Position</label>
-                                        <input type="text" class="form-control mb-2" placeholder="" name="position" required>
+                                        <input type="text" class="form-control mb-2" placeholder="" name="position" id="position" required>
                                     </div>
                                 </div>
+
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" id="DrpDwn1">
                                         <label for="seats" class="form-label">Seats</label>
                                         <select class="form-select mb-2" aria-label="Default select example" name="seats" id="seats" form="frm_create">
                                             <option value="1">1</option>
@@ -162,13 +163,13 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
                         <form method="post" id="frm_edit" action="update_pos.php">
                             <input type="hidden" name="pos_id">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12" id="IP2">
                                     <label for="position" class="form-label">Position</label>
                                     <input type="text" class="form-control mb-2" placeholder="" name="position" required>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12" id="DrpDwn2">
                                     <label for="seats" class="form-label">Seats</label>
                                     <select class="form-select mb-2" aria-label="Default select example" name="seats" id="seats" form="frm_edit">
                                         <option value="1">1</option>
