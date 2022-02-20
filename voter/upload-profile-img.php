@@ -25,7 +25,7 @@ if (isset($_POST['upload']) && !empty($_FILES)) { // if save button on the form 
     // the physical file on a temporary uploads directory on the server
     $file = $_FILES['profile-img']['tmp_name'];
 
-    if (!in_array($extension, ['jpeg', 'jpg', 'png', 'gif'])) {
+    if (!in_array(strtolower($extension), ['jpeg', 'jpg', 'png', 'gif'])) {
         header("Location: im-a-candidate.php?err=Invalid file extension. Must be valid image file extension");
     } elseif ($_FILES['profile-img']['size'] > 1572864) {
         // file shouldn't be larger than 1.5Megabyte
