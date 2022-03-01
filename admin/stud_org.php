@@ -222,7 +222,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                             </div>
 
 
-                                            <a href="" class="linktrash" title="Delete Org" data-bs-toggle="modal" id="<?= $org['org_id'] ?>" data-bs-target="#staticBackdropDelete"><i class="fas fa-trash fa-xs fs-5"></i></a>
+                                            <a href="" class="linktrash" title="Delete Org" data-bs-toggle="modal" id="<?= $org['org_id'] ?>" data-bs-target="#staticBackdropDelete"><i class="text-danger fas fa-trash fa-xs fs-5"></i></a>
                                             <!-- Modal -->
                                             <div class="modal fade" id="staticBackdropDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelDelete" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
