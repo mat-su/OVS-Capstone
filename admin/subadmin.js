@@ -287,7 +287,7 @@ $(function () {
             $.each(serializedForm, function (i, field) {
                 formdata[field.name] = $.trim(field.value);
             });
-            console.log(formdata);
+//            console.log(formdata);
             $.ajax({
                 url: 'update_sa.php',
                 data: formdata,
