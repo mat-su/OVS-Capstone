@@ -4,7 +4,7 @@ include '../mail.php';
 
 $conn = MYSQL_DB_Connection();
 extract($_POST);
-$stmt = $conn->query("set autocommit = 0;");
+$stmt = $conn->query("set autocommit = 0;"); //to have access on disregarding the recent changes in sql [rollback]
 $stmt = $conn->prepare("SELECT * FROM tbl_subadmin WHERE sa_org_id = :org_id");
 $stmt->bindParam(':org_id', $org, PDO::PARAM_INT);
 $stmt->execute();
@@ -74,4 +74,4 @@ if (isset($fname) && isset($lname) && isset($email) && isset($org) && preg_match
     $resp['msg'] = "An error occured while processing the request!";
 }
 echo json_encode($resp);
-$stmt = $conn->query("set autocommit = 1;");
+$stmt = $conn->query("set autocommit = 1;"); //to disallow rollback functionality
