@@ -6,6 +6,10 @@ if (isset($_POST["id"])) {
     WHERE vs_org_id = :id");
     $stmt->bindParam(':id', $_POST["id"], pdo::PARAM_STR);
     $stmt->execute();
-    header("Location: v_sched.php");
+    $resp['status'] = "success";
+} else {
+    $resp['status'] = 'failed';
+    $resp['msg'] = 'An error occured while clearing the data. Error: '.$conn->error;
 }
 
+echo json_encode($resp);

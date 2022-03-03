@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
     include '../functions.php';
     $conn = MYSQL_DB_Connection();
-    $orgs = $conn->query("SELECT o.org_id AS org_id, CONCAT(o.org_name, ' (', o.org_acronym, ')') AS Org_Name, s.vs_org_id, DATE_FORMAT(s.vs_start_date, '%a %b %e %Y') as strt, DATE_FORMAT(s.vs_end_date, '%a %b %e %Y') as end, DATE_FORMAT(s.vs_start_date, '%r') as strt_r, DATE_FORMAT(s.vs_end_date, '%r') as end_r FROM tbl_stud_orgs o LEFT JOIN tbl_vote_sched s ON o.org_id = s.vs_org_id ORDER BY org_id ASC");
+
 
     $id = $_SESSION['a_id'];
     $stmt = $conn->prepare("SELECT CONCAT(a_fname, ' ', a_lname) AS fullname FROM tbl_admin WHERE a_id = :id");
@@ -13,57 +13,9 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
     $admin = $stmt->fetch(PDO::FETCH_ASSOC);
     $fullname = $admin['fullname'];
 
+    template_header('Voting Schedule')
+
 ?>
-
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!--Logo-->
-        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-        <link rel="stylesheet" href="../assets/bootstrap/css/style.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-        <title>Voting Schedule</title>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-        <script>
-            $(document).ready(function() {
-                $(document).on('click', '.linkschedule', function() {
-                    var org_id = $(this).attr("id");
-                    $.ajax({
-                        url: "sched.php",
-                        method: "POST",
-                        data: {
-                            org_id: org_id
-                        },
-                        success: function(data) {
-                            $('#vs_modal').html(data);
-                            $('#staticBackdropSched').modal('show');
-                        }
-                    });
-                });
-                $(document).on('click', '.linkclrsched', function() {
-                    var org_id = $(this).attr("id");
-                    $.ajax({
-                        url: "clearsched.php",
-                        method: "POST",
-                        data: {
-                            org_id: org_id
-                        },
-                        success: function(data) {
-                            $('#cvs_modal').html(data);
-                            $('#staticBackdropClrSched').modal('show');
-                        }
-                    });
-                });
-            });
-        </script>
-    </head>
 
     <body>
         <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
@@ -122,6 +74,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                 </nav>
 
                 <div class="container-fluid px-4 my-4">
+                    <div id="response-msg"></div>
                     <div class="row">
                         <div class="col-md-9">
                             <p class="fs-4">Voting Schedule</p>
@@ -129,7 +82,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                     </div>
 
                     <div class="table-responsive">
-                        <table id="tbl_sched" class="table bg-white rounded shadow-sm  table-hover" style="width:100%">
+                        <table id="sched-tbl" class="table bg-white rounded shadow-sm  table-hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Org Name</th>
@@ -138,77 +91,70 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php foreach ($orgs as $o) : ?>
-                                    <tr>
-                                        <td><?= $o['Org_Name'] ?></td>
-                                        <td><?= $o["strt"] ?> <?= substr_replace($o['strt_r'], '', 5, 3); ?></td>
-                                        <td><?= $o["end"] ?> <?= substr_replace($o['end_r'], '', 5, 3); ?></td>
-                                        <td class="actions">
-                                            <a href="" class="linkschedule" title="Set Schedule" data-bs-toggle="modal" id="<?= $o['org_id'] ?>" data-bs-target="#staticBackdropSched"><i class="far fa-calendar-alt fs-5"></i></a>
-                                            <?php
-                                            if ($o["vs_org_id"] != "") { ?>
-                                                <a href="" class="linkclrsched" title="Set Schedule" data-bs-toggle="modal" id="<?= $o['org_id'] ?>" data-bs-target="#staticBackdropClrSched"><i class="fas fa-eraser text-danger"></i></a>
-                                            <?php } ?>
-                                            <!-- Modal set voting schedule -->
-                                            <div class="modal fade" id="staticBackdropSched" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelSched" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="staticBackdropLabelSched"> Voting
-                                                                Schedule</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body" id="vs_modal">
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary" form="sched">
-                                                                Save Schedule
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Modal for clear voting schedule-->
-                                            <div class="modal fade" id="staticBackdropClrSched" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelClrSched" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="staticBackdropLabelClrSched"> Clear Voting
-                                                                Schedule</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body" id="cvs_modal">
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary" form="clrsched">
-                                                                Yes
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
                         </table>
                     </div>
                 </div>
-
             </div>
             <!-- /#page-content-wrapper -->
         </div>
-        <?= template_footer() ?>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script type="text/javascript" src="    https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+        <!-- Modal set voting schedule -->
+        <div class="modal fade" id="staticBackdropSched" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelSched" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabelSched"> Voting
+                            Schedule</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="vs_modal">
+                        <div id="error-msg"></div>
+                        <form action="" method="POST" id="sched">
+                            <div class="mb-3">
+                                <label for="startdate">Starts on </label>
+                                <input id="startdate" type="datetime-local" name="startdate" value="" class="form-control" >
+                            </div>
+                            <div class="mb-3">
+                                <label for="enddate">Ends on</label>
+                                <input id="enddate" type="datetime-local" name="enddate" value="" class="form-control" >
+                            </div>
+                            
+                            <input type="text" class="form-control mb-2" placeholder="" name="id" value="" hidden>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" form="sched">
+                            Save Schedule
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for clear voting schedule-->
+        <div class="modal fade" id="staticBackdropClrSched" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelClrSched" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabelClrSched"> Clear Voting
+                            Schedule</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="cvs_modal">
+                        <form id="clrsched" method="post" action="clear-now.php">
+                            <p> Are you sure you want to clear the voting schedule for this organization? </p><input type="text" class="form-control mb-2" placeholder="" name="id" value="" hidden>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancel-btn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" form="clrsched">
+                            Yes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <?= template_footer() ?>
         <script>
             var el = document.getElementById("wrapper");
             var toggleButton = document.getElementById("menu-toggle");
@@ -216,17 +162,10 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
             toggleButton.onclick = function() {
                 el.classList.toggle("toggled");
             };
-
-            $(document).ready(function() {
-                $('#tbl_sched').DataTable({
-                    "ordering": false,
-                    "aLengthMenu": [
-                        [5, 10, 15, -1],
-                        [5, 10, 15, "All"]
-                    ]
-                });
-            });
         </script>
+        <!--CUSTOM JS-->
+        <script src="voting-sched.js"></script>
+
     </body>
 
     </html>
