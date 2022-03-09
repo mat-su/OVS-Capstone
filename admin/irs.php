@@ -1,5 +1,6 @@
 <?php
-
+include '../functions.php';
+$conn = MYSQL_DB_Connection();
 if (isset($_POST['import']) && !empty($_FILES)) {
 
     $filename = $_FILES['sqlFile']['name'];
