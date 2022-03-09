@@ -7,11 +7,10 @@ $organizations = $conn->prepare("SELECT * FROM tbl_subadmin WHERE sa_org_id = :o
 $organizations->bindParam('org_id', $org, PDO::PARAM_INT);
 $organizations->execute();
 
-$emailRegex = '/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
 $nameRegex = "/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/";
 
 if (isset($fname) && isset($lname) && isset($email) && isset($org) && preg_match($nameRegex, $fname) && preg_match($nameRegex, $lname)) {
-
+    
     $subadmins = $conn->prepare("SELECT s.sa_id AS id, s.sa_fname AS fname, s.sa_mname AS mname, s.sa_lname AS lname, s.sa_email AS email, o.org_id AS org_id, CONCAT(o.org_name, ' (', o.org_acronym, ')') AS Org_Name FROM tbl_subadmin s LEFT JOIN tbl_stud_orgs o ON s.sa_org_id = o.org_id WHERE s.sa_id = :sa_id");
     $subadmins->bindParam(':sa_id', $sa_id, PDO::PARAM_INT);
     $subadmins->execute();
@@ -22,26 +21,20 @@ if (isset($fname) && isset($lname) && isset($email) && isset($org) && preg_match
     if ($orig_studorgID == $org || $organizations->rowCount() == 0) {
         if ($email != $orig_email) {
             $resp['status'] = 'failed';
-            $resp['msg'] = "An error occured while processing the request!";
+            $resp['msg'] = "An error occured while processing the request! Please reload the page.";
         } else {
             if (!empty($mname) && !preg_match($nameRegex, $mname)) {
                 $resp['status'] = 'failed';
-                $resp['msg'] = "There was an error processing the request!";
+                $resp['msg'] = "Input a valid middle name!";
             } else {
-                if (filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match($emailRegex, $email)) {
                     $resp['status'] = 'success';
-                    $stmt = $conn->prepare("UPDATE tbl_subadmin SET sa_fname = :fname, sa_mname = :mname, sa_lname = :lname, sa_email = :email, sa_org_id = :org WHERE sa_id = :id");
+                    $stmt = $conn->prepare("UPDATE tbl_subadmin SET sa_fname = :fname, sa_mname = :mname, sa_lname = :lname, sa_org_id = :org WHERE sa_id = :id");
                     $stmt->bindParam(':fname', $fname, pdo::PARAM_STR);
                     $stmt->bindParam(':mname', $mname, pdo::PARAM_STR);
                     $stmt->bindParam(':lname', $lname, pdo::PARAM_STR);
-                    $stmt->bindParam(':email', $email, pdo::PARAM_STR);
                     $stmt->bindParam(':org', $org, pdo::PARAM_INT);
                     $stmt->bindParam(':id', $sa_id, pdo::PARAM_INT);
                     $stmt->execute();
-                } else {
-                    $resp['status'] = 'failed';
-                    $resp['msg'] = "Invalid email!... Please enter a valid email";
-                }
             }
         }
     } else {
