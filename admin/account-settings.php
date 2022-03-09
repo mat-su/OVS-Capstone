@@ -279,12 +279,19 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                     var newUname = $('#newUname').val();
                     var unameRegex = /^[a-zA-Z]([._-](?![._-])|[a-zA-Z0-9]){3,30}[a-zA-Z0-9]$/;
                     var isValid = newUname.match(unameRegex);
+                    const txt_uname = document.querySelector('#newUname');
                     if (isValid && newUname.length > 0) {
+                        txt_uname.classList.remove('is-invalid');
+                        txt_uname.classList.add('is-valid');
                         $('#result').html("<span class=\"text-success\"><i class=\"fa fa-check fs-6 me-2\"></i><small>Valid Username</small></span>");
                         $('#btnCU').prop('disabled', false);
                     } else if (newUname.length == 0) {
+                        txt_uname.classList.remove('is-invalid');
+                        txt_uname.classList.remove('is-valid');
                         $('#result').html("");
                     } else {
+                        txt_uname.classList.remove('is-valid');
+                        txt_uname.classList.add('is-invalid');
                         $('#result').html("<span class=\"text-danger\"><i class=\"fa fa-times fs-6 me-2\"></i><small>Invalid Username</small></span>");
                         $('#btnCU').prop('disabled', true);
                     }
