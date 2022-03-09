@@ -9,7 +9,7 @@ $stmt = $conn->prepare("SELECT * FROM tbl_subadmin WHERE sa_org_id = :org_id");
 $stmt->bindParam(':org_id', $org, PDO::PARAM_INT);
 $stmt->execute();
 
-$emailRegex = "/^([a-zA-Z0-9_\-?\.?]){3,}@([a-zA-Z]){3,}\.([a-zA-Z]){2,5}$/";
+$emailRegex = '/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
 $nameRegex = "/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/";
 
 if (isset($fname) && isset($lname) && isset($email) && isset($org) && preg_match($nameRegex, $fname) && preg_match($nameRegex, $lname)) {
