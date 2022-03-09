@@ -5,6 +5,7 @@ $output = '';
 
 if (isset($_POST['submit'])) {
     $newEmail = $_POST['newEmail'];
+    $emailRegex = '/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
     $adminID = $_POST['adminID'];
     if (empty($newEmail)) {
         $output = '
@@ -13,10 +14,10 @@ if (isset($_POST['submit'])) {
     </div>
     $("#newEmail").removeClass("is-valid").addClass("is-invalid");
     </script>';
-    } elseif (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+    } elseif (!filter_var($newEmail, FILTER_VALIDATE_EMAIL) && !preg_match($emailRegex, $newEmail)) {
         $output = '
             <div class="alert alert-danger mt-2" role="alert">
-            <i class="fa fa-times fs-4 me-2"></i><strong>Improper email format!</strong> Write a valid email address.
+            <i class="fa fa-times fs-4 me-2"></i><strong>Improper email format!</strong> Enter a valid email address.
             </div>
             <script>
             $("#newEmail").removeClass("is-valid").addClass("is-invalid");
