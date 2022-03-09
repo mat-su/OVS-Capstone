@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     </div>
     $("#newEmail").removeClass("is-valid").addClass("is-invalid");
     </script>';
-    } elseif (!filter_var($newEmail, FILTER_VALIDATE_EMAIL) && !preg_match($emailRegex, $newEmail)) {
+    } elseif (!filter_var($newEmail, FILTER_VALIDATE_EMAIL) || !preg_match($emailRegex, $newEmail)) {
         $output = '
             <div class="alert alert-danger mt-2" role="alert">
             <i class="fa fa-times fs-4 me-2"></i><strong>Improper email format!</strong> Enter a valid email address.
