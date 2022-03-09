@@ -179,9 +179,12 @@ $(function () {
                 success: function (resp) {
                     if (!!resp.status) {
                         if (resp.status == 'success') {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {notify.remove()}
                             var _el = $('<div>');
                             _el.hide();
                             _el.addClass('alert alert-light alert_msg fw-bold');
+                            _el.attr('id', 'notify');
                             _el.text("Sub Admin Info Successfully Saved! ");
                             _el.append('<i class="fa fa-check fs-3 ms-2 text-success"></i>');
                             $('#frm_create_sub').get(0).reset();
@@ -195,16 +198,22 @@ $(function () {
                                     .remove();
                             }, 5000);
                         } else if (resp.status == 'success' && !!resp.msg) {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {notify.remove()}
                             var _el = $('<div>');
                             _el.hide();
                             _el.addClass('alert alert-danger alert_msg form-group');
+                            _el.attr('id','notify');
                             _el.text(resp.msg);
                             $('#frm_create_sub').prepend(_el);
                             _el.show('slow');
                         } else {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {notify.remove()}
                             var _el = $('<div>');
                             _el.hide();
                             _el.addClass('alert alert-danger alert_msg form-group');
+                            _el.attr('id','notify');
                             _el.text(resp.msg);
                             $('#frm_create_sub').prepend(_el);
                             _el.show('slow');
@@ -299,9 +308,12 @@ $(function () {
                 success: function (resp) {
                     if (!!resp.status) {
                         if (resp.status == 'success') {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {notify.remove()}
                             var _el = $('<div>')
                             _el.hide()
                             _el.addClass('alert alert-light alert_msg fw-bold')
+                            _el.attr('id', 'notify');
                             _el.text("Sub Admin Successfully Updated");
                             _el.append('<i class="fa fa-check fs-3 ms-2 text-success"></i>');
                             $('#frm_edit_sub').get(0).reset()
@@ -314,16 +326,22 @@ $(function () {
                                     .remove()
                             }, 5000)
                         } else if (resp.status == 'success' && !!resp.msg) {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {notify.remove()}
                             var _el = $('<div>')
                             _el.hide()
                             _el.addClass('alert alert-danger alert_msg form-group')
+                            _el.attr('id', 'notify');
                             _el.text(resp.msg);
                             $('#frm_edit_sub').append(_el)
                             _el.show('slow')
                         } else {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {notify.remove()}
                             var _el = $('<div>');
                             _el.hide();
                             _el.addClass('alert alert-danger alert_msg form-group');
+                            _el.attr('id', 'notify');
                             _el.text(resp.msg);
                             $('#frm_edit_sub').prepend(_el);
                             _el.show('slow');
@@ -363,9 +381,12 @@ $(function () {
 
                 if (!!resp.status) {
                     if (resp.status == 'success') {
+                        let notify = document.querySelector('#notify');
+                        if (notify != null) {notify.remove()}
                         var _el = $('<div>')
                         _el.hide()
                         _el.addClass('alert alert-light alert_msg fw-bold')
+                        _el.attr('id', 'notify');
                         _el.text("Sub Admin Successfully Deleted");
                         _el.append('<i class="fa fa-check fs-3 ms-2 text-success"></i>');
                         $('#frm_delete_sub').get(0).reset()
@@ -379,8 +400,11 @@ $(function () {
                         }, 3000)
                     } else if (resp.status == 'success' && !!resp.msg) {
                         var _el = $('<div>')
+                        let notify = document.querySelector('#notify');
+                        if (notify != null) {notify.remove()}
                         _el.hide()
-                        _el.addClass('alert alert-danger alert_msg form-group')
+                        _el.addClass('alert alert-danger alert_msg form-group');
+                        _el.attr('id', 'notify');
                         _el.text(resp.msg);
                         $('#frm_delete_sub').prepend(_el)
                         _el.show('slow')

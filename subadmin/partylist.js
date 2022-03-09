@@ -8,7 +8,7 @@ $(function () {
         $('input').removeClass('is-invalid');
         $('select').removeClass('is-invalid');
     }
-    
+
     function draw_data() {
         if ($.fn.dataTable.isDataTable('#partylist_tbl') && partylist_Tbl != '') {
             partylist_Tbl.draw(true);
@@ -19,7 +19,7 @@ $(function () {
 
     function load_data() {
         partylist_Tbl = $('#partylist_tbl').DataTable({
-            
+
             "aLengthMenu": [
                 [5, 10, 15, -1],
                 [5, 10, 15, "All"]
@@ -135,8 +135,13 @@ $(function () {
                 success: function (resp) {
                     if (!!resp.status) {
                         if (resp.status == 'success') {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
+                            _el.attr('id', 'notify');
                             _el.addClass('alert alert-light alert_msg fw-bold');
                             _el.text("New Partylist Successfully Saved! ");
                             _el.append('<i class="fa fa-check fs-3 ms-2 text-success"></i>');
@@ -150,16 +155,26 @@ $(function () {
                                     .remove();
                             }, 5000);
                         } else if (resp.status == 'success' && !!resp.msg) {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
+                            _el.attr('id', 'notify');
                             _el.addClass('alert alert-danger alert_msg form-group');
                             _el.text(resp.msg);
                             $('#frm_create').prepend(_el);
                             _el.show('slow');
-                            
+
                         } else {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
+                            _el.attr('id', 'notify');
                             _el.addClass('alert alert-danger alert_msg form-group');
                             _el.text(resp.msg);
                             $('#frm_create').prepend(_el);
@@ -168,7 +183,7 @@ $(function () {
                                 _el.hide('slow')
                                     .remove();
                             }, 10000);
-                            
+
                         }
                     } else {
                         alert("An error occurred. Please check the source code and try again");
@@ -192,7 +207,7 @@ $(function () {
         unhighlight: function (element, errorClass, validClass) {
             $(element).addClass("is-valid").removeClass("is-invalid");
         },
-        submitHandler: function() {
+        submitHandler: function () {
             $('#staticBackdropView #btn-cancel').remove();
             $('#staticBackdropView button[form="frm_edit"]').text("");
             $('#staticBackdropView button').attr('disabled', true);
@@ -214,8 +229,13 @@ $(function () {
                 success: function (resp) {
                     if (!!resp.status) {
                         if (resp.status == 'success') {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
+                            _el.attr('id', 'notify');
                             _el.addClass('alert alert-light alert_msg fw-bold');
                             _el.text("Partylist Successfully Updated! ");
                             _el.append('<i class="fa fa-check fs-3 ms-2 text-success"></i>');
@@ -229,16 +249,26 @@ $(function () {
                                     .remove();
                             }, 5000);
                         } else if (resp.status == 'success' && !!resp.msg) {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
+                            _el.attr('id', 'notify');
                             _el.addClass('alert alert-danger alert_msg form-group');
                             _el.text(resp.msg);
                             $('#frm_edit').prepend(_el);
                             _el.show('slow');
-                            
+
                         } else {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
+                            _el.attr('id', 'notify');
                             _el.addClass('alert alert-danger alert_msg form-group');
                             _el.text(resp.msg);
                             $('#frm_edit').prepend(_el);
@@ -247,7 +277,7 @@ $(function () {
                                 _el.hide('slow')
                                     .remove();
                             }, 10000);
-                            
+
                         }
                     } else {
                         alert("An error occurred. Please check the source code and try again");
@@ -277,11 +307,15 @@ $(function () {
                 alert("An error occured. Please check the source code and try again")
             },
             success: function (resp) {
-
                 if (!!resp.status) {
                     if (resp.status == 'success') {
-                        var _el = $('<div>')
-                        _el.hide()
+                        let notify = document.querySelector('#notify');
+                        if (notify != null) {
+                            notify.remove()
+                        }
+                        var _el = $('<div>');
+                        _el.hide();
+                        _el.attr('id', 'notify');
                         _el.addClass('alert alert-light alert_msg fw-bold')
                         _el.text("Partylist Successfully Deleted");
                         _el.append('<i class="fa fa-check fs-3 ms-2 text-success"></i>');
@@ -295,8 +329,13 @@ $(function () {
                                 .remove()
                         }, 3000)
                     } else if (resp.status == 'success' && !!resp.msg) {
-                        var _el = $('<div>')
-                        _el.hide()
+                        let notify = document.querySelector('#notify');
+                        if (notify != null) {
+                            notify.remove()
+                        }
+                        var _el = $('<div>');
+                        _el.hide();
+                        _el.attr('id', 'notify');
                         _el.addClass('alert alert-danger alert_msg form-group')
                         _el.text(resp.msg);
                         $('#frm_delete').prepend(_el)

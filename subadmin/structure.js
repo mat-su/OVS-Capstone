@@ -155,9 +155,14 @@ $(function () {
                 success: function (resp) {
                     if (!!resp.status) {
                         if (resp.status == 'success') {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
                             _el.addClass('alert alert-light alert_msg fw-bold');
+                            _el.attr('id', 'notify');
                             _el.text("New Position Successfully Saved! ");
                             _el.append('<i class="fa fa-check fs-3 ms-2 text-success"></i>');
                             $('#frm_create').get(0).reset();
@@ -170,17 +175,27 @@ $(function () {
                                     .remove();
                             }, 5000);
                         } else if (resp.status == 'success' && !!resp.msg) {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
                             _el.addClass('alert alert-danger alert_msg form-group');
+                            _el.attr('id', 'notify');
                             _el.text(resp.msg);
                             $('#frm_create').prepend(_el);
                             _el.show('slow');
 
                         } else {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
                             _el.addClass('alert alert-danger alert_msg form-group');
+                            _el.attr('id', 'notify');
                             _el.text(resp.msg);
                             $('#frm_create').prepend(_el);
                             _el.show('slow');
@@ -234,9 +249,14 @@ $(function () {
                 success: function (resp) {
                     if (!!resp.status) {
                         if (resp.status == 'success') {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
                             _el.addClass('alert alert-light alert_msg fw-bold');
+                            _el.attr('id', 'notify');
                             _el.text("Position Successfully Updated! ");
                             _el.append('<i class="fa fa-check fs-3 ms-2 text-success"></i>');
                             $('#frm_edit').get(0).reset();
@@ -249,16 +269,26 @@ $(function () {
                                     .remove();
                             }, 5000);
                         } else if (resp.status == 'success' && !!resp.msg) {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
+                            _el.attr('id', 'notify');
                             _el.addClass('alert alert-danger alert_msg form-group');
                             _el.text(resp.msg);
                             $('#frm_edit').prepend(_el);
                             _el.show('slow');
 
                         } else {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove()
+                            }
                             var _el = $('<div>');
                             _el.hide();
+                            _el.attr('id', 'notify');
                             _el.addClass('alert alert-danger alert_msg form-group');
                             _el.text(resp.msg);
                             $('#frm_edit').prepend(_el);
@@ -297,11 +327,15 @@ $(function () {
                 alert("An error occured. Please check the source code and try again")
             },
             success: function (resp) {
-
                 if (!!resp.status) {
                     if (resp.status == 'success') {
+                        let notify = document.querySelector('#notify');
+                        if (notify != null) {
+                            notify.remove()
+                        }
                         var _el = $('<div>')
                         _el.hide()
+                        _el.attr('id', 'notify');
                         _el.addClass('alert alert-light alert_msg fw-bold')
                         _el.text("Position Successfully Deleted");
                         _el.append('<i class="fa fa-check fs-3 ms-2 text-success"></i>');
@@ -315,8 +349,13 @@ $(function () {
                                 .remove()
                         }, 3000)
                     } else if (resp.status == 'success' && !!resp.msg) {
+                        let notify = document.querySelector('#notify');
+                        if (notify != null) {
+                            notify.remove()
+                        }
                         var _el = $('<div>')
                         _el.hide()
+                        _el.attr('id', 'notify');
                         _el.addClass('alert alert-danger alert_msg form-group')
                         _el.text(resp.msg);
                         $('#frm_delete').prepend(_el)
