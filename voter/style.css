@@ -423,24 +423,33 @@
   background: linear-gradient(to right, #0169f0bf, #62def4);
 }
 
-/*divider countdown*/ 
+/*divider countdown*/
 
-.divider
-{
-position: relative;
-margin-top: 20px;
-height: 1px;
+.divider {
+  position: relative;
+  margin-top: 20px;
+  height: 1px;
 }
 
-.div-transparent:before
-{
-content: "";
-position: absolute;
-top: 0;
-left: 5%;
-right: 5%;
-width: 90%;
-height: 1.5px;
-background-image: linear-gradient(to right, transparent, rgb(17, 86, 223), transparent);
+.div-transparent:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  height: 1.5px;
+  background-image: linear-gradient(to right, transparent, rgb(17, 86, 223), transparent);
 }
 
+/* override the styling of bootstrap5 */
+.note-editor .note-toolbar .note-dropdown-menu,
+.note-popover .popover-content .note-dropdown-menu {
+  box-sizing: content-box !important;
+}
+
+.note-editor .note-toolbar .note-color .dropdown-toggle,
+.note-popover .popover-content .note-color .dropdown-toggle {
+  width: 30px !important;
+  padding-left: 5px;
+}

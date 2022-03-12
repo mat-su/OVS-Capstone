@@ -3,7 +3,7 @@ include '../functions.php';
 session_start();
 $conn = MYSQL_DB_Connection();
 if (isset($_POST['submit']) && !empty($_POST['platform'])) {
-    $platform = $_POST['platform'];
+    $platform = htmlspecialchars($_POST['platform']);
     $stmt = $conn->prepare("SELECT * FROM tbl_can_info WHERE ci_id = :can_id");
     $stmt->bindParam(':can_id', $_SESSION['c_id'], PDO::PARAM_STR);
     $stmt->execute();

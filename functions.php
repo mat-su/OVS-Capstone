@@ -180,7 +180,7 @@ function SelectAll_Candidates($org_id, $partyName)
 function Select_VotingSched($org_id)
 {
   $conn = MYSQL_DB_Connection();
-  $stmt = $conn->prepare("SELECT s.vs_start_date AS startdate, s.vs_end_date enddate, o.org_id AS id FROM tbl_stud_orgs o LEFT JOIN tbl_vote_sched s ON o.org_id = s.vs_org_id WHERE o.org_id = :id");
+  $stmt = $conn->prepare("SELECT s.vs_start_date AS startdate, s.vs_end_date enddate, o.org_id AS id, DATE_FORMAT(vs_start_date, '%a') as strt_dw, DATE_FORMAT(vs_start_date, '%e') as strt_dm, DATE_FORMAT(vs_start_date, '%b') as strt_sd1, DATE_FORMAT(vs_start_date, '%Y') as strt_sd2, DATE_FORMAT(vs_start_date, '%r') as strt_r, DATE_FORMAT(vs_end_date, '%a') as end_dw, DATE_FORMAT(vs_end_date, '%e') as end_dm, DATE_FORMAT(vs_end_date, '%b') as end_sd1, DATE_FORMAT(vs_end_date, '%Y') as end_sd2, DATE_FORMAT(vs_end_date, '%r') as end_r FROM tbl_stud_orgs o LEFT JOIN tbl_vote_sched s ON o.org_id = s.vs_org_id WHERE o.org_id = :id");
   $stmt->bindParam(':id', $org_id, PDO::PARAM_INT);
   $stmt->execute();
   return $sched = $stmt->fetch(PDO::FETCH_ASSOC);

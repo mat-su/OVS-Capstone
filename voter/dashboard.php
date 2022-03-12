@@ -30,8 +30,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         $strt_time = substr_replace($sched['strt_r'], '', 5, 3);
         $end_time = substr_replace($sched['end_r'], '', 5, 3);
 
-        $starts = $sched['vs_start_date'];
-        $ends = $sched['vs_end_date'];
+        $starts = $sched['startdate'];
+        $ends = $sched['enddate'];
     } else {
         $starts = '';
         $ends = '';

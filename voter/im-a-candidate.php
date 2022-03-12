@@ -14,7 +14,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
 
         $fullname = $can['Name'];
         $position = $can['Position'];
-        $platform = (!empty($can['Platform'])) ? $can['Platform'] : 'Nothing to show.';
+        $platform = (!empty($can['Platform'])) ? $can['Platform'] : '<p style="text-align:center;">Nothing to show.</p>';
         $dir_img_file = './img-uploads/' . $can['Profile Image'];
         $candidate_img = (!empty($can['Profile Image'])) ? $dir_img_file  : '../assets/img/default_candi.png';
         $course = $can['Course'];
@@ -30,23 +30,15 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
 
 ?>
 
-
     <!DOCTYPE html>
     <html>
 
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Partylist</title>
+        <title>Candidate Page</title>
 
         <link rel="stylesheet" href="style.css">
-
-        <!--jQuery CDN for Owl Carousel-->
-        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <!--OWL Carousel CSS,JS-->
-        <script src="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/owl.carousel.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
 
         <!--FontAwesome Kit-->
         <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
@@ -55,6 +47,14 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
+        <!--JQuery Link-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     </head>
 
     <body>
@@ -126,23 +126,24 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                         </div>
 
                         <div class="divider div-transparent mb-3"></div>
-                        <div><button class="btn btn-secondary w-25 float-end" id="btn-edit-platform">Create Platform <i class="fas fa-edit"></i></button></div>
-                        <div class="col-md-12 text-center">
-                            <i class="fas fa-bullhorn fs-1 primary-text  secondary-bg p-4"></i>
-
-                            <div id="display-platform">
-                                <h3 class="fs-3 ">Platform</h3>
-                                <p class="fs-6"><?= $platform ?></p>
+                        <div><button class="btn btn-secondary w-25 float-end" id="btn-edit-platform">Platform <i class="fas fa-edit"></i></button></div>
+                        <div class="col-md-12">
+                            <div class="text-center">
+                                <i class="fas fa-bullhorn fs-1 primary-text  secondary-bg p-4"></i>
                             </div>
 
+                            <div id="display-platform" style="word-wrap: break-word;" class="container">
+                                <h3 class="fs-3 text-center">Platform</h3>
+                                <p class="fs-6"><?= htmlspecialchars_decode($platform) ?></p>
+                            </div>
 
-                            <div class="card card-body col-8 offset-2 shadow mb-3" id="platform-sec" hidden>
-                                <div class="mb-3"><span class="fs-3">Platform</span><button type="button" class="btn-close float-end" aria-label="Close" id="btn-close-platform1"></button></div>
+                            <div class="card card-body col-12 shadow mb-3" id="platform-sec" hidden>
+                                <div class="mb-3">
+                                    <div class="text-center"><span class="fs-3">Platform</span><button type="button" class="btn-close float-end" aria-label="Close" id="btn-close-platform1"></button></div>
+                                </div>
                                 <form action="candi-plat.php" method="POST" id="frmPlatform">
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="txtarea-platform" style="height: 200px" maxlength="2000" name="platform"><?= $platform ?></textarea>
-                                        <label for="txtarea-platform">Type your platform here</label>
-                                        <small id=charNum class="text-muted"></small>
+                                        <textarea id="platform" name="platform"><?= $platform ?></textarea>
                                     </div>
                                 </form>
 
@@ -151,24 +152,17 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                     <button type="button" class="btn btn-secondary float-end me-2" id="btn-close-platform2">Close</button>
                                 </div>
                             </div>
-                            <script>
-
-                            </script>
 
                         </div>
                         <div class="divider div-transparent"></div>
 
                         <div class="col-md-6 text-center">
-
-
                             <i class="fas fa-id-card-alt fs-1 primary-text  secondary-bg p-4"></i>
                             <h3 class="fs-3 ">Info</h3>
-
                             <p class="fs-6"><?= $fullname ?></p>
                             <p class="fs-6"><?= $course ?></p>
                             <p class="fs-6"><?= $ylvl ?></p>
                             <p class="fs-6"><?= $partylist ?></p>
-
                         </div>
                     </div>
                     <!--End Candidate 1-->
@@ -180,7 +174,6 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
 
         <?= template_footer() ?>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 
         <script>
             $(document).ready(function() {
@@ -200,27 +193,41 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                     $("#platform-sec").prop("hidden", false);
                     $("#btn-edit-platform").prop("hidden", true);
                     $("#display-platform").prop("hidden", true);
-                    // var str = "";
-                    // var str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
-                    // $('#txtarea-platform').val(str);
                 });
-
                 $('#btn-close-platform1, #btn-close-platform2').click(function() {
                     $("#platform-sec").prop("hidden", true);
                     $("#btn-edit-platform").prop("hidden", false);
                     $("#display-platform").prop("hidden", false);
                 });
-
-                $('#txtarea-platform').keyup(function() {
-                    var len = this.value.length;
-                    if (len >= 2000) {
-                        val.value = val.value.substring(0, 2000);
-                    } else {
-                        $('#charNum').text(2000 - len + '/2000 characters');
-                    }
-                });
             });
+            $('#platform').summernote({
+                placeholder: 'Place your platform here.',
+                tabsize: 2,
+                height: 120,
+                lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
+                fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '36', '40', '72'],
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph', 'height']],
+                    ['table', ['table']],
+                    ['insert', ['hr']],
+                    ['view', ['help']]
+                ],
+                disableDragAndDrop: true,
+                fontNames: ['sans-serif', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact', 'Lucida Grande', 'Tahoma', 'Times New Roman', 'Verdana', 'Sacramento'],
+                callbacks: { //restrict the pasting of images
+                    onImageUpload: function(data) {
+                        data.pop();
+                    }
+                }
+            });
+            $('span.note-icon-caret').remove();
         </script>
+
     </body>
 
 
