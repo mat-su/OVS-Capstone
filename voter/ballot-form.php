@@ -17,8 +17,8 @@ if ($stmt->rowCount() > 0) {
         $id = $_SESSION['v_id'];
         $org_id = $_SESSION['org_id'];
         $sched = Select_VotingSched($org_id);
-        $target_s_date = $sched['vs_start_date'];
-        $target_e_date = $sched['vs_end_date'];
+        $target_s_date = $sched['startdate'];
+        $target_e_date = $sched['enddate'];
         $target = $target_e_date;
         /* $tempdate = date('Y-m-d H:i:s', strtotime($target_e_date));
         $tempdate2 = new DateTime($tempdate);
