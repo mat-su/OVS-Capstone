@@ -433,7 +433,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                 return regexEmail.test(value);
             }, "Please enter a valid email address.");
             $.validator.addMethod("validateName", function(value, element) {
-                const regexName = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+                const regexName = /^[a-zA-ZÑñ]+(([',. -][a-zA-Z Ññ])?[a-zA-ZÑñ]*)*$/;
                 return this.optional(element) || regexName.test(value);
             });
         </script>

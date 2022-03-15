@@ -24,7 +24,7 @@ document.querySelector('#submit').addEventListener('click', hasEmailVal);
 
 //const reSpaces = /^\S*$/;
 const reSpaces = /\S+.*/;
-const regexName = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+const regexName = /^[a-zA-ZÑñ]+(([',. -][a-zA-Z Ññ])?[a-zA-ZÑñ]*)*$/;
 
 function hasFnameVal(e) {
   const fname = document.querySelector('#fname');
@@ -179,7 +179,7 @@ function validateStudnum(e) {
 
 function validateEmail(e) {
   const email = document.querySelector('#email');
-  const re = /^([a-zA-Z0-9_\-?\.?]){3,}@([a-zA-Z]){3,}\.([a-zA-Z]){2,5}$/;
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if (reSpaces.test(email.value) && re.test(email.value)) {
     email.classList.remove('is-invalid');
