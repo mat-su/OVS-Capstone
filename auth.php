@@ -20,7 +20,8 @@ if (isset($_POST['fname']) && isset($_POST['mname']) && isset($_POST['lname']) &
         if ($stmt->rowCount() == 1) {
             $stmt = $conn->prepare("SELECT * FROM tbl_enr_stud WHERE enr_studnum = :studnum && enr_fname = :fname && enr_mname = :mname && enr_lname = :lname && enr_course = :course");
             $stmt->execute([$studnum, $fname, $mname, $lname, $course]);
-
+            $stud = $stmt->fetch(PDO::FETCH_ASSOC);
+            $fullname = $stud['enr_fname'] . " " . $stud['enr_mname'] . " " . $stud['enr_lname'];
             if ($stmt->rowCount() == 1) {
 
                 $stmt = $conn->prepare("SELECT * FROM tbl_voter WHERE v_studnum = :studnum");
@@ -36,7 +37,7 @@ if (isset($_POST['fname']) && isset($_POST['mname']) && isset($_POST['lname']) &
                     $temp_pass = password_generate(8);
                     $hashed_password = password_hash($temp_pass, PASSWORD_DEFAULT);
 
-                    $stmt->execute([$fname, $mname, $lname, $studnum, $course, $email, $hashed_password]);
+                    $stmt->execute([$stud['enr_fname'], $stud['enr_mname'], $stud['enr_lname'], $studnum, $course, $email, $hashed_password]);
 
                     //Email subject
                     $mail->Subject = "Successfully Registered";
@@ -45,8 +46,7 @@ if (isset($_POST['fname']) && isset($_POST['mname']) && isset($_POST['lname']) &
                     //Enable HTML
                     $mail->isHTML(true);
                     //Email body
-                    $mail->Body = "Your Registration is <b>APPROVED!!</b> 
-            <br> You can now login to your account.<br>Just use your email and your temporary password. <br> Here is your temporary password: <b>$temp_pass</b> <br><br><b>Note</b>: Change your password immediately once you logged in!";
+                    $mail->Body = "Hi <b>$fullname</b>, <br>Your Registration is <b>APPROVED!!</b> <br> You can now login to your account.<br>Just use your email and your temporary password. <br> Here is your temporary password: <b>$temp_pass</b> <br><br><b>Note</b>: Change your password immediately once you logged in!";
                     //Add recipient
                     $mail->addAddress($email, 'Receiver');
                     $mail->addReplyTo('educpurponly101@gmail.com', '1VOTE 4PLMAR Online-Voting System');
