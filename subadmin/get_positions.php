@@ -5,31 +5,21 @@ $conn =  MYSQL_DB_Connection();
 $sa_orgid = $_SESSION['sa_org_id'];
 extract($_POST);
 
-$totalCount = $conn->query("SELECT os.id AS id, os.position AS position, os.seats AS seats FROM tbl_org_struct os LEFT JOIN tbl_stud_orgs o ON os.org_id = o.org_id 
-WHERE os.org_id = {$sa_orgid}")->rowCount();
+$sql = "SELECT os.id AS id, os.position AS position, os.seats AS seats FROM tbl_org_struct os LEFT JOIN tbl_stud_orgs o ON os.org_id = o.org_id WHERE os.org_id = {$sa_orgid}";
+
+$totalCount = $conn->query($sql)->rowCount();
 $search_where = "";
 if (!empty($search)) {
-    $search_where = " AND ";
-    $search_where .= " position LIKE '%{$search['value']}%' ";
-    $search_where .= " OR seats LIKE '%{$search['value']}%' ";
+    $search_where .= " AND (position LIKE '%{$search['value']}%' OR seats LIKE '%{$search['value']}%')";
 }
-$columns_arr = array(
-    "position",
-    "seats"
-);
+
 if ($length == -1) {
-
-    $query = $conn->query("SELECT os.id AS id, os.position AS position, os.seats AS seats FROM tbl_org_struct os LEFT JOIN tbl_stud_orgs o ON os.org_id = o.org_id 
-    WHERE os.org_id = {$sa_orgid} {$search_where} ");
-    
+    $query = $conn->query($sql . $search_where);   
 } else {
-
-    $query = $conn->query("SELECT os.id AS id, os.position AS position, os.seats AS seats FROM tbl_org_struct os LEFT JOIN tbl_stud_orgs o ON os.org_id = o.org_id 
-    WHERE os.org_id = {$sa_orgid} {$search_where} limit {$length} offset {$start} ");
-    
+    $query = $conn->query($sql . $search_where . ' LIMIT ' . $length . ' OFFSET ' . $start);    
 }
 
-$recordsFilterCount = $conn->query("SELECT os.id AS id, os.position AS position, os.seats AS seats FROM tbl_org_struct os LEFT JOIN tbl_stud_orgs o ON os.org_id = o.org_id WHERE os.org_id = {$sa_orgid} {$search_where} ")->rowCount();
+$recordsFilterCount = $conn->query($sql . $search_where)->rowCount();
 
 $recordsTotal = $totalCount;
 $recordsFiltered = $recordsFilterCount;

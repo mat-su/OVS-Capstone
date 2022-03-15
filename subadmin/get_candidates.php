@@ -9,11 +9,11 @@ $totalCount = $conn->query("SELECT c.c_id AS cid, c.c_studnum AS studnum, CONCAT
 $search_where = "";
 if (!empty($search)) {
     $search_where = " AND ";
-    $search_where .= " c_studnum LIKE '%{$search['value']}%' ";
+    $search_where .= " (c_studnum LIKE '%{$search['value']}%' ";
     $search_where .= " OR c_fname LIKE '%{$search['value']}%' ";
     $search_where .= " OR c_lname LIKE '%{$search['value']}%' ";
     $search_where .= " OR pname LIKE '%{$search['value']}%' ";
-    $search_where .= " OR position LIKE '%{$search['value']}%' ";
+    $search_where .= " OR position LIKE '%{$search['value']}%')";
 
 }
 $columns_arr = array(
