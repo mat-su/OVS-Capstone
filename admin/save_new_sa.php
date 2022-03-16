@@ -10,7 +10,7 @@ $stmt->bindParam(':org_id', $org, PDO::PARAM_INT);
 $stmt->execute();
 
 $emailRegex = '/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
-$nameRegex = "/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/";
+$nameRegex = "/^[a-zA-ZÑñ]+(([',. -][a-zA-Z Ññ])?[a-zA-ZÑñ]*)*$/";
 
 if (isset($fname) && isset($lname) && isset($email) && isset($org) && preg_match($nameRegex, $fname) && preg_match($nameRegex, $lname)) {
 
