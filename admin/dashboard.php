@@ -15,8 +15,26 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
     $admin = $stmt->fetch(PDO::FETCH_ASSOC);
     $fullname = $admin['fullname'];
 
+    $courses = $conn->query("SELECT c.id, c.course AS CourseName FROM tbl_course c ORDER BY c.course");
     template_header("Admin Dashboard");
+
+    function countEnrStud($courseVal)
+    {
+        $stmt = "SELECT COUNT(enr_course) AS NumberOfEnrolledStud FROM tbl_enr_stud WHERE enr_course = '$courseVal'";
+        $conn = MYSQL_DB_Connection();
+        $count = $conn->query($stmt)->fetch(PDO::FETCH_ASSOC);
+        echo $count['NumberOfEnrolledStud'];
+    }
+
+    function countRegStud($courseVal)
+    {
+        $stmt = "SELECT COUNT(v_course) AS NumberOfRegisteredStud FROM tbl_voter WHERE v_course = '$courseVal'";
+        $conn = MYSQL_DB_Connection();
+        $count = $conn->query($stmt)->fetch(PDO::FETCH_ASSOC);
+        echo $count['NumberOfRegisteredStud'];
+    }
 ?>
+
     <body>
         <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
             <div class="container-fluid">
@@ -37,6 +55,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                 </div>
                 <div class="list-group list-group-flush my-3">
                     <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Students</a>
                     <a href="sub-admin.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users-cog me-2"></i>Sub Admin</a>
                     <a href="stud_org.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-sitemap me-2"></i>Stud Orgs</a>
                     <a href="v_sched.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="far fa-calendar-alt fs-5 me-2"></i></i>Voting Schedule</a>
@@ -79,7 +98,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                         <div class="col-md-4">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
-                                    <h3 class="fs-2"><?=$num_voter?></h3>
+                                    <h3 class="fs-2"><?= $num_voter ?></h3>
                                     <p class="fs-5">Total Voters</p>
                                 </div>
                                 <i class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>
@@ -108,14 +127,74 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                         </div>
 
                     </div>
-
+                    <div class="table-responsive mt-4">
+                        <table id="insights-tbl" class="table bg-white rounded shadow-sm  table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Courses</th>
+                                    <th># of Enrolled Students</th>
+                                    <th># of Registered Voters</th>
+                                    <th>More infos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($courses as $c) : ?>
+                                    <tr>
+                                        <td><?= $c['CourseName'] ?></td>
+                                        <td><?= countEnrStud($c['CourseName']) ?></td>
+                                        <td><?= countRegStud($c['CourseName']) ?></td>
+                                        <td>
+                                            <a href="" class="info" title="More Info" data-bs-toggle="modal" id="<?= $c['id'] ?>" data-bs-target="#staticBackdropView"><i class="fas fa-info-circle"></i></a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="row my-5"></div>
                 </div>
             </div>
             <!-- /#page-content-wrapper -->
         </div>
+
+        <div class="modal fade" id="staticBackdropView" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelView" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabelView">Further Details:</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="info_modal">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <?= template_footer() ?>
         <script>
+            $(document).ready(function() {
+                $(document).on('click', '.info', function() {
+                    var course_id = $(this).attr("id");
+                    $.ajax({
+                        url: "view-info.php",
+                        method: "POST",
+                        data: {
+                            course_id: course_id
+                        },
+                        success: function(data) {
+                            $('#info_modal').html(data);
+                            $('#staticBackdropView').modal('show');
+                        }
+                    });
+                });
+            });
+
             var el = document.getElementById("wrapper");
             var toggleButton = document.getElementById("menu-toggle");
 
