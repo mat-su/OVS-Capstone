@@ -1,8 +1,10 @@
 <?php
 include '../functions.php';
 $conn = MYSQL_DB_Connection();
-if (isset($_POST['import']) && !empty($_FILES)) {
+$stmt = $conn->prepare("SHOW TABLES LIKE 'tbl_enr_stud'");
+$stmt->execute();
 
+if (isset($_POST['import']) && !empty($_FILES)) {
     $filename = $_FILES['sqlFile']['name'];
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
     $randomno = rand(0, 1000000);
@@ -15,27 +17,31 @@ if (isset($_POST['import']) && !empty($_FILES)) {
     if (!in_array($extension, ['sql'])) {
         header("Location: import_file.php?err=Invalid file extension. Must be valid sql file extension");
     } else {
-        // move the uploaded (temporary) file to the specified destination
-        if (move_uploaded_file($file, $destination)) {
-            $query = file_get_contents($destination);
+        if ($stmt->rowCount() == 0) {
+            // move the uploaded (temporary) file to the specified destination
+            if (move_uploaded_file($file, $destination)) {
+                $query = file_get_contents($destination);
 
-            try {
-                $conn->exec($query);
-                header("Location: import_file.php?success=Enrollment table successfully uploaded and imported!");
-            } catch (PDOException $e) {
-                $data = $newfilename;
-                $dir = "enrolment-data-query";
-                $dirHandle = opendir($dir);
-                while ($file = readdir($dirHandle)) {
-                    if ($file == $data) {
-                        unlink($dir . '/' . $file);
+                try {
+                    $conn->exec($query);
+                    header("Location: import_file.php?success=Enrollment table successfully uploaded and imported!");
+                } catch (PDOException $e) {
+                    $data = $newfilename;
+                    $dir = "enrolment-data-query";
+                    $dirHandle = opendir($dir);
+                    while ($file = readdir($dirHandle)) {
+                        if ($file == $data) {
+                            unlink($dir . '/' . $file);
+                        }
                     }
+                    closedir($dirHandle);
+                    echo $e->getMessage(); //Remove or change message in production code
                 }
-                closedir($dirHandle);
-                echo $e->getMessage(); //Remove or change message in production code
+            } else {
+                header("Location: import_file.php?err=Failed to upload file!!!");
             }
         } else {
-            header("Location: import_file.php?err=Failed to upload file!!!");
+            header("Location: import_file.php?err=Table for Enrolled Student already exists. Please drop the table first");
         }
     }
 }

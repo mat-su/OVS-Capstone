@@ -34,6 +34,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                 </div>
                 <div class="list-group list-group-flush my-3">
                     <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Students</a>
                     <a href="sub-admin.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users-cog me-2"></i>Sub Admin</a>
                     <a href="stud_org.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-sitemap me-2"></i>Stud Orgs</a>
                     <a href="v_sched.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="far fa-calendar-alt fs-5 me-2"></i></i>Voting Schedule</a>
@@ -93,7 +94,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                     <h5 class="card-title">Select your file for import.</h5>
                                     <p class="card-text">*.sql file extension is only accepted</p>
                                     <form action="irs.php" method="POST" enctype="multipart/form-data">
-                                        <input type="file" name="sqlFile" accept=".sql" class="form-control-sm" id="sqlFile" />
+                                        <input type="file" name="sqlFile" accept=".sql" class="form-control-sm" id="sqlFile" required/>
                                         <div class="d-grid justify-content-md-end mt-5">
                                             <button type="submit" class="btn btn-primary" name="import" id="btn_import">Import</button>
                                         </div>
