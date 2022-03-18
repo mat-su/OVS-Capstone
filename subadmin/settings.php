@@ -105,7 +105,7 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
                             <input type="password" class="form-control mb-2" placeholder="" name="curPass" id="curPass" required>
                             <label for="newPass" class="form-label">New Password</label>
                             <input type="password" class="form-control mb-2" placeholder="" name="newPass" id="newPass" required>
-                            <label for="rnewPass" class="form-label">Re-type New Password</label>
+                            <label for="rnewPass" class="form-label">Retype New Password</label>
                             <input type="password" class="form-control mb-2" placeholder="" name="rnewPass" id="rnewPass" required>
                         </form>
                     </div>
@@ -221,6 +221,19 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
 
 
                 $('#frmNewPass').validate({
+                    rules: {
+                        curPass: "required",
+                        newPass: "required",
+                        rnewPass: {
+                            required: true,
+                            equalTo: "#newPass"
+                        }
+                    },
+                    messages: {
+                        rnewPass: {
+                            equalTo: "Retype new password not matched!",
+                        }
+                    },
                     highlight: function(element, errorClass, validClass) {
                         $(element).addClass("is-invalid").removeClass("is-valid");
                     },
