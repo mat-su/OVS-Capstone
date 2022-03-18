@@ -176,7 +176,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                 <input type="password" class="form-control mb-2" placeholder="" name="newPass" id="newPass" required>
                             </div>
                             <div class="col-12">
-                                <label for="rnewPass" class="form-label">Re-type New Password</label>
+                                <label for="rnewPass" class="form-label">Retype New Password</label>
                                 <input type="password" class="form-control mb-2" placeholder="" name="rnewPass" id="rnewPass" required>
                             </div>
                         </form>
