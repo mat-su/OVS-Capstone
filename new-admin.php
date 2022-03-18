@@ -20,6 +20,12 @@ if (isset($_GET['continue'])) {
         $lname = "";
         $email = "";
     }
+} else {
+    $fname = "";
+    $mname = "";
+    $lname = "";
+    $email = "";
+    $realID = "";
 }
 ?>
 
@@ -38,63 +44,82 @@ if (isset($_GET['continue'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Create Admin Account</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!--JQuery Validation PlugIn-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
     <script>
         $(document).ready(function() {
-            $('#uname').keyup(function() {
-                var uname = $('#uname').val().trim();
-                var unameRegex = /^[a-zA-Z]([._-](?![._-])|[a-zA-Z0-9]){3,30}[a-zA-Z0-9]$/;
-                var isValid = uname.match(unameRegex);
-                if (isValid && uname.length > 0) {
-                    $('#result').html("<span class=\"text-success\"><i class=\"fa fa-check fs-6 me-2\"></i><small>Valid Username</small></span>");
-                } else if (uname.length == 0) {
-                    $('#result').html("");
-                } else {
-                    $('#result').html("<span class=\"text-danger\"><i class=\"fa fa-times fs-6 me-2\"></i><small>Invalid Username</small></span>");
+            $.validator.addMethod("validateUsername", function(value, element) {
+                const unameRegex = /^[a-zA-Z]([._-](?![._-])|[a-zA-Z0-9]){3,30}[a-zA-Z0-9]$/;
+                return unameRegex.test(value);
+            }, "Invalid username");
+
+            $('#frmNA').validate({
+                rules: {
+                    uname: {
+                        required: true,
+                        validateUsername: true
+                    },
+                    pass1: "required",
+                    pass2: {
+                        required: true,
+                        equalTo: '#pass1'
+                    }
+                },
+                messages: {
+                    pass2: {
+                        equalTo: "Retype password not matched!",
+                    }
+                },
+                wrapper: "div",
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass("is-invalid").removeClass("is-valid");
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).addClass("is-valid").removeClass("is-invalid");
+                },
+                submitHandler: function() {
+                    var uname = $('#uname').val().trim();
+                    var pass1 = $('#pass1').val().trim();
+                    var pass2 = $('#pass2').val().trim();
+                    var fname = '<?= ($fname) ?>';
+                    var mname = '<?= ($mname) ?>';
+                    var lname = '<?= ($lname) ?>';
+                    var email = '<?= ($email) ?>';
+                    var adminID = '<?= ($realID) ?>';
+                    var submit = $('#btnProceed').val();
+                    $('#frmMessage').load("verify-new-admin.php", {
+                        uname: uname,
+                        pass1: pass1,
+                        pass2: pass2,
+                        fname: fname,
+                        mname: mname,
+                        lname: lname,
+                        email: email,
+                        adminID: adminID,
+                        submit: submit
+                    });
                 }
-            });
-            $('#pass2').keyup(function() {
-                var pass1 = $('#pass1').val().trim();
-                var pass2 = $('#pass2').val().trim();
-                var isValid = (pass1 != "" && pass1 == pass2);
-                if (isValid) {
-                    $('#result2').html("<span class=\"text-success\"><i class=\"fa fa-check fs-6 me-2\"></i><small>Password matched!</small></span>");
-                } else {
-                    $('#result2').html("<span class=\"text-danger\"><i class=\"fa fa-times fs-6 me-2\"></i><small>Password not matched!</small></span>");
-                }
-            });
-            $('#frmNA').submit(function(e) {
-                e.preventDefault();
-                var uname = $('#uname').val().trim();
-                var pass1 = $('#pass1').val().trim();
-                var pass2 = $('#pass2').val().trim();
-                var fname = '<?= ($fname) ?>';
-                var mname = '<?= ($mname) ?>';
-                var lname = '<?= ($lname) ?>';
-                var email = '<?= ($email) ?>';
-                var adminID = '<?= ($realID) ?>';
-                var submit = $('#btnProceed').val();
-                $('#frmMessage').load("verify-new-admin.php", {
-                    uname: uname,
-                    pass1: pass1,
-                    pass2: pass2,
-                    fname: fname,
-                    mname: mname,
-                    lname: lname,
-                    email: email,
-                    adminID: adminID,
-                    submit: submit
-                });
             });
         });
     </script>
 </head>
 
 <body>
+    <style>
+        #uname-error,
+        #pass1-error,
+        #pass2-error {
+            color: red;
+            font-style: italic;
+            font-size: 15px;
+        }
+    </style>
+
     <div class="container gap-5 mt-5">
         <div class="row">
             <div class="col col-md-6 offset-md-3">
                 <div class="card shadow rounded">
-                    <h4 class="card-header" id="ch1">Process Admin Account <i id="fa_check"class="fa fa-check fs-3 me-5 text-success" hidden></i></h4>
+                    <h4 class="card-header" id="ch1">Process Admin Account <i id="fa_check" class="fa fa-check fs-3 me-5 text-success" hidden></i></h4>
                     <div class="card-body">
                         <p id="frmMessage"></p>
                         <form action="verify-new-admin.php" method="POST" id="frmNA">
