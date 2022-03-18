@@ -68,8 +68,8 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                     <i class="fas fa-user me-2"></i><?= $fullname ?>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                                    <li><a class="dropdown-item" href="settings.php">Settings</a></li>
+                                    <li><a class="dropdown-item" href="account-settings.php">Account Settings</a></li>
+                                    <li><a class="dropdown-item" href="create-new-acc.php">Create New Account</a></li>
                                     <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
                                 </ul>
                             </li>
