@@ -60,8 +60,9 @@ if (isset($_POST['submit'])) {
                         $count = $adminGet['id'];
                         $id = 'MA';
                         $id .=  $count + 1 . '-' . date("Y");
-
-                        $stmt = $conn->prepare("INSERT INTO tbl_admin (a_id, a_fname, a_mname, a_lname, a_username, a_email, a_password) VALUES (:id, :fname, :mname, :lname, :username, :email, :password)");
+                        date_default_timezone_set('Asia/Hong_Kong');
+                        $currentdate = date('Y-m-d H:i:s', time());
+                        $stmt = $conn->prepare("INSERT INTO tbl_admin (a_id, a_fname, a_mname, a_lname, a_username, a_email, a_password, a_date_created) VALUES (:id, :fname, :mname, :lname, :username, :email, :password, :currentdate)");
                         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
                         $stmt->bindParam(':fname', $fname, PDO::PARAM_STR);
                         $stmt->bindParam(':mname', $mname, PDO::PARAM_STR);
@@ -69,6 +70,7 @@ if (isset($_POST['submit'])) {
                         $stmt->bindParam(':username', $uname, PDO::PARAM_STR);
                         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                         $stmt->bindParam(':password', $hashPass, PDO::PARAM_STR);
+                        $stmt->bindParam(':currentdate', $currentdate, PDO::PARAM_STR);
                         $stmt->execute();
                         $output = 'Redirecting to homepage...' . 
                         "<script>$('#frmNA, .modal-footer').remove();
