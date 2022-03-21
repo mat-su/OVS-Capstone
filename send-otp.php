@@ -15,14 +15,14 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
         if ($stmt->rowCount() > 0) {
             $output = '
             <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
-            <span>Sorry! this email is already taken</span>
+            <span>Sorry! This email is already taken.</span>
             </div>';
         } else {
             $stmt = $conn->prepare("DELETE FROM tbl_emailotp WHERE email = :email");
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
             //Email subject
-            $mail->Subject = "Registration: One Time Password";
+            $mail->Subject = "REGISTRATION : OTP CODE";
             //Set sender email
             $mail->setFrom('educpurponly101@gmail.com', '1VOTE 4PLMAR Online-Voting System');
             //Enable HTML
@@ -34,7 +34,7 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
             $stmt->execute([$email, $hashed_otp]);
 
             //Email body
-            $mail->Body = "Here is your one time password: <b>$otp</b>";
+            $mail->Body = "Here is your OTP code: <b>$otp</b>";
             //Add recipient
             $mail->addAddress($email, 'Receiver');
             $mail->addReplyTo('educpurponly101@gmail.com', '1VOTE 4PLMAR Online-Voting System');

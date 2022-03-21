@@ -11,7 +11,7 @@
     <!--FontAwesome Kit-->
     <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Registered Successfully</title>
+    <title>Successfully Registered</title>
 </head>
 
 <body>
@@ -48,10 +48,10 @@
         <div class="row">
             <div class="col col-md-6 offset-md-3">
                 <div class="card shadow rounded">
-                    <h4 class="card-header">Registered Successfully <i class="fa fa-check fs-3 me-5 text-success"></i></h4>
+                    <h4 class="card-header">Successfully Registered<i class="fa fa-check fs-3 me-5 text-success"></i></h4>
                     <div class="card-body">
                         <h5 class="card-title"></h5>
-                        <p class="card-text">Please check your email for the details we provided to access your account. Thank you!</p>
+                        <p class="card-text">Kindly check your email for the details sent and provided by the system to access your voter account. Thank you!</p>
                         <div class="d-grid justify-content-md-end">
                             <button type="button" class="btn btn-primary" id="btn_ok">OK</button>
                         </div>

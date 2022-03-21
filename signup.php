@@ -277,7 +277,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                         <div class="" style="padding-left: 1em;">
                             <div class="form-check mb-3">
                                 <input type="checkbox" class="form-check-input" id="chk_agree" form="newform" required>
-                                <label class="form-check-label" for="chk_agree">I agree to terms and conditions</label>
+                                <label class="form-check-label" for="chk_agree">I agree to the Terms and Conditions and Privacy Policy</label>
                                 <div class="invalid-feedback">You must agree before submitting</div>
                             </div>
                             <button type="submit" class=" mt-4 d-block w-100 btn btn-primary float-end" id="submit">Submit
