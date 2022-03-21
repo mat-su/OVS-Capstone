@@ -257,14 +257,14 @@ function ChartTally($org_id, $pos_id)
 {
   $conn = MYSQL_DB_Connection();
   $stmt = $conn->prepare(
-    "SELECT t.can_id, c.c_fname, c.c_mname, c.c_lname, CONCAT(c.c_fname, ' ', c.c_mname, ' ', c.c_lname) AS fullname, c.c_orgid, CONCAT(o.org_name, ' (', o.org_acronym, ')')AS org, pa.pname, p.position, p.id AS pos_id, COUNT(t.can_id) as tallies 
-    FROM `tbl_tally` t
-    LEFT JOIN tbl_candidates c ON c.c_id = t.can_id
+    "SELECT c.c_orgid, c.c_id, CONCAT(c.c_fname, ' ', c.c_mname, ' ', c.c_lname) AS fullname, CONCAT(o.org_name, ' (', o.org_acronym, ')')AS org, pa.pname, p.position, p.id AS pos_id, COUNT(t.can_id) AS tallies 
+    FROM tbl_candidates c 
+    LEFT JOIN tbl_tally t ON c.c_id = t.can_id
     LEFT JOIN tbl_stud_orgs o ON o.org_id = c.c_orgid
     LEFT JOIN tbl_org_struct p ON p.id = c.c_position
     LEFT JOIN tbl_partylist pa ON pa.id = c.c_party
-    GROUP by can_id
-    HAVING c.c_orgid = :id AND p.id = :posID
+    GROUP BY c.c_id
+    HAVING c.c_orgid = $org_id AND p.id = $pos_id
     ORDER BY c.c_position ASC;"
   );
   $stmt->bindParam(':id', $org_id, PDO::PARAM_INT);
