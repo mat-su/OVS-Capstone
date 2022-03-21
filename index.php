@@ -450,21 +450,6 @@ require 'functions.php';
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/society-of-information-technology-students-sits?authuser=0" role="button">Read More</a></div>
                 </div>
-                <script>
-                    $(document).ready(function() {
-                        $(".card").mouseenter(function() {
-                            $(this).children().slideDown();
-                        });
-                        $(".card").mouseleave(function() {
-                            $(this).children(".content").slideUp();
-                        });
-                        $(".card").click(function() {
-                            $(this).children(".content").slideDown();
-                        });
-
-                        $(".content").slideUp();
-                    });
-                </script>
             </div>
         </div>
     </section>
