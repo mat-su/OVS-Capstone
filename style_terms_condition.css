@@ -1,0 +1,83 @@
+/*START OF RICA REVISE*/
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+/*toggle button*/
+#button_toggle{
+    color: #ffffff;
+}
+
+
+/*Main Navbar */
+/*brand or logo*/
+.container .navbar-brand .brand{
+    color: #ffffff;
+}
+.navbar {
+    background: #001d3d;  
+    padding-left: 41.5px ;
+    padding-right: 41.5px ; 
+    font-family: 'Montserrat', sans-serif;
+}
+/*navbar menu*/
+#navbarText .nav-item a {
+    color: #ffffff;
+}
+
+/*HOVEEEER*/
+/* Upper Nav item hover color text white to yellow*/ 
+.navbar-nav .nav-item a:hover{
+    color: #001d3d !important;
+    transition-duration: 0.4s;
+}
+
+
+
+/* Main Nav item hover color text white to yellow*/
+.container .navbar-brand .brand:hover{
+    color: #ffc300 !important;
+    transition-duration: 0.4s;
+}
+#navbarText .nav-item a:hover {
+    color: #ffc300 !important;
+    transition-duration: 0.4s;
+}
+
+
+
+
+/*container of body section*/
+.container .headerTAC{    
+    color: #001d3d;
+    padding: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.container .bodyTAC{
+    color: #001d3d;
+    padding: 20px 40px 20px 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*END OF RICA REVISE
+
+/*MODAL*/
+/*Rica: Added font family*/.modal-login{
+    font-family: 'Montserrat', sans-serif !important;
+
+}
+.modal-login .logo {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -50px;
+    width: 95px;
+    height: 95px;
+  
+  }
+  
+  .modal-login .logo img {
+    width: 100%;
+  }

@@ -11,6 +11,14 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
     $admin = $stmt->fetch(PDO::FETCH_ASSOC);
     $email = $admin['v_email'];
     $password = $admin['v_password'];
+
+    $stmt = $conn->prepare("SELECT v_fname, v_mname, v_lname FROM tbl_voter WHERE v_id = :id");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $voter = $stmt->fetch(PDO::FETCH_ASSOC);
+    $fname = $voter['v_fname'];
+    $mname = $voter['v_mname'];
+    $lname = $voter['v_lname'];
 ?>
     <!doctype html>
     <html lang="en">
@@ -20,7 +28,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Settings</title>
-
+        <!--Tab Logo-->
+        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
@@ -129,7 +138,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
                 <ul class="navbar-nav collapse navbar-collapse justify-content-end">
                     <li class="nav-item"><span class="text-white">|</span></li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="dashboard.php"><small>Home</small></a>
+                        <a class="nav-link text-white" href="dashboard.php"><small>Back</small></a>
                     </li>
                 </ul>
             </div>
@@ -137,6 +146,35 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
         <div class="container col col-md-6 offset-md-3 mt-3"><span class="fs-3">Voter Account</span>
         </div>
         <div class="container mt-3 mb-5">
+            <div class="row">
+                <div class="col col-md-6 offset-md-3 mb-4">
+                    <div class="card rounded shadow mt-3">
+                        <div class="card-body mt-2">
+                            <p class="display-5 fs-5">Basic Information</p>
+                            <table class="table table-bordered table-striped mt-3">
+                                <colgroup>
+                                    <col span="1" style="width: 30%;">
+                                    <col span="1" style="width: 80%;">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>First Name</td>
+                                        <td><?= $fname ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Middle Name</td>
+                                        <td><?= $mname ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Name</td>
+                                        <td><?= $lname ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col col-md-6 offset-md-3 mb-4">
                     <div class="card rounded shadow mt-3">

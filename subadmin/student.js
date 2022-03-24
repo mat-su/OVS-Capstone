@@ -25,10 +25,10 @@ $(function () {
                 method: 'POST',
                 data: function (data) {
                     //Read Values
-                    const searchByCourse = document.querySelector('#course').value;
+                    const searchByClass = document.querySelector('#class').value;
                     const searchByYrlevel = document.querySelector('#ylvl').value;
                     //Append Data
-                    data.searchByCourse = searchByCourse;
+                    data.searchByClass = searchByClass;
                     data.searchByYrlevel = searchByYrlevel;
                 },
             },
@@ -37,9 +37,6 @@ $(function () {
                 },
                 {
                     data: 'name',
-                },
-                {
-                    data: 'course',
                 },
                 {
                     data: 'ylvl',
@@ -55,7 +52,8 @@ $(function () {
         studentTbl.draw();
         // console.log(document.querySelector('#ylvl').value);
     });
-    $('#course').change(function () {
+    $('#class').change(function () {
         studentTbl.draw();
     });
 });
+

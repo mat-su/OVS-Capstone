@@ -48,7 +48,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>Voter Dashboard</title>
-
+        <!--Tab Logo-->
+        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
         <link rel="stylesheet" href="style.css">
@@ -64,7 +65,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
 
         <!--Chart CDN-->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+        <!-- Chart Plugins -->
+        <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
     </head>
 
     <body>
@@ -95,7 +97,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                 <div class="list-group list-group-flush">
                     <a href="dashboard.php" class="list-group-item list-group-item-action second-text fw-bold active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="partylist.php" class="list-group-item list-group-item-action second-text fw-bold "><i class="fas fa-fist-raised me-2"></i> Partylist</a>
-
+                    <a href="rules_regulations.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="fas fa-tasks me-2"></i>Rules & Regulations</a>
 
                     <!--Election Schedule Section -->
                     <div class="container-fluid pt-4 text-center ">
@@ -146,7 +148,6 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                     <i class="fas fa-user me-2"></i><?= $fullname ?>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                                     <li><a class="dropdown-item" href="settings.php">Settings</a></li>
                                     <li><a class="dropdown-item" href="im-a-candidate.php">I'm a Candidate</a></li>
                                     <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
@@ -190,7 +191,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                 <h2 class="text-center">ELECTION RESULTS</h2>
                                 <?php $positions = fetchAll_OrgStructure($org_id);
                                 foreach ($positions as $p) : ?>
-                                    <div class="col-md-4 mx-0 my-3 border">
+                                    <div class="col-lg-6 border">
                                         <canvas id="<?= $p['position'] ?>"></canvas>
                                     </div>
                                 <?php endforeach; ?>
@@ -230,8 +231,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
             </div>
             <!-- /#page-content-wrapper -->
         </div>
-      
-        <?php template_footer()?>
+
+        <?php template_footer() ?>
 
         </div>
         <!-- End of .container -->
@@ -285,8 +286,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                         $('#btn_vn').prop('disabled', true);
                         $('.g-3 div:nth-child(2)').css("display", "block");
                         $('.g-3 div:nth-child(3)').css("display", "block");
-                        $('.g-3 div:nth-child(4)').css("display", "block");
-                        $('#EO').load("elected-officers.php");
+                        //$('.g-3 div:nth-child(4)').css("display", "block");
+                        //$('#EO').load("elected-officers.php");
                         clearInterval(y);
                     }
                     if (distance2 > 0 && now > countDownDate1) {
@@ -307,13 +308,12 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                     array_push($votes, $ta['tallies']);
                 }
             ?>
-
                 const labels<?= $p['id'] ?> = <?= json_encode($name) ?>;
 
                 const data<?= $p['id'] ?> = {
                     labels: labels<?= $p['id'] ?>,
                     datasets: [{
-                        axis: 'y',
+                        // axis: 'y',
                         label: 'Number of Votes',
                         data: <?= json_encode($votes) ?>,
                         backgroundColor: [
@@ -340,23 +340,32 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
 
                 //config
                 const config<?= $p['id'] ?> = {
-                    type: 'bar',
+                    type: 'pie',
                     data: data<?= $p['id'] ?>,
                     options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        },
-                        indexAxis: 'y',
+                        // scales: {
+                        //     y: {
+                        //         beginAtZero: true
+                        //     }
+                        // },
+                        // indexAxis: 'y',
                         plugins: {
                             title: {
                                 display: true,
-                                text: '<?= $p['position'] ?>'
+                                text: "<?= $p['position'] ?>"
                             },
                             legend: {
-                                display: false,
+                                display: true,
+                                position: 'right',
+                                align: 'center'
                             },
+                            labels: {
+                                render: 'value',
+                                fontSize: 14,
+                                fontStyle: 'bold',
+                                fontColor: '#FFF',
+                                fontFamily: '"Lucida Console", Monaco, monospace'
+                            }
                         },
 
                     },
@@ -366,7 +375,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
             <?php foreach ($positions as $p) : ?>
                 //render
                 const myChart<?= $p['id'] ?> = new Chart(
-                    document.getElementById('<?= $p['position'] ?>'),
+                    document.getElementById("<?= $p['position'] ?>"),
                     config<?= $p['id'] ?>
                 );
             <?php endforeach; ?>

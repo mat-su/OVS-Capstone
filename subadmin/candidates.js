@@ -50,7 +50,7 @@ $(function () {
                     orderable: false,
                     className: 'text-center',
                     render: function (data, type, row, meta) {
-                        return '<a class="edit_data me-1" href="javascript:void(0)" data-id="' + (row.id) + '"title="View Candidate"><i class="fas fa-eye fa-xs fs-5 text-primary"></i></a>' +
+                        return '<a class="edit_data me-1" href="javascript:void(0)" data-id="' + (row.id) + '"title="View Candidate"><i class="fas fa-edit fa-xs fs-5 text-primary"></i></a>' +
                             '<a class="delete_data" href="javascript:void(0)" data-id="' + (row.id) + '"title="Delete Candidate"><i class="fas fa-trash fa-xs fs-5 text-danger"></i></a>';
                     }
                 }

@@ -82,7 +82,7 @@ function template_header($title)
           }
       </style>
   </head>
-  EOT;
+EOT;
 }
 
 
@@ -90,7 +90,7 @@ function template_footer()
 {
   echo <<<EOT
     <!--Footer-->
-    <footer class="text-white text-center bg-dark">
+    <footer class="text-white bg-dark" style="font-family: 'Montserrat', sans-serif; font-size: 12px;">
     <!-- Grid container -->
     <div class="container p-4 ">
       <!--Grid row-->
@@ -105,11 +105,11 @@ function template_footer()
 
           <div class="mt-4">
             <!-- Facebook -->
-            <a type="button" class="btn btn-floating btn-light btn-lg" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fab fa-facebook"></i></a>
+            <a type="button" class="btn btn-floating btn-light btn-sm" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fab fa-facebook"></i></a>
             <!-- Twitter -->
-            <a type="button" class="btn btn-floating btn-light btn-lg" target="_blank" href="https://twitter.com/cpaipsplmar"><i class="fab fa-twitter"></i></a>
+            <a type="button" class="btn btn-floating btn-light btn-sm" target="_blank" href="https://twitter.com/cpaipsplmar"><i class="fab fa-twitter"></i></a>
             <!-- Youtube -->
-            <a type="button" class="btn btn-floating btn-light btn-lg " target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
+            <a type="button" class="btn btn-floating btn-light btn-sm " target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
 
           </div>
         </div>
@@ -138,8 +138,9 @@ function template_footer()
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 Copyright: OVS | 4BSIT7C
-     
+    <a href="terms_conditions.php" style="color: inherit; text-decoration: none;">Terms &amp Conditions | Privacy Policy</a> <br> 
+    © 2022 Copyright. All Rights Reserved. <br>
+    Powered by OVS
     </div>
     <!-- Copyright -->
   </footer>

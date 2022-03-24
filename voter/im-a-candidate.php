@@ -39,6 +39,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <title>Candidate Page</title>
 
         <link rel="stylesheet" href="style.css">
+        <!-- Tab Logo -->
+        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504"/>
 
         <!--FontAwesome Kit-->
         <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
@@ -126,7 +128,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                         </div>
 
                         <div class="divider div-transparent mb-3"></div>
-                        <div><button class="btn btn-secondary w-25 float-end" id="btn-edit-platform">Platform <i class="fas fa-edit"></i></button></div>
+                        <div><button class="btn btn-secondary float-end mx-4 " id="btn-edit-platform">Edit <i class="fas fa-edit"></i></button></div>
                         <div class="col-md-12">
                             <div class="text-center">
                                 <i class="fas fa-bullhorn fs-1 primary-text  secondary-bg p-4"></i>
@@ -198,6 +200,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                     $("#platform-sec").prop("hidden", true);
                     $("#btn-edit-platform").prop("hidden", false);
                     $("#display-platform").prop("hidden", false);
+                    $('#platform').summernote('reset');
+                    $('span.note-icon-caret').remove();
                 });
             });
             $('#platform').summernote({

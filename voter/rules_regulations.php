@@ -5,7 +5,8 @@ $conn = MYSQL_DB_Connection();
 if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['org_id']) && isset($_SESSION['org_name'])) {
 
     $_SESSION['dashboard'] = false;
-    $_SESSION['partylist'] = true;
+    $_SESSION['partylist'] = false;
+    $_SESSION['rules'] = true;
 
     $id = $_SESSION['v_id'];
     $stmt = $conn->prepare("SELECT CONCAT(v_fname, ' ', v_lname) AS fullname FROM tbl_voter WHERE v_id = :id");
@@ -15,7 +16,6 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
     $fullname = $voter['fullname'];
 
     $org_id = $_SESSION['org_id'];
-    $partylists = SelectAll_Partylists($org_id);
     $sched = Select_VotingSched($org_id);
     if (!empty($sched)) {
         $strt_time = substr_replace($sched['strt_r'], '', 5, 3);
@@ -26,6 +26,13 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         $starts = '';
         $ends = '';
     }
+
+
+    $stmt = $conn->prepare("SELECT * FROM tbl_org_rules o WHERE o.org_id = :id");
+    $stmt->bindParam(':id', $org_id, PDO::PARAM_STR);
+    $stmt->execute();
+    $studorg = $stmt->fetch(PDO::FETCH_ASSOC);
+    $rules = (!empty($studorg['rules'])) ? $studorg['rules'] : '';
 ?>
 
 
@@ -35,11 +42,11 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Partylist</title>
+        <title>Rules & Regulations</title>
+
+        <link rel="stylesheet" href="style.css">
         <!--Tab Logo-->
         <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
-        <link rel="stylesheet" href="style.css">
-
         <!--jQuery CDN for Owl Carousel-->
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <!--OWL Carousel CSS,JS-->
@@ -102,8 +109,9 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                 </div>
                 <div class="list-group list-group-flush">
                     <a href="dashboard.php" class="list-group-item list-group-item-action second-text fw-bold "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="partylist.php" class="list-group-item list-group-item-action second-text fw-bold active"><i class="fas fa-fist-raised me-2"></i> Partylist</a>
-                    <a href="rules_regulations.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="fas fa-tasks me-2"></i>Rules & Regulations</a>
+                    <a href="partylist.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="fas fa-fist-raised me-2"></i> Partylist</a>
+                    <a href="rules_regulations.php" class="active list-group-item list-group-item-action second-text fw-bold"><i class="fas fa-tasks me-2"></i>Rules & Regulations</a>
+
 
                     <!--Election Schedule Section -->
                     <div class="container-fluid pt-4 text-center ">
@@ -163,68 +171,20 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                     </div>
                 </nav>
                 <div class="container-fluid px-4 my-4">
-                    <?php if (isset($_GET['err'])) { ?>
-                        <div class="alert alert-danger mt-3" role="alert">
-                            <i class="fas fa-times fs-4 me-3"></i><span><?= $_GET['err'] ?></span>
-                        </div>
-                    <?php } ?>
-                    <div class="row">
-                        <div class="col-md-9">
-                            <p class=""><em>Student Organization: <b><?= $_SESSION['org_name'] ?></b></em></p>
-                        </div>
-                    </div>
-                    <p class="fs-4 text-left">Partylists</p>
-                    <div class="row text-center m-2">
-                        <?php foreach ($partylists as $p) :
-                            $candidates = SelectAll_Candidates($org_id, $p['pname']);
-                        ?>
-                            <div class="shadow-sm d-flex mt-3 align-items-center rounded">
-                                <i class="fas fa-users fs-3 bg-gradient text-dark p-3"><?= $p['pname'] ?></i>
-                            </div>
-                            <div id="owl" class="text-center container mt-2">
-                                <div class="slider owl-carousel">
-                                    <?php foreach ($candidates as $c) :
 
-                                        $dir_img_file = './img-uploads/' . $c['Profile Image'];
-                                        $candidate_img = (!empty($c['Profile Image'])) ? $dir_img_file : '../assets/img/default_candi.png';
-
-                                    ?>
-                                        <div class="card p-3 btn_rm" id="<?= $c['cid'] ?>">
-                                            <div class="d-flex justify-content-center"><img src="<?= $candidate_img ?>" class="img-fluid mt-2" style="height: 130px; width: auto;" alt=""></div>
-                                            <div class="content">
-                                                <div class="title fs-5"><?= $c['cname'] ?></div>
-                                                <p class="lead mb-0 fs-6"><?= $c['position'] ?></p>
-                                            </div>
-                                            
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
+                    <div class="row bg-white mx-2 mt-4 p-5 shadow-lg justify-content-around rounded border border-danger border-3">
+                        <div class="row" style="font-family: 'Montserrat', sans-serif;">
+                            <p class="fw-bolder mb-0" style="font-size: 26px;">Must Read</p><br>
+                            <p class="" style="font-size: 16px;">Rules and Regulations</p>
+                            <div id="display-section" style="word-wrap: break-word;">
+                                <p><?= htmlspecialchars_decode($rules) ?></p>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
-                    <style>
-                        .card {
-                            cursor: pointer;
-                        }
-                    </style>
-                    <!-- Modal for read more-->
 
-                    <div class="modal fade" id="SBReadMore" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Candidate Information</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body" id="view_can_modal">
-                                    ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
                         </div>
+
                     </div>
+
+
 
                     <div class="row my-5"></div>
                 </div>
@@ -254,28 +214,6 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         </script>
 
 
-        <!--OWL Carousel-->
-        <script>
-            $(".slider").owlCarousel({
-                loop: true,
-                autoplay: true,
-                autoplayTimeout: 2000, //2000ms = 2s;
-                autoplayHoverPause: true,
-                margin: 0,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    768: {
-                        items: 2
-                    },
-                    1200: {
-                        items: 3
-                    }
-
-                }
-            });
-        </script>
         <script>
             $(function() {
                 // Set the date we're counting down to

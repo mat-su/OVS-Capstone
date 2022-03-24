@@ -11,7 +11,13 @@ $stmt->bindParam(':v_id', $voter_id, PDO::PARAM_INT);
 $stmt->execute();
 
 if ($stmt->rowCount() > 0) {
-    header("Location: dashboard.php?err=Sorry you have already cast a vote!");
+    if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
+        header("Location: dashboard.php?err=Sorry you have already cast a vote!");
+    } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
+        header("Location: partylist.php?err=Sorry you have already cast a vote!");
+    } else {
+        header("Location: rules_regulations.php?err=Sorry you have already cast a vote!");
+    }
 } else {
     if (isset($_SESSION['v_id']) && isset($_SESSION['org_id'])) {
         $id = $_SESSION['v_id'];
@@ -29,16 +35,20 @@ if ($stmt->rowCount() > 0) {
         if ($current_date < $target_s_date) { //not yet started
             if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
                 header("Location: dashboard.php?err=Voting has not yet started!");
-            } else {
+            } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
                 header("Location: partylist.php?err=Voting has not yet started!");
+            } else {
+                header("Location: rules_regulations.php?err=Voting has not yet started!");
             }
         } else if ($current_date >= $target_s_date && $current_date <= $target) { //started but not yet finished
             $org_struc = fetchAll_OrgStructure($org_id);
         } else if ($current_date > $target) {
             if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
                 header("Location: dashboard.php?err=Voting has ended!");
-            } else {
+            } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
                 header("Location: partylist.php?err=Voting has ended!");
+            } else {
+                header("Location: rules_regulations.php?err=Voting has ended!");
             }
         }
 
@@ -147,13 +157,13 @@ if ($stmt->rowCount() > 0) {
                                             $can = fetchAll_CandidatesforBallot($org_id, $o['id']);
                                             foreach ($can as $c) {
                                                 if ($c['seats'] == 1) {
-                                            
-                                                $dir_img_file = './img-uploads/' . $c['img'];
-                                                $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png';
+
+                                                    $dir_img_file = './img-uploads/' . $c['img'];
+                                                    $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png';
                                             ?>
                                                     <div class="form-check mx-3 my-3">
 
-                                                    <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
+                                                        <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
 
                                                         <input class="form-check-input" type="radio" name="<?= $o['position'] ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>">
                                                         <label id="<?= $o['position'] ?>" class="form-check-label">
@@ -161,13 +171,13 @@ if ($stmt->rowCount() > 0) {
                                                         </label>
                                                     </div>
                                                 <?php
-                                                } else { 
+                                                } else {
                                                     $dir_img_file = './img-uploads/' . $c['img'];
-                                                    $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png';?>
+                                                    $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png'; ?>
                                                     <div class="form-check mx-3 my-3">
 
-                                                    <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
-                                                    
+                                                        <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
+
                                                         <input class="form-check-input" type="checkbox" name="<?= $o['position'] . '[]' ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>" data-max="<?= $c['seats'] ?>">
                                                         <label id="<?= $o['position'] ?>" class="form-check-label">
                                                             <?= $c['cname'] ?>
@@ -252,8 +262,10 @@ if ($stmt->rowCount() > 0) {
     } else {
         if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
             header("Location: dashboard.php?err=There was an error!");
-        } else {
+        } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
             header("Location: partylist.php?err=There was an error!");
+        } else {
+            header("Location: rules_regulations.php?err=There was an error!");
         }
     }
 }

@@ -201,7 +201,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                         <td><?= $org['CourseName'] ?></td>
                                         <td><?= $org['Adviser'] ?></td>
                                         <td class="actions">
-                                            <a href="" class="linkview" title="View Org" data-bs-toggle="modal" id="<?= $org['org_id'] ?>" data-bs-target="#staticBackdropView"><i class="fas fa-eye fa-xs fs-5"></i></a>
+                                            <a href="" class="linkview" title="Edit Org" data-bs-toggle="modal" id="<?= $org['org_id'] ?>" data-bs-target="#staticBackdropView"><i class="fas fa-edit fa-xs fs-5"></i></a>
                                             <!-- Modal -->
                                             <div class="modal fade" id="staticBackdropView" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelView" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">

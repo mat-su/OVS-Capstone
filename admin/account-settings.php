@@ -31,7 +31,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                 <ul class="navbar-nav collapse navbar-collapse justify-content-end">
                     <li class="nav-item"><span class="text-white">|</span></li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="dashboard.php"><small>Home</small></a>
+                        <a class="nav-link text-white" href="dashboard.php"><small>Back</small></a>
                     </li>
                 </ul>
             </div>
@@ -121,9 +121,10 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        You will be removed from the system and so lose access if you perform this procedure.<br><br>
-
-                        NOTE: Because you are the only one with access to the system, you must first set up a successor and have the successor approve the request before proceeding to this operation.
+                        REMINDER!!!
+                        You will be removed from the system and lose access if you proceed with this procedure.
+                        <br><br>
+                        NOTE: You need to set up first a new main admin account before you can proceed. If you already have set up a new main admin account, do note that you'll be removed and lose access in/from the system.
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -256,7 +257,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
         </div>
         <br><br><br><br><br>
         <?= template_footer() ?>
-        
+
         <script>
             $(document).ready(function() {
                 $('#btnUnderstood').click(function() {

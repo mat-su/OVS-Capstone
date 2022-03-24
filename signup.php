@@ -15,7 +15,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
 
     <!--Logo-->
     <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
-    
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
@@ -179,13 +179,15 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                             <div class="flex-child">
                                 <div class="form-group">
                                     <!--Firstname-->
+                                    <label for="fname">Firstname</label>
                                     <input type="text" class="form-control" id="fname" name="fname" placeholder="Firstname" required form="newform" />
-                                    <div class="invalid-feedback mb-2">Enter a valid First Name.</div>
+                                    <div class="invalid-feedback mb-2">Enter a valid Firstname.</div>
                                     <div class="valid-feedback mb-2">Looks Good</div>
                                 </div>
 
                                 <div class="form-group">
                                     <!--Middlename-->
+                                    <label for="mname">Middlename</label>
                                     <input type="text" class="form-control" id="mname" name="mname" placeholder="Middlename" required />
                                     <div class="invalid-feedback mb-2">Enter a valid Middlename.</div>
                                     <div class="valid-feedback mb-2">Looks Good</div>
@@ -193,6 +195,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
 
                                 <div class="form-group">
                                     <!--Lastname-->
+                                    <label for="lname">Lastname</label>
                                     <input type="text" class="form-control" id="lname" name="lname" placeholder="Lastname" required />
                                     <div class="invalid-feedback mb-2">Enter a valid Lastname.</div>
                                     <div class="valid-feedback mb-2">Looks Good</div>
@@ -204,7 +207,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                             <div class="flex-child">
                                 <div class="form-group">
                                     <!--Student Number-->
-
+                                    <label for="studnum">Student Number</label>
                                     <input type="studnum" class="form-control" id="studnum" name="studnum" maxlength="13" placeholder="PM-XX-XXXXX-X" required />
                                     <div class="invalid-feedback mb-2">Student Number cannot be blank or format is invalid
                                     </div>
@@ -213,6 +216,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
 
                                 <div class="form-group">
                                     <!--Course-->
+                                    <label for="course">Course</label>
                                     <select class="form-select" id="course" name="course" aria-label="Default select example">
                                         <option value="">--Select Course--</option>
                                         <?php foreach ($courses as $c) : ?>
@@ -235,11 +239,10 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                         <div class="flex-container mt-4">
                             <!--Left Column-->
                             <div class="flex-child col-md-8">
+                                <label for="email">Email Address</label>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <!--Email-->
-
-
                                         <input type="email" class="form-control" name="email" id="email" placeholder="plmar@ovs.com" required />
                                         <div class="input-group-append">
                                             <button id="btn_sendOTP" class="btn btn-outline-dark" type="submit"><small>Send
@@ -277,7 +280,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                         <div class="" style="padding-left: 1em;">
                             <div class="form-check mb-3">
                                 <input type="checkbox" class="form-check-input" id="chk_agree" form="newform" required>
-                                <label class="form-check-label" for="chk_agree">I agree to the Terms and Conditions and Privacy Policy</label>
+                                <label class="form-check-label" for="chk_agree">I agree to the <a href="terms_conditions.php">Terms &amp Conditions | Privacy Policy</a></label>
                                 <div class="invalid-feedback">You must agree before submitting</div>
                             </div>
                             <button type="submit" class=" mt-4 d-block w-100 btn btn-primary float-end" id="submit">Submit

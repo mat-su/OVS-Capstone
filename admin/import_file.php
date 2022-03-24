@@ -74,16 +74,16 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                 <div class="container-fluid px-4 my-4">
                     <div class="row">
                         <div class="col-md-12" id="msg">
-                        <?php if (isset($_GET['err'])) { ?>
-                            <div class="alert alert-danger" role="alert">
-                                <i class="fa fa-times fs-4 me-3"></i><small><?= $_GET['err'] ?></small>
-                            </div>
-                        <?php } ?>
-                        <?php if (isset($_GET['success'])) { ?>
-                            <div class="alert alert-success" role="alert">
-                                <i class="fa fa-check fs-4 me-3"></i><small><?= $_GET['success'] ?></small>
-                            </div>
-                        <?php } ?>
+                            <?php if (isset($_GET['err'])) { ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <i class="fa fa-times fs-4 me-3"></i><small><?= $_GET['err'] ?></small>
+                                </div>
+                            <?php } ?>
+                            <?php if (isset($_GET['success'])) { ?>
+                                <div class="alert alert-success" role="alert">
+                                    <i class="fa fa-check fs-4 me-3"></i><small><?= $_GET['success'] ?></small>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <p class="fs-4">Import Enrolled Student Table</p>
@@ -94,7 +94,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                     <h5 class="card-title">Select your file for import.</h5>
                                     <p class="card-text">*.sql file extension is only accepted</p>
                                     <form action="irs.php" method="POST" enctype="multipart/form-data">
-                                        <input type="file" name="sqlFile" accept=".sql" class="form-control-sm" id="sqlFile" required/>
+                                        <input type="file" name="sqlFile" accept=".sql" class="form-control-sm" id="sqlFile" required />
                                         <div class="d-grid justify-content-md-end mt-5">
                                             <button type="submit" class="btn btn-primary" name="import" id="btn_import">Import</button>
                                         </div>
@@ -118,6 +118,9 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
             toggleButton.onclick = function() {
                 el.classList.toggle("toggled");
             };
+            $('.alert').delay(3000).slideUp(200, function() {
+                $(this).alert('close');
+            });
         </script>
     </body>
 

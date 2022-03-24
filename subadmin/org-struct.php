@@ -39,9 +39,11 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
                 </div>
                 <div class="list-group list-group-flush my-3">
                     <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Dashboard</a>
+                    <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Students</a>
                     <a href="org-struct.php" class="active list-group-item list-group-item-action bg-transparent second-text fw-bold">Org Structure</a>
                     <a href="partylist.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Partylist</a>
                     <a href="candidates.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Candidate</a>
+                    <a href="rules_regulations.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Rules & Regulations</a>
                 </div>
             </div>
             <!-- /#sidebar-wrapper -->
@@ -65,7 +67,6 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
                                     <i class="fas fa-user me-2"></i><?= $sa_fname ?> <?= $sa_lname ?>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                                     <li><a class="dropdown-item" href="settings.php">Settings</a></li>
                                     <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
                                 </ul>
