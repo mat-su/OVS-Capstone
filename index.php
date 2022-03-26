@@ -11,12 +11,11 @@ require 'functions.php';
     <title>Home - 1VOTE 4PLMAR</title>
 
     <!--Logo-->
-    <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
-    
-    <link rel="stylesheet" href="assets/bootstrap/css/style.css">
+    <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
+
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -41,11 +40,120 @@ require 'functions.php';
             });
         });
     </script>
+    <style>
+        /*START OF RICA REVISE*/
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /*toggle button*/
+        #button_toggle {
+            color: #ffffff;
+        }
+
+
+        /*Main Navbar */
+        /*brand or logo*/
+        .container .navbar-brand .brand {
+            color: #ffffff;
+        }
+
+        .navbar {
+            background: #001d3d;
+            padding-left: 41.5px;
+            padding-right: 41.5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /*navbar menu*/
+        #navbarText .nav-item a {
+            color: #ffffff;
+        }
+
+        /*HOVEEEER*/
+        /* Upper Nav item hover color text white to yellow*/
+        .navbar-nav .nav-item a:hover {
+            color: #001d3d !important;
+            transition-duration: 0.4s;
+        }
+
+
+
+        /* Main Nav item hover color text white to yellow*/
+        .container .navbar-brand .brand:hover {
+            color: #ffc300 !important;
+            transition-duration: 0.4s;
+        }
+
+        #navbarText .nav-item a:hover {
+            color: #ffc300 !important;
+            transition-duration: 0.4s;
+        }
+
+
+        /*MODAL*/
+        /*Rica: Added font family*/
+        .modal-login {
+            font-family: 'Montserrat', sans-serif !important;
+
+        }
+
+        .modal-login .logo {
+            position: absolute;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            top: -50px;
+            width: 95px;
+            height: 95px;
+
+        }
+
+        .modal-login .logo img {
+            width: 100%;
+        }
+
+        /*HIW*/
+        #hiw {
+            background-color: #001d3d;
+            display: flex;
+            align-items: center;
+
+        }
+        
+        /*about section*/
+        #about {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        /*feature section*/
+        #feature {
+
+            background: url(https://ik.imagekit.io/nwlfpk0xpdg/img/online_5ouJFR_ZT.jpg?updatedAt=1636213499484);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            padding-top: 8rem;
+            padding-bottom: 8rem
+        }
+
+        /*stud org*/
+        #studorg {
+            font-family: 'Montserrat', sans-serif !important;
+            padding: 60px 60px;
+        }
+
+        #studorg h2 {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+    </style>
 </head>
 
 <body>
     <!--Contacts Section-->
-    <nav class="navbar navbar-expand text-white py-0 " style="background-color: #000000;">
+    <nav class="navbar navbar-expand text-white py-0 " style="background-color: #d00000;">
         <div class="container">
             <ul class="navbar-nav ">
                 <li class="nav-item" style="margin-right: 10px;">
@@ -63,49 +171,52 @@ require 'functions.php';
                     <a class="nav-link text-white" href="admin-signin.php"><i class="fas fa-user-cog me-1"></i><small>Admin Portal</small></a>
                 </li>
                 <li class="nav-item"><span class="text-white">|</span></li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#VoterSignIn" data-bs-toggle="modal"><i class="fas fa-user-lock me-1"></i><small>Voter Portal</small></a>
-                </li>
+
             </ul>
         </div>
     </nav>
 
     <!--Main navbar-->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <!-- Container wrapper -->
-        <div class="container-fluid" id="main-nav">
+        <div class="container" id="main-nav">
 
             <!-- Navbar brand -->
-            <a class="navbar-brand mb-0 text-wrap" href="#"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?updatedAt=1636213481504" alt="">PLMAR Online Voting System</a>
+            <a class="navbar-brand mb-0 text-wrap" href="index.php"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" alt="">
+                <span class="brand">PLMAR Online Voting System</span></a>
             <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <button id="button_toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
+
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarText">
                 <!-- Left links -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
                     <li class="nav-item">
-                        <a class="nav-link active d-flex flex-column text-center" aria-current="page" href="index.php"><i class="fas fa-home text-primary"></i><span class="small">Home</span></a>
+                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="index.php#student_org"><i class="fas fa-sitemap"></i>
+                            <span class="small">Student Organizations</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="index.php#student_org"><i class="fas fa-sitemap text-primary"></i><span class="small">Student Organizations</span></a>
+                        <a class="nav-link d-flex flex-column text-center" href="#VoterSignIn" data-bs-toggle="modal"><i class="fas fa-user-lock me-1"></i>
+                            <span class="small">Voter Portal</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="#contacts"><i class="fas fa-envelope text-primary"></i><span class="small">Contacts</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="signup.php"><i class="fas fa-sign-in-alt text-primary"></i><span class="small">Sign Up</span></a>
+                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="signup.php"><i class="fas fa-sign-in-alt"></i>
+                            <span class="small">Sign Up</span></a>
                     </li>
                 </ul>
                 <!-- Left links -->
             </div>
             <!-- Collapsible wrapper -->
+
         </div>
         <!-- Container wrapper -->
     </nav>
     <!-- End Navbar -->
+
 
     <!-- Modal -->
     <div class="modal fade" id="VoterSignIn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -134,9 +245,11 @@ require 'functions.php';
                             </script>
                         <?php } ?>
                         <div class="form-group mb-3">
+                            <!--Rica: I add label for screen readers--> <label for="email">Email Address</label>
                             <input class="form-control validate" style="font-family:FontAwesome;" type="email" name="email" placeholder="&#xf007; Email Address" required="required">
                         </div>
                         <div class="form-group mb-3">
+                            <!--Rica: I add label for screen readers--> <label for="email">Password</label>
                             <input class="form-control" type="password" style="font-family:FontAwesome;" name="password" placeholder="&#xf023; Password" required="required">
                         </div>
                         <div class="form-group mb-3 text-center">
@@ -151,6 +264,7 @@ require 'functions.php';
         </div>
     </div>
     <!--End of Modal Voter Signin Section-->
+
 
     <!--Carousel Section-->
     <section id="carousel">
@@ -194,69 +308,74 @@ require 'functions.php';
         </div>
     </section>
     <!--End of Carousel Section-->
+
     <!--About OVS-->
-    <section class="bg-light features-icons">
+    <section id="about" class=" features-icons">
         <div class="container">
             <h2>PLMAR Online Voting System for College Student Organization</h2>
             <div class="row mb-5">
-                <div class="col-md-9">
+                <div class="col-md-6">
                     <p class="lead mb-0">The Pamantasan ng Lungsod ng Marikina Online Voting System (PLMar OVS) is an online web-based software platform that allows the institution to conduct an easy and secured election for Student Organization. OVS advertise the transition of traditional to advance technical standards. The platform aims to provide quality assurance and equitable balance among the administration, candidates, and voters.</p>
                 </div>
-                <div class="col-md-3">
-                    <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/logo-png_Xt7bTS_7o.png?updatedAt=1636213481504" alt="ovs logo" class="img-fluid">
+                <div class="col-md-6">
+                    <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/hero_c3vLzDFbO.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648298535312" class="img-fluid">
                 </div>
-            </div>
-
-            <!--Our Work Section-->
-            <section id="work">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 text-center text-danger">
-                            <h3 class="fs-1">Go Vote!</h3>
-                        </div>
-                        <div class="col-md-6 text-center mx-auto text-danger">
-                            <i class="fas fa-vote-yea fa-5x"></i>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!--End of Our Work Section-->
-
-            <div class="row text-center features-icons">
-                <div class="col-lg-4">
-                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
-                        <div class="d-flex features-icons-icon"><i class="far fa-thumbs-up m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
-                        <h3>Easy</h3>
-                        <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
-                        <div class="d-flex features-icons-icon"><i class="fas fa-user-shield m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
-                        <h3>Safe</h3>
-                        <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
-                        <div class="d-flex features-icons-icon"><i class="fas fa-globe m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
-                        <h3>Accessible</h3>
-                        <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
-                    </div>
-                </div>
-                <div id="student_org"></div>
-                <!--used to solve the sticky top blocking-->
             </div>
         </div>
 
-
     </section>
+    <!--Our feature Section-->
+    <div id="feature">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center text-danger">
+                    <h3 class="fs-1"></h3>
+                </div>
+                <div class="col-md-6 text-center mx-auto text-danger">
+                    <i class="fas fa-vote-yea fa-5x"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--End of Our feature Section-->
+
+
+    <div class="row text-center features-icons">
+        <div class="col-lg-4">
+            <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                <div class="d-flex features-icons-icon"><i class="far fa-thumbs-up m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
+                <h3>Easy</h3>
+                <p class="lead mb-0">Great Authentication and Easy Registration!</p>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                <div class="d-flex features-icons-icon"><i class="fas fa-user-shield m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
+                <h3>Safe</h3>
+                <p class="lead mb-0">Secure user accounts & vote tally!</p>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                <div class="d-flex features-icons-icon"><i class="fas fa-globe m-auto text-primary" data-bss-hover-animate="pulse"></i></div>
+                <h3>Accessible</h3>
+                <p class="lead mb-0">Anytime Accessible!</p>
+            </div>
+        </div>
+        <div id="student_org"></div>
+        <!--used to solve the sticky top blocking-->
+    </div>
+    </div>
+
+
 
 
     <!--Student Org Card Carousel-->
-    <section class="bg-light">
+    <section id="studorg" class="bg-light">
         <div class="container">
-            <h2 class="mb-2">Student Organizations</h2>
+            <h2 class=" text-center ">Meet your Student Organizations</h2>
         </div>
         <div id="owl" class="text-center container ">
             <div class="slider owl-carousel" id="org-carousel">
@@ -265,7 +384,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">CSG</div>
                         <div class="sub-title">
-                            <p class="lead mb-0">Central Student Government</p>
+                            <p class="lead mb-0">
+                                
+                            </p>
                         </div>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/central-student-government-csg?authuser=0" role="button">Read More</a></div>
@@ -275,7 +396,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">EDUCADA</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">Education Confederation of Adept Devotees of the Academe</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/education-confederation-of-adept-devotees-of-the-academe-educada?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -284,7 +407,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">DAMLAY</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">DAMDAMIN AT MALAY</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/damdamin-at-malay-damlay-filipino-major?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -293,7 +418,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">ENGLISC</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">ENGLISC- ENGLISH MAJOR</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/englisc-english-major?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -302,7 +429,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">ELEMENTUM</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">ELEMENTUM- MATHEMATICS SOCIETY</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/elementum-mathematics-society?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -311,7 +440,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">ILLUS</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">INTELLECTUAL LEADERS UNITING STUDENTS THROUGH RATIONAL ALLIANCE DIGNIFIED AND ORGANIZED SOCIETY</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/intellectual-leaders-uniting-students-through-rational-alliance-dignifi?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -320,7 +451,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">DEPS</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">DESIGNED TO EDUCATE PEOPLE WITH SPECIAL NEEDS</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/designed-to-educate-people-with-special-needs-deps?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -329,7 +462,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">PARACS</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">PEACEFUL AND RESPONSIBLE ALLIANCE OF CRIMINOLOGY</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/peaceful-and-responsible-alliance-of-criminology-paracs?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -338,7 +473,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">PASA</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">PUBLIC ADMINISTRAION STUDENT’S ASSOCIATION</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/public-administraion-students-association-pasa?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -347,7 +484,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">SMS</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">SOCIETY OF MASS COMMUNICATION STUDENTS</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/society-of-mass-communication-students-sms?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -356,7 +495,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">PSYSOC</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">PSYCHOLOGY AND SOCIAL WORK SOCIETY </p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/psychology-and-social-work-society-psysoc?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -365,7 +506,8 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">PESA</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">PHYSICAL EDUCATION STUDENTS ASSOCIATION</p>
+                        <p class="lead mb-0">
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/physical-education-students-association-pesa?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -374,7 +516,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">HCS</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">HEALTH CARE SOCIETY</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/health-care-society-hcs?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -383,7 +527,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">HRSS</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">HUMAN RESCOURCES STUDENT SOCIETY </p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/human-rescources-student-society-hrss?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -392,7 +538,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">JEMS</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">JUNIOR ENTREPRENEURIAL MANAGEMENT SOCIETY</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/junior-entrepreneurial-management-society-jems?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -401,7 +549,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">JFNEX</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">JUNIOR FINANCE EXECUTIVE</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/junior-finance-executive-jfnex?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -410,7 +560,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">JMMA</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">JUNIOR MARKETING MANAGEMENT ASSOCIATION</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/junior-marketing-management-association-jmma?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -419,7 +571,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">JPIA</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">JUNIOR PHILIPPINE INSTITUTE OF ACCOUNTANTS</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/junior-philippine-institute-of-accountants-jpia?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -428,7 +582,9 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">HOREMS</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">HOTEL AND RESTAURANT MANAGEMENT SOCIETY</p>
+                        <p class="lead mb-0">
+
+                        </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/hotel-and-restaurant-management-society-horems?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -437,7 +593,8 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">TSS</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">TOURISM STUDENT SOCIETY </p>
+                        <p class="lead mb-0">
+                             </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/tourism-student-society-tss?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -446,7 +603,8 @@ require 'functions.php';
                     <div class="content">
                         <div class="title">SITS</div>
                         <div class="sub-title"></div>
-                        <p class="lead mb-0">SOCIETY OF INFORMATION TECHNOLOGY STUDENTS </p>
+                        <p class="lead mb-0">
+                             </p>
                     </div>
                     <div class="btn"><a class="btn btn-primary" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/society-of-information-technology-students-sits?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -455,7 +613,14 @@ require 'functions.php';
     </section>
     <!--End of Student Org Card Carousel-->
 
-    <div class="pt-5 bg-light"></div>
+    <div id="hiw">
+        <div class="container text-center">
+            <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/Voter_Side_Infographics_x2m-90lvC.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648299576061" alt="">
+
+        </div>
+    </div>
+
+
 
     <?php template_footer() ?>
 
