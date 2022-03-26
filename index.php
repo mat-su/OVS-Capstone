@@ -157,11 +157,11 @@ require 'functions.php';
         <div class="container">
             <ul class="navbar-nav ">
                 <li class="nav-item" style="margin-right: 10px;">
-                    <small>Call (02) 392-0455</small>
-                </li>
-                <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
+                    <small><a href="#footer" style="color: white;">Contact Us</a></small>
                 </li>
                 <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="mailto:educpurponly101@gmail.com"><i class="fa fa-envelope"></i></a>
+                <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
+                </li>
                 </li>
                 <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
                 </li>
@@ -324,24 +324,6 @@ require 'functions.php';
         </div>
 
     </section>
-    <!--Our feature Section-->
-    <div id="feature">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center text-danger">
-                    <h3 class="fs-1"></h3>
-                </div>
-                <div class="col-md-6 text-center mx-auto text-danger">
-                    <i class="fas fa-vote-yea fa-5x"></i>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!--End of Our feature Section-->
-
-
     <div class="row text-center features-icons">
         <div class="col-lg-4">
             <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">

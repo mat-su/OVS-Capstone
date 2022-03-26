@@ -93,7 +93,7 @@ function template_footer()
 {
   echo <<<EOT
     <!--Footer-->
-    <footer class="text-white bg-dark" style="font-family: 'Montserrat', sans-serif; font-size: 12px;">
+    <footer class="text-white bg-dark" style="font-family: 'Montserrat', sans-serif; font-size: 12px;" id="footer">
     <!-- Grid container -->
     <div class="container p-4 ">
       <!--Grid row-->
