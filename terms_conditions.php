@@ -4,7 +4,6 @@ require 'functions.php';
 ?>
 <!DOCTYPE html>
     <html>
-
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -47,7 +46,7 @@ require 'functions.php';
    
 
 <body>
-      <!--Contacts Section-->
+    <!--Contacts Section-->
     <nav class="navbar navbar-expand text-white py-0 " style="background-color: #d00000;">
         <div class="container">
             <ul class="navbar-nav ">
