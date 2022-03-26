@@ -15,7 +15,7 @@ document.querySelector('#course').addEventListener('change', validateCourse);
 document.querySelector('#chk_agree').addEventListener('click', validateChkBox);
 document.querySelector('#submit').addEventListener('click', validateChkBox);
 document.querySelector('#submit').addEventListener('click', hasFnameVal);
-document.querySelector('#submit').addEventListener('click', hasMnameVal);
+
 document.querySelector('#submit').addEventListener('click', hasLnameVal);
 document.querySelector('#submit').addEventListener('click', hasCourseVal);
 document.querySelector('#submit').addEventListener('click', hasStudnumVal);
@@ -24,7 +24,7 @@ document.querySelector('#submit').addEventListener('click', hasEmailVal);
 
 //const reSpaces = /^\S*$/;
 const reSpaces = /\S+.*/;
-const regexName = /^[a-zA-ZÑñ]+(([',. -][a-zA-Z Ññ])?[a-zA-ZÑñ]*)*$/;
+const regexName = /^[a-zA-ZÑñ ]+(([',. -][a-zA-ZÑñ])?[a-zA-ZÑñ]*)*$/;
 
 function hasFnameVal(e) {
   const fname = document.querySelector('#fname');
@@ -41,14 +41,10 @@ function hasFnameVal(e) {
 
 function hasMnameVal(e) {
   const mname = document.querySelector('#mname');
-  if ($('#mname').val()) {
-    mname.classList.add('is-valid');
+  if ($('#mname').val() != "") {
     mname.classList.remove('is-invalid');
+    mname.classList.add('is-valid');
     return true;
-  } else {
-    mname.classList.remove('is-valid');
-    mname.classList.add('is-invalid');
-    return false;
   }
 }
 
@@ -136,14 +132,21 @@ function validateFirstname(e) {
 
 function validateMiddlename(e) {
   const mname = document.querySelector('#mname');
-  if (reSpaces.test(mname.value) && regexName.test(mname.value)) {
+  if (mname.value == "") {
     mname.classList.remove('is-invalid');
     mname.classList.add('is-valid');
     return true;
-  } else {
-    mname.classList.remove('is-valid');
-    mname.classList.add('is-invalid');
-    return false;
+  } 
+  else {
+    if (regexName.test(mname.value)) {
+      mname.classList.remove('is-invalid');
+      mname.classList.add('is-valid');
+      return true;
+    } else {
+      mname.classList.remove('is-valid');
+      mname.classList.add('is-invalid');
+      return false;
+    }
   }
 
 }
@@ -243,11 +246,15 @@ function validatePassword() {
 (function () {
 
   const forms = document.querySelectorAll('.needs-validation');
-
   for (let form of forms) {
     form.addEventListener(
       'submit',
       function (event) {
+  console.log(`first name ${!validateFirstname()}`)
+  console.log(`middle name ${!validateMiddlename()}`)
+  console.log(`last name ${!validateLastname()}`)
+  console.log(`studnum ${!validateStudnum()}`)
+  console.log(`course ${!validateCourse()}`)
         if (
           !form.checkValidity() ||
           !validateEmail() ||

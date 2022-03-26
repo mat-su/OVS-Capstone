@@ -12,14 +12,14 @@ if (isset($_POST['fname']) && isset($_POST['mname']) && isset($_POST['lname']) &
     $course = $_POST['course'];
     $studnum = $_POST['studnum'];
 
-    if (!empty($fname) && !empty($mname) && !empty($lname) && !empty($studnum) && !empty($course) && !empty($email)) {
+    if (!empty($fname) && !empty($lname) && !empty($studnum) && !empty($course) && !empty($email)) {
 
         $stmt = $conn->prepare("SELECT * FROM tbl_emailotp WHERE email = ? AND stats = ?");
         $stmt->execute([$email, "verified"]);
 
         if ($stmt->rowCount() == 1) {
-            $stmt = $conn->prepare("SELECT * FROM tbl_enr_stud WHERE enr_studnum = :studnum && enr_fname = :fname && enr_mname = :mname && enr_lname = :lname && enr_course = :course");
-            $stmt->execute([$studnum, $fname, $mname, $lname, $course]);
+            $stmt = $conn->prepare("SELECT * FROM tbl_enr_stud WHERE enr_studnum = :studnum && enr_fname = :fname && enr_lname = :lname && enr_course = :course");
+            $stmt->execute([$studnum, $fname, $lname, $course]);
             $stud = $stmt->fetch(PDO::FETCH_ASSOC);
             $fullname = $stud['enr_fname'] . " " . $stud['enr_mname'] . " " . $stud['enr_lname'];
             if ($stmt->rowCount() == 1) {

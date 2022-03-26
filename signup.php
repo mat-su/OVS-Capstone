@@ -188,7 +188,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                                 <div class="form-group">
                                     <!--Middlename-->
                                     <label for="mname">Middlename</label>
-                                    <input type="text" class="form-control" id="mname" name="mname" placeholder="Middlename" required />
+                                    <input type="text" class="form-control" id="mname" name="mname" placeholder="Middlename"  />
                                     <div class="invalid-feedback mb-2">Enter a valid Middlename.</div>
                                     <div class="valid-feedback mb-2">Looks Good</div>
                                 </div>
