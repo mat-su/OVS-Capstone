@@ -37,7 +37,7 @@ function template_header($title)
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>$title</title>
-
+      <!--Rica: I remove the lato font and add this line for the font--><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet"> 
       <!--Tab Logo-->
       <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504"/>
       <!--Boostrap5 CSS CDN-->
@@ -141,7 +141,7 @@ function template_footer()
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    <a href="terms_conditions.php" style="color: inherit; text-decoration: none;">Terms &amp Conditions | Privacy Policy</a> <br> 
+    <a href="terms_conditions.php" style="color: inherit;">Terms &amp Conditions | Privacy Policy</a> <br> 
     © 2022 Copyright. All Rights Reserved. <br>
     Powered by OVS
     </div>
