@@ -28,22 +28,17 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                         <small>PAMANTASAN NG LUNGSOD NG MARIKINA</small>
                     </li>
                 </ul>
-                <ul class="navbar-nav collapse navbar-collapse justify-content-end">
-                    <li class="nav-item"><span class="text-white">|</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="dashboard.php"><small>Back</small></a>
-                    </li>
-                </ul>
             </div>
         </nav>
-        <div class="container col col-md-6 offset-md-3 mt-3"><span class="fs-3">Administrator Account</span>
+        <div class="container col col-md-6 offset-md-3 mt-3"><span class="fs-3">Administrator Account Settings</span>
             <div id="getDetails"></div>
         </div>
         <div class="container mt-3 mb-5">
             <div class="row">
                 <div class="col col-md-6 offset-md-3 mb-4">
                     <div class="card rounded shadow mt-3">
-                        <div class="card-body mt-2 table-responsive">
+                    <div><a class="float-end btn btn-secondary mb-0" style="margin:15px" href="dashboard.php">Back</a></div>
+                        <div class="card-body table-responsive">
                             <p class="display-5 fs-5">Account Information</p>
                             <table class="table table-bordered table-striped mt-3">
                                 <colgroup>
@@ -63,7 +58,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                     <tr>
                                         <td>Status</td>
                                         <td><i class="fa fa-check-square text-success"></i> Active </td>
-                                        <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalSuspend"><i class="fa fa-exclamation"></i> End</button></td>
+                                        <td><button class="btn btn-danger" style="width: 80px;" data-bs-toggle="modal" data-bs-target="#modalSuspend"><i class="fa fa-exclamation"></i> End</button></td>
                                     </tr>
                                     <tr>
                                         <td>Username</td>
@@ -75,14 +70,18 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                         <td><?= $email ?></td>
                                         <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCE">Change</button></td>
                                     </tr>
+                                    <tr>
+                                        <td>Password</td>
+                                        <td>*************</td>
+                                        <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCP">Change</button></td>
+                                    </tr>
                                 </tbody>
                             </table>
-                            <button id="btnCP" class="btn btn-primary float-end mt-3" data-bs-toggle="modal" data-bs-target="#modalCP">Change Password</button>
                         </div>
                     </div>
                 </div>
                 <div class="col col-md-6 offset-md-3 mb-4">
-                    <div class="card rounded shadow mt-3">
+                    <div class="card rounded shadow mt-3 table-responsive">
                         <div class="card-body mt-2">
                             <p class="display-5 fs-5">Basic Information</p>
                             <table class="table table-bordered table-striped mt-3">
