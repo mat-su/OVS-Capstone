@@ -13,23 +13,17 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
     $org = $stmt->fetch(PDO::FETCH_ASSOC);
     $org_name = $org['org_name'];
     $org_acr = $org['org_acronym'];
+
+    $sched = Select_VotingSched($sa_orgid);
+    if (!empty($sched)) {
+        $starts = $sched['startdate'];
+        $ends = $sched['enddate'];
+    } else {
+        $starts = '';
+        $ends = '';
+    }
+    template_header("Subadmin Dashboard");
 ?>
-
-
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!--Tab Logo-->
-        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-        <link rel="stylesheet" href="../assets/bootstrap/css/style.css">
-        <title>Subadmin Dashboard</title>
-    </head>
 
     <body>
         <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
@@ -92,14 +86,39 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
                             <p class=""><em>Student Organization: <b><?= $org_name ?> (<?= $org_acr ?>)</b></em></p>
                         </div>
                     </div>
+                    <div class="row g-3 my-2">
+                        <div class="col-md-12" style="display: none;">
+                        <!-- Voter Turnout -->
+                        <div id="v-turnout" class="p-3 shadow-sm rounded" style="background-color: #ffe6ee;">
+                            <div class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--tally-->
+                    <div class="col-md-12" style="display:none;">
+                        <div id="chart-container" class="p-3 shadow-sm rounded bg-white row">
+                            <h3 class="text-center"><u><?= $org_acr . ' CHOICE ' . date("Y"); ?></u></h3>
+                            <h2 class="text-center">ELECTION RESULTS</h2>
+                            <?php $positions = fetchAll_OrgStructure($sa_orgid);
+                            foreach ($positions as $p) : ?>
+                                <div class="col-md-6">
+                                    <canvas id="<?= $p['position'] ?>"></canvas>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <!--/-end of tally-->
                 </div>
 
             </div>
-            <!-- /#page-content-wrapper -->
+
+        </div>
+        <!-- /#page-content-wrapper -->
         </div>
         <?= template_footer() ?>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             var el = document.getElementById("wrapper");
             var toggleButton = document.getElementById("menu-toggle");
@@ -107,6 +126,116 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
             toggleButton.onclick = function() {
                 el.classList.toggle("toggled");
             };
+        </script>
+        <script>
+            $(function() {
+                $('#v-turnout').load("../voter/voter-turnout.php");
+                // Set the date we're counting down to
+                var countDownDate1 = new Date("<?= $starts ?>").getTime();
+                var countDownDate2 = new Date("<?= $ends ?>").getTime();
+
+
+                var y = setInterval(VoterTurnout_Progress, 1000);
+
+                function VoterTurnout_Progress() {
+                    // Get today's date and time
+                    var now = new Date().getTime();
+                    var distance2 = countDownDate2 - now;
+                    if (distance2 < 0) {
+                        $('#btn_vn').prop('disabled', true);
+                        $('.g-3 div:nth-child(1)').css("display", "block");
+                        $('.g-3 div:nth-child(2)').css("display", "block");
+                        clearInterval(y);
+                    }
+                    if (distance2 > 0 && now > countDownDate1) {
+                        $('#btn_vn').prop('disabled', false);
+                        $('#v-turnout').load("voter-turnout.php");
+                    }
+                }
+            });
+        </script>
+        <script>
+            //setup
+            <?php foreach ($positions as $p) :
+                $tally = ChartTally($sa_orgid, $p['id']);
+                $name = array();
+                $votes = array();
+                foreach ($tally as $ta) {
+                    array_push($name, $ta['fullname']);
+                    array_push($votes, $ta['tallies']);
+                }
+            ?>
+                const labels<?= $p['id'] ?> = <?= json_encode($name) ?>;
+
+                const data<?= $p['id'] ?> = {
+                    labels: labels<?= $p['id'] ?>,
+                    datasets: [{
+                        // axis: 'y',
+                        label: 'Number of Votes',
+                        data: <?= json_encode($votes) ?>,
+                        backgroundColor: [
+                            '#073B4C',
+                            '#118AB2',
+                            '#0CB0A9',
+                            '#06D6A0',
+                            '#FFD166',
+                            '#F78C6B',
+                            '#EF476F',
+                        ],
+                        borderColor: [
+                            '#073B4C',
+                            '#118AB2',
+                            '#0CB0A9',
+                            '#06D6A0',
+                            '#FFD166',
+                            '#F78C6B',
+                            '#EF476F',
+                        ],
+                        borderWidth: 1
+                    }]
+                };
+
+                //config
+                const config<?= $p['id'] ?> = {
+                    type: 'doughnut',
+                    data: data<?= $p['id'] ?>,
+                    options: {
+                        // scales: {
+                        //     y: {
+                        //         beginAtZero: true
+                        //     }
+                        // },
+                        // indexAxis: 'y',
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: "<?= $p['position'] ?>"
+                            },
+                            legend: {
+                                display: true,
+                                position: 'right',
+                                align: 'center'
+                            },
+                            labels: {
+                                render: 'value',
+                                fontSize: 14,
+                                fontStyle: 'bold',
+                                fontColor: '#FFF',
+                                fontFamily: '"Lucida Console", Monaco, monospace'
+                            }
+                        },
+
+                    },
+                };
+            <?php endforeach; ?>
+
+            <?php foreach ($positions as $p) : ?>
+                //render
+                const myChart<?= $p['id'] ?> = new Chart(
+                    document.getElementById("<?= $p['position'] ?>"),
+                    config<?= $p['id'] ?>
+                );
+            <?php endforeach; ?>
         </script>
     </body>
 

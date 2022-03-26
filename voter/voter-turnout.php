@@ -1,7 +1,8 @@
 <?php
 session_start();
 include '../functions.php';
-$org_id = $_SESSION['org_id'];
+
+$org_id = empty($_SESSION['org_id']) ? $_SESSION['sa_org_id'] : $_SESSION['org_id'];
 $v = Count_Voters($org_id);
 $votePercentage = ($v['whoVoted'] / $v['totalVoters']) * 100;
 $precise = number_format((float) $votePercentage, 2, '.', ''); 

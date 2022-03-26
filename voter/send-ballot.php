@@ -31,7 +31,13 @@ if ($stmt->rowCount() == 0) {
             //there was an error in selecting a number of candidate
             header("Location: ballot-form.php?err=There was an error in selecting a number of candidates. Please select a candidate accordingly!");
         } else if ($isValid) {
-            $receipt = '<h1>VOTING RECEIPT</h1><h2>' . $_SESSION['org_name'] . '</h2>';
+            $receipt = '
+            ';
+
+
+
+
+            $receipt .= '<h1>VOTING RECEIPT</h1><h2>' . $_SESSION['org_name'] . '</h2>';
             foreach ($orgs as $o) { //second loop to process ballot
                 $cleanIndex = str_replace(" ", "_", $o['position']);
                 if (!empty($_POST[$cleanIndex])) { //check whether a candidate for that position is empty

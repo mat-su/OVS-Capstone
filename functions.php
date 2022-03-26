@@ -58,7 +58,10 @@ function template_header($title)
       <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
       <!--JQuery Validation PlugIn-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
-  
+      <!--Chart CDN-->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <!-- Chart Plugins -->
+      <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
       <style>
           #fname-error,
           #mname-error,

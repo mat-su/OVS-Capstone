@@ -191,7 +191,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                 <h2 class="text-center">ELECTION RESULTS</h2>
                                 <?php $positions = fetchAll_OrgStructure($org_id);
                                 foreach ($positions as $p) : ?>
-                                    <div class="col-lg-6 border">
+                                    <div class="col-md-6 border">
                                         <canvas id="<?= $p['position'] ?>"></canvas>
                                     </div>
                                 <?php endforeach; ?>
