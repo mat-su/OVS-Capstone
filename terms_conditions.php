@@ -10,7 +10,7 @@ require 'functions.php';
     <title>OVS Terms and Condition | Data Privacy Policy</title>
 
     <!--Logo-->
-    <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
+    <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
     
     <!--Rica: I replace the stylecss into this line--><link rel="stylesheet" href="style_terms_condition.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -77,7 +77,7 @@ require 'functions.php';
         <div class="container" id="main-nav">
 
             <!-- Navbar brand -->
-            <a class="navbar-brand mb-0 text-wrap" href="index.php"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?updatedAt=1636213481504" alt="">
+            <a class="navbar-brand mb-0 text-wrap" href="index.php"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" alt="">
             <span class="brand">PLMAR Online Voting System</span></a>
             <!-- Toggle button -->
             <button id="button_toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">

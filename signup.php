@@ -1,5 +1,8 @@
 <?php
 require 'functions.php';
+session_start();
+$_SESSION['signup'] = true;
+$_SESSION['index'] = false;
 
 $conn = MYSQL_DB_Connection();
 $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS courses FROM tbl_course");
@@ -14,7 +17,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
     <title>Sign Up - 1VOTE 4PLMAR</title>
 
     <!--Logo-->
-    <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
+    <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -100,66 +103,194 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
             });
         });
     </script>
-    // On the first line inside BODY tag
     <script type="text/javascript">
         $("body").prepend('<div id="preloader">Loading...</div>');
         $(document).ready(function() {
             $("#preloader").remove();
         });
+        $(document).ready(function() {
+            $('#VoterSignIn').on('hidden.bs.modal', function() {
+                $(this).find('form').trigger('reset');
+            });
+        });
     </script>
+    <style>
+        /*START OF RICA REVISE*/
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /*toggle button*/
+        #button_toggle {
+            color: #ffffff;
+        }
+
+
+        /*Main Navbar */
+        /*brand or logo*/
+        .container .navbar-brand .brand {
+            color: #ffffff;
+        }
+
+        .navbar {
+            background: #001d3d;
+            padding-left: 41.5px;
+            padding-right: 41.5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /*navbar menu*/
+        #navbarText .nav-item a {
+            color: #ffffff;
+        }
+
+        /*HOVEEEER*/
+        /* Upper Nav item hover color text white to yellow*/
+        .navbar-nav .nav-item a:hover {
+            color: #001d3d !important;
+            transition-duration: 0.4s;
+        }
+
+
+
+        /* Main Nav item hover color text white to yellow*/
+        .container .navbar-brand .brand:hover {
+            color: #ffc300 !important;
+            transition-duration: 0.4s;
+        }
+
+        #navbarText .nav-item a:hover {
+            color: #ffc300 !important;
+            transition-duration: 0.4s;
+        }
+
+
+        /*MODAL*/
+        /*Rica: Added font family*/
+        .modal-login {
+            font-family: 'Montserrat', sans-serif !important;
+
+        }
+
+        .modal-login .logo {
+            position: absolute;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            top: -50px;
+            width: 95px;
+            height: 95px;
+
+        }
+
+        .modal-login .logo img {
+            width: 100%;
+        }
+
+        /*HIW*/
+        #hiw {
+            background-color: #001d3d;
+            display: flex;
+            align-items: center;
+
+        }
+        
+        /*about section*/
+        #about {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        /*feature section*/
+        #feature {
+
+            background: url(https://ik.imagekit.io/nwlfpk0xpdg/img/online_5ouJFR_ZT.jpg?updatedAt=1636213499484);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            padding-top: 8rem;
+            padding-bottom: 8rem
+        }
+
+        /*stud org*/
+        #studorg {
+            font-family: 'Montserrat', sans-serif !important;
+            padding: 60px 60px;
+        }
+
+        #studorg h2 {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+    </style>
+    
 </head>
 
 <body>
     <!--Contacts Section-->
-    <nav class="navbar navbar-expand text-white py-2 fixed-top" style="background-color: #000000;">
+    <nav class="navbar navbar-expand text-white py-0 " style="background-color: #d00000;">
         <div class="container">
             <ul class="navbar-nav ">
                 <li class="nav-item" style="margin-right: 10px;">
-                    <small>Call (02) 392-0455</small>
-                </li>
-                <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
+                    <small><a href="#footer" style="color: white;">Contact Us</a></small>
                 </li>
                 <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="mailto:educpurponly101@gmail.com"><i class="fa fa-envelope"></i></a>
+                <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
+                </li>
                 </li>
                 <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
                 </li>
+            </ul>
+            <ul class="navbar-nav collapse navbar-collapse justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="admin-signin.php"><i class="fas fa-user-cog me-1"></i><small>Admin Portal</small></a>
+                </li>
+                <li class="nav-item"><span class="text-white">|</span></li>
+
             </ul>
         </div>
     </nav>
     <!--Main navbar-->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top" style="top:35px;">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <!-- Container wrapper -->
-        <div class="container-fluid" id="main-nav">
+        <div class="container" id="main-nav">
+
             <!-- Navbar brand -->
-            <a class="navbar-brand lead mb-0 col col-md-6" href="#"><img src="assets/img/ovslogov2-ns.png" alt="" width="auto" height="40px">PLMAR Online Voting System</a>
+            <a class="navbar-brand mb-0 text-wrap" href="index.php"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" alt="">
+                <span class="brand">PLMAR Online Voting System</span></a>
             <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i></button>
+            <button id="button_toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarText">
                 <!-- Left links -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
                     <li class="nav-item">
-                        <a class="nav-link active d-flex flex-column text-center" aria-current="page" href="index.php"><i class="fas fa-home text-primary"></i><span class="small">Home</span></a>
+                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="index.php#student_org"><i class="fas fa-sitemap"></i>
+                            <span class="small">Student Organizations</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="index.php#student_org"><i class="fas fa-sitemap text-primary"></i><span class="small">Student Organizations</span></a>
+                        <a class="nav-link d-flex flex-column text-center" href="#VoterSignIn" data-bs-target="#VoterSignIn" data-bs-toggle="modal"><i class="fas fa-user-lock me-1"></i>
+                            <span class="small">Voter Portal</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="#contacts"><i class="fas fa-envelope text-primary"></i><span class="small">Contacts</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="signup.php"><i class="fas fa-sign-in-alt text-primary"></i><span class="small">Sign Up</span></a>
+                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="signup.php"><i class="fas fa-sign-in-alt"></i>
+                            <span class="small">Sign Up</span></a>
                     </li>
                 </ul>
                 <!-- Left links -->
             </div>
             <!-- Collapsible wrapper -->
+
         </div>
         <!-- Container wrapper -->
     </nav>
     <!-- End Navbar -->
+
 
     <!--Sign Up-->
 
@@ -292,6 +423,52 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
         </div>
     </section>
 
+ <!-- Modal -->
+ <div class="modal fade" id="VoterSignIn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-login">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="logo">
+                        <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/plmar__Bd61zVwi.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213486017" alt="">
+                    </div>
+                    <h2 class="modal-title w-100 font-weight-bold"><strong>Voter Login</strong></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="vot_auth-login.php" method="post" id="frmSignIn">
+                        <?php if (isset($_GET['error'])) { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <i class="fa fa-times-circle fs-4 me-3"></i><small><?= $_GET['error'] ?></small>
+                            </div>
+                            <script type="text/javascript">
+                                $(window).on('load', function() {
+                                    $('#VoterSignIn').modal('toggle');
+                                });
+                                $('#VoterSignIn').on('hidden.bs.modal', function() {
+                                    window.location.replace("signup.php");
+                                });
+                            </script>
+                        <?php } ?>
+                        <div class="form-group mb-3">
+                            <!--Rica: I add label for screen readers--> <label for="email">Email Address</label>
+                            <input class="form-control validate" style="font-family:FontAwesome;" type="email" name="email" placeholder="&#xf007; Email Address" required="required">
+                        </div>
+                        <div class="form-group mb-3">
+                            <!--Rica: I add label for screen readers--> <label for="email">Password</label>
+                            <input class="form-control" type="password" style="font-family:FontAwesome;" name="password" placeholder="&#xf023; Password" required="required">
+                        </div>
+                        <div class="form-group mb-3 text-center">
+                            <button class="btn btn-primary" type="submit">Sign In</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    No account yet? <a class="" href="signup.php" style="color:blue; text-decoration: none;">Sign up here.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Modal Voter Signin Section-->
 
 
 
@@ -300,8 +477,6 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
 
     <!--Modal-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">

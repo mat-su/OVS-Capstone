@@ -1,5 +1,9 @@
 <?php
 require 'functions.php';
+session_start();
+$_SESSION['signup'] = false;
+$_SESSION['index'] = true;
+
 ?>
 
 <!DOCTYPE html>

@@ -51,7 +51,7 @@
 .vote-photo .image-holder {
   display: table-cell;
   width: auto;
-  background: url(https://ik.imagekit.io/nwlfpk0xpdg/img/vote-hands_71U07mge7.jpg?updatedAt=1636213502002);
+  /* background: url(https://ik.imagekit.io/nwlfpk0xpdg/img/vote-hands_71U07mge7.jpg?updatedAt=1636213502002); */
   background-size: cover;
 }
 
