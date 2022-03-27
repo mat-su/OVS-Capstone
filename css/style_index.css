@@ -1,0 +1,177 @@
+
+/*START OF RICA REVISE*/
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*toggle button*/
+#button_toggle {
+    color: #ffffff;
+}
+
+
+/*Main Navbar */
+/*brand or logo*/
+.container .navbar-brand .brand {
+    color: #ffffff;
+}
+
+.navbar {
+    background: #001d3d;
+    padding-left: 41.5px;
+    padding-right: 41.5px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 10px 3px 5px rgba(0, 0, 0, 0.48);}
+
+/*navbar menu*/
+#navbarText .nav-item a {
+    color: #ffffff;
+}
+
+/*HOVEEEER*/
+/* Upper Nav item hover color text white to yellow*/
+.navbar-nav .nav-item a:hover {
+    color: #001d3d !important;
+    transition-duration: 0.4s;
+}
+
+
+
+/* Main Nav item hover color text white to yellow*/
+.container .navbar-brand .brand:hover {
+    color: #ffc300 !important;
+    transition-duration: 0.4s;
+}
+
+#navbarText .nav-item a:hover {
+    color: #ffc300 !important;
+    transition-duration: 0.4s;
+}
+
+
+/*MODAL*/
+/*Rica: Added font family*/
+.modal-login {
+    font-family: 'Montserrat', sans-serif !important;
+
+}
+
+.modal-login .logo {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -50px;
+    width: 95px;
+    height: 95px;
+
+}
+
+.modal-login .logo img {
+    width: 100%;
+    
+}
+
+/*HIW*/
+#hiw {
+    display: flex;
+    align-items: center;
+}
+#hiw h2{
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*HERO section*/
+#hero_header, #hero{
+    font-family: 'Montserrat', sans-serif !important;
+}
+#hero_header{
+    color: #ffc300;
+    font-size: 45;
+    font-weight: 700;    
+}
+#hero_text{
+    padding-top: 60px;
+}
+#register_button{
+    font-size: 14px;
+    background-color: #d00000;
+    color: #ffffff;
+    padding: 9px 15px;
+    border-radius: 5px;
+    border-color: transparent;
+}
+/*box shadow*/
+#register_button:hover{
+    color: #ffc300;
+    transition-duration: 0.4s;
+    box-shadow: 10px 10px black;
+}
+
+/*sae*/
+#sae{
+    display: flex;
+    direction: horizontal;
+    align-items: stretch;
+    justify-content: space-around;
+    background-color: #001d3d;
+    padding: 60px 30px;
+}
+#sae_img{
+    width: 200px;
+}
+
+/*stud org*/
+#studorg {
+    font-family: 'Montserrat', sans-serif !important;
+    padding: 60px 60px;
+}
+
+#studorg h2 {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+#button_blue{
+    background-color: #001d3d;
+    color: #ffffff;
+    padding: 9px 15px;
+    border-radius: 10px;
+}
+
+/*owl*/
+#owl .title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #001d3d;
+}
+
+/*button yellow (stud org button)*/
+#button_yellow{
+    background-color:#ffc300;
+    color: #ffffff;
+    font-size: 14px;
+    margin-bottom: 10px;
+    /*border-color: #ffc300;*/
+}
+#button_yellow:hover{
+    background-color:#ffc300;
+    color: #001d3d;
+    transition-duration: 0.4s;
+}
+
+@media only screen and (max-width:500px) {
+    #sae{
+        display:block;      
+        align-content: center;
+    }
+    #sae_img{
+        size: 100px ;
+        align-items: center;
+    }
+}
+
+
+
+
