@@ -93,18 +93,21 @@ function template_footer()
 {
   echo <<<EOT
     <!--Footer-->
-    <footer class="text-white bg-dark" style="font-family: 'Montserrat', sans-serif; font-size: 12px;" id="footer">
+    <footer class="text-white" style="font-family: 'Montserrat', sans-serif; font-size: 12px; background-color: #001d3d" id="footer">
     <!-- Grid container -->
     <div class="container p-4 ">
       <!--Grid row-->
       <div class="row mt-4">
         <!--Grid column-->
         <div class="col-lg-8 col-md-12 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-4">About PLMAR</h5>
-
-          <p>The Pamantasan ng Lungsod ng Marikina (simply known as PLMar) is the first city government-funded university in Marikina City, Philippines. It was established to provide quality but affordable tertiary education to the residents of Marikina through Ordinance No. 015 Series of 2003.</p>
-          <p>The university provides a wide range of undergraduate and graduate programs. Aside from tertiary level courses, the school also has a Senior High School (SHS) program featuring strands under the Academic track.</p>
-          <p>As an academic institution, PLMar has been consistently equipping its students with affordable and high-quality education and molding them into well-rounded and service-oriented graduates who will contribute to the development of their respective communities.</p>
+          <h5 class="text-uppercase mb-4">About OVS</h5>
+          <p>
+          The Pamantasan ng Lungsod ng Marikina Online Voting System (PLMar OVS) is an online 
+          web-based software platform that allows the institution to conduct an easy and secured 
+          election for Student Organization. OVS advertise the transition of traditional to advance technical standards. 
+          The platform aims to provide quality assurance and equitable balance among the administration, candidates, 
+          and voters.
+          </p>
 
           <div class="mt-4">
             <!-- Facebook -->
