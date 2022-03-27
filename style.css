@@ -57,8 +57,15 @@
     background-size: cover
   }
   
+  
   @media(min-width: 768px) {
     .reg-section .reg-section-text {
       padding: 3.5rem
     }
+  }
+
+  /*Added by Rica on Signup page*/
+  #form__head{
+    font-family: 'Montserrat', sans-serif;
+
   }
