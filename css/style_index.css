@@ -171,6 +171,20 @@ body {
         align-items: center;
     }
 }
+/*response.php file */
+#response_unsuccessful h3,h6,#btn_ok{
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 200;
+}
+#btn_ok{
+    background-color:#d00000;
+    color: #ffffff;
+    border-radius:5px;
+}
+#btn_ok:hover{
+    color:#001d3d;
+    transition-duration: 0.4s;
+}
 
 
 

@@ -32,6 +32,7 @@ if ($stmt->rowCount() == 0) {
             header("Location: ballot-form.php?err=There was an error in selecting a number of candidates. Please select a candidate accordingly!");
         } else if ($isValid) {
             $receipt = '
+            
             ';
 
 

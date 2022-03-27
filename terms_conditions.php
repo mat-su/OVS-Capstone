@@ -12,7 +12,7 @@ require 'functions.php';
     <!--Logo-->
     <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
     
-    <!--Rica: I replace the stylecss into this line--><link rel="stylesheet" href="style_terms_condition.css">
+    <!--Rica: I replace the stylecss into this line--><link rel="stylesheet" href="css/style_terms_condition.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
    <!--Font-->

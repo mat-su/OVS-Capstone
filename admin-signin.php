@@ -13,7 +13,7 @@ if (!isset($_SESSION['a_id']) && !isset($_SESSION['a_email'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Admin Login</title>
         <!--Logo-->
-        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
+        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -26,29 +26,7 @@ if (!isset($_SESSION['a_id']) && !isset($_SESSION['a_email'])) {
     </head>
 
     <body>
-        <!--Contacts Section-->
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container">
-                <ul class="navbar-nav ">
-                    <li class="nav-item" style="margin-right: 10px;">
-                        <small>Call (02) 392-0455</small>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="mailto:educpurponly101@gmail.com"><i class="fa fa-envelope"></i></a>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav collapse navbar-collapse justify-content-end">
-                    <li class="nav-item"><span class="text-white">|</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="index.php"><small>Home</small></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
+        
         <!---Form Login-->
         <section class="vote-photo">
             <div class="form-container shadow-lg p-3 bg-body rounded">
