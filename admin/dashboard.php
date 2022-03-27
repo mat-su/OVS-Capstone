@@ -18,6 +18,23 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
     $courses = $conn->query("SELECT c.id, c.course AS CourseName FROM tbl_course c ORDER BY c.course");
     template_header("Admin Dashboard");
 
+    function checkTblEnrExistence()
+    {
+        $conn = MYSQL_DB_Connection();
+        $stmt = $conn->prepare("SHOW TABLES LIKE 'tbl_enr_stud'");
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    if (checkTblEnrExistence() == 0) {
+        echo '<script>alert("Enrolled Student table is EMPTY! Please import first the data.")</script>';
+    } else {
+        $countAllEnr = $conn->query("SELECT COUNT(enr_id) AS COUNT_ENR_STUD
+        FROM tbl_enr_stud;");
+        $n = $countAllEnr->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     function countEnrStud($courseVal)
     {
         $stmt = "SELECT COUNT(enr_course) AS NumberOfEnrolledStud FROM tbl_enr_stud WHERE enr_course = '$courseVal'";
@@ -36,28 +53,18 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
 ?>
 
     <body>
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container-fluid">
-                <ul class="navbar-nav ">
-                    <li class="nav-item py-2">
-                        <small>PAMANTASAN NG LUNGSOD NG MARIKINA</small>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center py-2 fs-3 fw-bold text-uppercase border-bottom">
-                    <span class="navbar-brand fs-3 fw-bold"><img src="../assets/img/ovslogov2-ns.png" alt="" width="50" height="40">1VOTE 4PLMAR</span>
+                    <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563">1VOTE 4PLMAR</span>
                     <p class="my-0">OVS</p>
                 </div>
                 <div class="list-group list-group-flush my-3">
                     <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Students</a>
+                    <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Enrolled Students</a>
                     <a href="sub-admin.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users-cog me-2"></i>Sub Admin</a>
-                    <a href="stud_org.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-sitemap me-2"></i>Stud Orgs</a>
+                    <a href="stud_org.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-sitemap me-2"></i>Student Organization</a>
                     <a href="v_sched.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="far fa-calendar-alt fs-5 me-2"></i></i>Voting Schedule</a>
                     <a href="import_file.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-file-import me-2"></i>Import file</a>
                 </div>
@@ -95,7 +102,22 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                 <div class="container-fluid px-4 my-4">
                     <p class="fs-4">Statistics</p>
                     <div class="row g-3 my-2">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                                <div>
+                                    <?php
+                                        if (checkTblEnrExistence() == 0) {
+                                            echo '<h3 class="fs-2">0</h3>';
+                                        } else {
+                                            echo '<h3 class="fs-2">'.$n["COUNT_ENR_STUD"].'</h3>';
+                                        }
+                                    ?>    
+                                    <p class="fs-5">Enrolled Students</p>
+                                </div>
+                                <i class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
                                     <h3 class="fs-2"><?= $num_voter ?></h3>
@@ -105,7 +127,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
                                     <h3 class="fs-2"><?= $num_sa ?></h3>
@@ -115,7 +137,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
                                     <h3 class="fs-2"><?= $num_orgs ?></h3>
@@ -141,7 +163,15 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                 <?php foreach ($courses as $c) : ?>
                                     <tr>
                                         <td><?= $c['CourseName'] ?></td>
-                                        <td><?= countEnrStud($c['CourseName']) ?></td>
+                                        <td>
+                                            <?php
+                                            if (checkTblEnrExistence() == 0) {
+                                                echo 0;
+                                            } else {
+                                                echo countEnrStud($c['CourseName']);
+                                            }
+                                            ?>
+                                        </td>
                                         <td><?= countRegStud($c['CourseName']) ?></td>
                                         <td>
                                             <a href="" class="info" title="More Info" data-bs-toggle="modal" id="<?= $c['id'] ?>" data-bs-target="#staticBackdropView"><i class="fas fa-info-circle"></i></a>
