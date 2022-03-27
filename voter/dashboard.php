@@ -232,7 +232,6 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
             <!-- /#page-content-wrapper -->
         </div>
 
-        <?php template_footer() ?>
 
         </div>
         <!-- End of .container -->
