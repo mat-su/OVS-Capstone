@@ -20,9 +20,10 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
     <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style_index.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
@@ -295,12 +296,11 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
     <!--Sign Up-->
 
     <section class="reg-section" id="sign-up">
-        <div class="container-fluid p-0">
-            <div class="row g-0">
-                <div class="col-lg-4 text-white order-lg-1 showcase-img" style="background-image:url(&quot;https://ik.imagekit.io/nwlfpk0xpdg/img/vote1_jKcG_OesF.jpg?updatedAt=1636213495093&quot;);"><span></span>
-                </div>
+        <div class="container-fluid px-5">
+            <!--<div class="row g-0">-->
+               
 
-                <div class="col-lg-8 my-auto order-lg-2 reg-section-text">
+                <div class=" order-lg-2 reg-section-text">
 
                     <h3 id="form__head" class="mb-4 ">Registration Form</h3>
                     <form id="newform" action="auth.php" method="POST" class="needs-validation" novalidate>
@@ -414,13 +414,13 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                                 <label class="form-check-label" for="chk_agree">I agree to the <a href="terms_conditions.php">Terms &amp Conditions | Privacy Policy</a></label>
                                 <div class="invalid-feedback">You must agree before submitting</div>
                             </div>
-                            <button type="submit" class=" mt-4 d-block w-100 btn btn-primary float-end" id="submit">Submit
+                            <button id="register_button" type="submit" class=" mt-4 mb-4 d-block w-100 btn float-end" id="submit">Submit
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
+        <!--</div>-->
     </section>
 
  <!-- Modal -->
@@ -473,7 +473,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
 
 
     <!--End of Sign up-->
-    <?php template_footer() ?>
+   
 
     <!--Modal-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
