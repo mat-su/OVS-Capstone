@@ -91,7 +91,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="account-settings.php">Account Settings</a></li>
-                                    <li><a class="dropdown-item" href="create-new-acc.php">Create New Account</a></li>
+                                    <li><a class="dropdown-item" href="create-new-acc.php">Create Successor</a></li>
                                     <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
                                 </ul>
                             </li>
@@ -106,12 +106,12 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
                                     <?php
-                                        if (checkTblEnrExistence() == 0) {
-                                            echo '<h3 class="fs-2">0</h3>';
-                                        } else {
-                                            echo '<h3 class="fs-2">'.$n["COUNT_ENR_STUD"].'</h3>';
-                                        }
-                                    ?>    
+                                    if (checkTblEnrExistence() == 0) {
+                                        echo '<h3 class="fs-2">0</h3>';
+                                    } else {
+                                        echo '<h3 class="fs-2">' . $n["COUNT_ENR_STUD"] . '</h3>';
+                                    }
+                                    ?>
                                     <p class="fs-5">Enrolled Students</p>
                                 </div>
                                 <i class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>

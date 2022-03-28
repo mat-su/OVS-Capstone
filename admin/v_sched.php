@@ -18,28 +18,18 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
 ?>
 
     <body>
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container-fluid">
-                <ul class="navbar-nav ">
-                    <li class="nav-item py-2">
-                        <small>PAMANTASAN NG LUNGSOD NG MARIKINA</small>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center py-2 fs-3 fw-bold text-uppercase border-bottom">
-                    <span class="navbar-brand fs-3 fw-bold"><img src="../assets/img/ovslogov2-ns.png" alt="" width="50" height="40">1VOTE 4PLMAR</span>
+                    <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563">1VOTE 4PLMAR</span>
                     <p class="my-0">OVS</p>
                 </div>
                 <div class="list-group list-group-flush my-3">
                     <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Students</a>
+                    <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Enrolled Students</a>
                     <a href="sub-admin.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users-cog me-2"></i>Sub Admin</a>
-                    <a href="stud_org.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-sitemap me-2"></i>Stud Orgs</a>
+                    <a href="stud_org.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-sitemap me-2"></i>Student Organization</a>
                     <a href="v_sched.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="far fa-calendar-alt fs-5 me-2"></i></i>Voting Schedule</a>
                     <a href="import_file.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-file-import me-2"></i>Import file</a>
                 </div>
@@ -66,7 +56,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="account-settings.php">Account Settings</a></li>
-                                    <li><a class="dropdown-item" href="create-new-acc.php">Create New Account</a></li>
+                                    <li><a class="dropdown-item" href="create-new-acc.php">Create Successor</a></li>
                                     <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
                                 </ul>
                             </li>
@@ -112,13 +102,13 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                         <form action="" method="POST" id="sched">
                             <div class="mb-3">
                                 <label for="startdate">Starts on </label>
-                                <input id="startdate" type="datetime-local" name="startdate" value="" class="form-control" >
+                                <input id="startdate" type="datetime-local" name="startdate" value="" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="enddate">Ends on</label>
-                                <input id="enddate" type="datetime-local" name="enddate" value="" class="form-control" >
+                                <input id="enddate" type="datetime-local" name="enddate" value="" class="form-control">
                             </div>
-                            
+
                             <input type="text" class="form-control mb-2" placeholder="" name="id" value="" hidden>
                         </form>
                     </div>

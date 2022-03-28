@@ -6,7 +6,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
     $conn = MYSQL_DB_Connection();
     $id = $_SESSION['a_id'];
 
-    template_header("Create New Admin Account");
+    template_header("Create Successor");
 ?>
 
     <body>
@@ -22,12 +22,12 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                 <ul class="navbar-nav collapse navbar-collapse justify-content-end">
                     <li class="nav-item"><span class="text-white">|</span></li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="dashboard.php"><small>Home</small></a>
+                        <a class="nav-link text-white" href="dashboard.php"><small>Back</small></a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <div class="container col col-md-6 offset-md-3 mt-3"><b class="fs-3">Create New Admin Account</b>
+        <div class="container col col-md-6 offset-md-3 mt-3"><b class="fs-3">Create Successor</b>
             <div id="getDetails"></div>
         </div>
         <div class="container mt-3 mb-5">
@@ -54,7 +54,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                         </form>
                     </div>
                     <div class="card-footer p-3">
-                        <button type="submit" id="btnCA" form="frmCA" class="btn btn-primary float-end">Create Account</button>
+                        <button type="submit" id="btnCA" form="frmCA" class="btn btn-primary float-end">Create Successor</button>
                     </div>
                 </div>
             </div>
