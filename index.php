@@ -17,7 +17,8 @@ $_SESSION['index'] = true;
     <!--Logo-->
     <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
 
-    <!--Rica: I replace the stylecss into this line--><link rel="stylesheet" href="css/style_index.css">
+    <!--Rica: I replace the stylecss into this line-->
+    <link rel="stylesheet" href="css/style_index.css">
 
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 
@@ -46,7 +47,7 @@ $_SESSION['index'] = true;
             });
         });
     </script>
-   
+
 </head>
 
 <body>
@@ -174,7 +175,7 @@ $_SESSION['index'] = true;
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/banner_1_QybUmOUm7.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648354283887" class="d-block w-100" >
+                    <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/banner_1_QybUmOUm7.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648354283887" class="d-block w-100">
                 </div>
                 <div class="carousel-item">
                     <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/banner_2_WOeYYBCIz.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648354280039" class="d-block w-100">
@@ -199,10 +200,10 @@ $_SESSION['index'] = true;
     <section id="hero" class=" features-icons">
         <div class="container">
             <div class="row mb-5">
-                <div class="col-md-4"id="hero_text">
-                   <h1 id="hero_header">Voting made easy & secure!</h1>
-                   <p> The platform that provide quality assurance and equitable balance among the administration, candidates, and voters.</p>
-                   <button id="register_button">Register to VOTE!</button>
+                <div class="col-md-4" id="hero_text">
+                    <h1 id="hero_header">Voting made easy & secure!</h1>
+                    <p> The platform that provide quality assurance and equitable balance among the administration, candidates, and voters.</p>
+                    <button id="register_button">Register to VOTE!</button>
                 </div>
                 <div class="col-md-8">
                     <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/hero_c3vLzDFbO.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648298535312" class="img-fluid">
@@ -210,14 +211,14 @@ $_SESSION['index'] = true;
             </div>
         </div>
     </section>
-<!--End Hero OVS-->
+    <!--End Hero OVS-->
 
-<!--Feature SAE-->
+    <!--Feature SAE-->
 
     <div id="sae">
-       <img id="sae_img" data-bss-hover-animate="pulse"" src="https://ik.imagekit.io/nwlfpk0xpdg/img/1_secure_0b-W7PNTY.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648321343518" alt="">
-       <img id="sae_img" data-bss-hover-animate="pulse"" src="https://ik.imagekit.io/nwlfpk0xpdg/img/3_accessible_4GyWFYO15.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648321343835" alt="">
-       <img id="sae_img" data-bss-hover-animate="pulse"" src="https://ik.imagekit.io/nwlfpk0xpdg/img/2_easy_jBLOAIEDq.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648321343706" alt="">
+        <img id="sae_img" data-bss-hover-animate="pulse"" src=" https://ik.imagekit.io/nwlfpk0xpdg/img/1_secure_0b-W7PNTY.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648321343518" alt="">
+        <img id="sae_img" data-bss-hover-animate="pulse"" src=" https://ik.imagekit.io/nwlfpk0xpdg/img/3_accessible_4GyWFYO15.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648321343835" alt="">
+        <img id="sae_img" data-bss-hover-animate="pulse"" src=" https://ik.imagekit.io/nwlfpk0xpdg/img/2_easy_jBLOAIEDq.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648321343706" alt="">
     </div>
 
 
@@ -232,15 +233,15 @@ $_SESSION['index'] = true;
                 <div class="card">
                     <div class="img"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/1.SO-csg_Tm4hxyw-N.png?updatedAt=1636213448254" alt="CSG"></div>
                     <div class="content">
-                        <div class="title">CSG</div>                        
+                        <div class="title">CSG</div>
                     </div>
                     <div class="btn"><a id="button_yellow" class="btn" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/central-student-government-csg?authuser=0" role="button">Read more</a></div>
-                </div>                
+                </div>
                 <div class="card">
                     <div class="img"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/2.SO-educ_qxPZF1Z-Z.png?updatedAt=1636213459182" alt="EDUCADA"></div>
                     <div class="content">
                         <div class="title">EDUCADA</div>
-                        <div class="sub-title"></div>                       
+                        <div class="sub-title"></div>
                     </div>
                     <div class="btn"><a id="button_yellow" class="btn" target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/education-confederation-of-adept-devotees-of-the-academe-educada?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -436,7 +437,7 @@ $_SESSION['index'] = true;
                         <div class="title">TSS</div>
                         <div class="sub-title"></div>
                         <p class="lead mb-0">
-                             </p>
+                        </p>
                     </div>
                     <div class="btn"><a id="button_yellow" class="btn " target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/tourism-student-society-tss?authuser=0" role="button">Read More</a></div>
                 </div>
@@ -446,7 +447,7 @@ $_SESSION['index'] = true;
                         <div class="title">SITS</div>
                         <div class="sub-title"></div>
                         <p class="lead mb-0">
-                             </p>
+                        </p>
                     </div>
                     <div class="btn"><a id="button_yellow" class="btn " target="_blank" href="https://sites.google.com/view/plmar-student-organization/math/society-of-information-technology-students-sits?authuser=0" role="button">Read More</a></div>
                 </div>

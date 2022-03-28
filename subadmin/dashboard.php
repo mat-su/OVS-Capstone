@@ -26,21 +26,11 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
 ?>
 
     <body>
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container-fluid">
-                <ul class="navbar-nav ">
-                    <li class="nav-item py-2">
-                        <small>PAMANTASAN NG LUNGSOD NG MARIKINA</small>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center py-2 fs-3 fw-bold text-uppercase border-bottom">
-                    <span class="navbar-brand fs-3 fw-bold"><img src="../assets/img/ovslogov2-ns.png" alt="" width="50" height="40">1VOTE 4PLMAR</span>
+                    <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563">1VOTE 4PLMAR</span>
                     <p class="my-0">OVS</p>
                 </div>
                 <div class="list-group list-group-flush my-3">
@@ -88,35 +78,35 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
                     </div>
                     <div class="row g-3 my-2">
                         <div class="col-md-12" style="display: none;">
-                        <!-- Voter Turnout -->
-                        <div id="v-turnout" class="p-3 shadow-sm rounded" style="background-color: #ffe6ee;">
-                            <div class="text-center">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Loading...</span>
+                            <!-- Voter Turnout -->
+                            <div id="v-turnout" class="p-3 shadow-sm rounded" style="background-color: #ffe6ee;">
+                                <div class="text-center">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!--tally-->
-                    <div class="col-md-12" style="display:none;">
-                        <div id="chart-container" class="p-3 shadow-sm rounded bg-white row">
-                            <h3 class="text-center"><u><?= $org_acr . ' CHOICE ' . date("Y"); ?></u></h3>
-                            <h2 class="text-center">ELECTION RESULTS</h2>
-                            <?php $positions = fetchAll_OrgStructure($sa_orgid);
-                            foreach ($positions as $p) : ?>
-                                <div class="col-md-6">
-                                    <canvas id="<?= $p['position'] ?>"></canvas>
-                                </div>
-                            <?php endforeach; ?>
+                        <!--tally-->
+                        <div class="col-md-12" style="display:none;">
+                            <div id="chart-container" class="p-3 shadow-sm rounded bg-white row">
+                                <h3 class="text-center"><u><?= $org_acr . ' CHOICE ' . date("Y"); ?></u></h3>
+                                <h2 class="text-center">ELECTION RESULTS</h2>
+                                <?php $positions = fetchAll_OrgStructure($sa_orgid);
+                                foreach ($positions as $p) : ?>
+                                    <div class="col-md-6">
+                                        <canvas id="<?= $p['position'] ?>"></canvas>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
+                        <!--/-end of tally-->
                     </div>
-                    <!--/-end of tally-->
+
                 </div>
 
             </div>
-
-        </div>
-        <!-- /#page-content-wrapper -->
+            <!-- /#page-content-wrapper -->
         </div>
         <?= template_footer() ?>
         <script>

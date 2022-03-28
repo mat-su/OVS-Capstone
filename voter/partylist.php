@@ -37,7 +37,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>Partylist</title>
         <!--Tab Logo-->
-        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
+        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
         <link rel="stylesheet" href="style.css">
 
         <!--jQuery CDN for Owl Carousel-->
@@ -76,29 +76,12 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
     </head>
 
     <body>
-        <!--Contacts Section-->
-        <nav class="navbar navbar-expand text-white" style="background-color: #000000;">
-            <div class="container">
-                <ul class="navbar-nav ">
-                    <li class="nav-item" style="margin-right: 10px;">
-                        <small>Call (02) 392-0455</small>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="mailto:educpurponly101@gmail.com"><i class="fa fa-envelope"></i></a>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
         <div class="d-flex " id="wrapper">
             <!-- Sidebar -->
             <nav class="bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center py-2 fs-3 fw-bold text-uppercase border-bottom">
-                    <span class="navbar-brand fs-3 fw-bold me-2"><img src="../assets/img/ovslogov2-ns.png" alt="" width="50" height="40">1VOTE 4PLMAR</span>
-                    <p class="mb-2">OVS</p>
+                    <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563">1VOTE 4PLMAR</span>
+                    <p class="my-0">OVS</p>
                 </div>
                 <div class="list-group list-group-flush">
                     <a href="dashboard.php" class="list-group-item list-group-item-action second-text fw-bold "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
@@ -195,7 +178,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                                 <div class="title fs-5"><?= $c['cname'] ?></div>
                                                 <p class="lead mb-0 fs-6"><?= $c['position'] ?></p>
                                             </div>
-                                            
+
                                         </div>
                                     <?php endforeach; ?>
                                 </div>

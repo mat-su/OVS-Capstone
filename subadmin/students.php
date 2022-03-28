@@ -17,21 +17,11 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
 ?>
 
     <body>
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container-fluid">
-                <ul class="navbar-nav ">
-                    <li class="nav-item py-2">
-                        <small>PAMANTASAN NG LUNGSOD NG MARIKINA</small>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center py-2 fs-3 fw-bold text-uppercase border-bottom">
-                    <span class="navbar-brand fs-3 fw-bold"><img src="../assets/img/ovslogov2-ns.png" alt="" width="50" height="40">1VOTE 4PLMAR</span>
+                    <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563">1VOTE 4PLMAR</span>
                     <p class="my-0">OVS</p>
                 </div>
                 <div class="list-group list-group-flush my-3">

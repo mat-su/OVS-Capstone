@@ -19,27 +19,12 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
         <!--FontAwesome Kit-->
         <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+        <!-- Tab Logo -->
+        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
         <title>Select Student Org</title>
     </head>
 
     <body>
-        <!--Contacts Section-->
-        <nav class="navbar navbar-expand text-white py-2" style="background-color: #000000;">
-            <div class="container">
-                <ul class="navbar-nav ">
-                    <li class="nav-item" style="margin-right: 10px;">
-                        <small>Call (02) 392-0455</small>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="mailto:educpurponly101@gmail.com"><i class="fa fa-envelope"></i></a>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
         <div class="container gap-5 mt-5">
             <div class="row">
                 <div class="col col-md-6 offset-md-3">

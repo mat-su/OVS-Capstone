@@ -23,7 +23,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Manage Stud Org</title>
+        <title>Manage Student Organization</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -70,28 +70,18 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
     </head>
 
     <body>
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container-fluid">
-                <ul class="navbar-nav ">
-                    <li class="nav-item py-2">
-                        <small>PAMANTASAN NG LUNGSOD NG MARIKINA</small>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center py-2 fs-3 fw-bold text-uppercase border-bottom">
-                    <span class="navbar-brand fs-3 fw-bold"><img src="../assets/img/ovslogov2-ns.png" alt="" width="50" height="40">1VOTE 4PLMAR</span>
+                    <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563">1VOTE 4PLMAR</span>
                     <p class="my-0">OVS</p>
                 </div>
                 <div class="list-group list-group-flush my-3">
                     <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Students</a>
+                    <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Enrolled Students</a>
                     <a href="sub-admin.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users-cog me-2"></i>Sub Admin</a>
-                    <a href="stud_org.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="fas fa-sitemap me-2"></i>Stud Orgs</a>
+                    <a href="stud_org.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="fas fa-sitemap me-2"></i>Student Organization</a>
                     <a href="v_sched.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="far fa-calendar-alt fs-5 me-2"></i></i>Voting Schedule</a>
                     <a href="import_file.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-file-import me-2"></i>Import file</a>
                 </div>
@@ -118,7 +108,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="account-settings.php">Account Settings</a></li>
-                                    <li><a class="dropdown-item" href="create-new-acc.php">Create New Account</a></li>
+                                    <li><a class="dropdown-item" href="create-new-acc.php">Create Successor</a></li>
                                     <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
                                 </ul>
                             </li>
