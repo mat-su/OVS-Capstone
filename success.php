@@ -36,30 +36,6 @@
 </head>
 
 <body>
-<!--Contacts Section-->
-<nav class="navbar navbar-expand text-white py-0 " style="background-color: #d00000;">
-    <div class="container">
-        <ul class="navbar-nav ">
-            <li class="nav-item" style="margin-right: 10px;">
-                <small><a href="#footer" style="color: white;">Contact Us</a></small>
-            </li>
-            <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="mailto:educpurponly101@gmail.com"><i class="fa fa-envelope"></i></a>
-            <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
-            </li>
-            </li>
-            <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav collapse navbar-collapse justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="admin-signin.php"><i class="fas fa-user-cog me-1"></i><small>Admin Portal</small></a>
-            </li>
-            <li class="nav-item"><span class="text-white">|</span></li>
-
-        </ul>
-    </div>
-</nav>
-
 <!--Main navbar-->
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg sticky-top">
