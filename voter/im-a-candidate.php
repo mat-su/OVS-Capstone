@@ -40,7 +40,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
 
         <link rel="stylesheet" href="style.css">
         <!-- Tab Logo -->
-        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504"/>
+        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
 
         <!--FontAwesome Kit-->
         <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
@@ -60,29 +60,6 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
     </head>
 
     <body>
-        <!--Contacts Section-->
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container">
-                <ul class="navbar-nav ">
-                    <li class="nav-item" style="margin-right: 10px;">
-                        <small>Call (02) 392-0455</small>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="mailto:educpurponly101@gmail.com"><i class="fa fa-envelope"></i></a>
-                    </li>
-                    <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav collapse navbar-collapse justify-content-end">
-                    <li class="nav-item"><span class="text-white">|</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="dashboard.php"><small>Home</small></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
         <div class="d-flex toggled" id="wrapper">
             <div id="page-content-wrapper">
                 <div class="container">
@@ -99,6 +76,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                         </div>
                     <?php } ?>
                     <div class="row bg-white m-2 p-3 shadow-lg justify-content-around align-items-center rounded border border-primary border-3">
+                        <div class=""><a href="dashboard.php" class="btn btn-secondary float-end">Back</a></div>
                         <div class="col-md-6 text-center">
                             <div>
                                 <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:10rem;">

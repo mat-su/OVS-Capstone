@@ -39,7 +39,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
         </script>
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <!--Tab Logo-->
-        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
+        <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563"/>
         <!--Boostrap5 CSS CDN-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <!--JQuery Link-->
@@ -503,17 +503,6 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
                 font-weight: bold;
             }
         </style>
-        <!--Contacts Section-->
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container-fluid">
-                <ul class="navbar-nav ">
-                    <li class="nav-item py-2">
-                        <small>PAMANTASAN NG LUNGSOD NG MARIKINA</small>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
         <div class="">
             <div class="container w-container">
                 <div class="div-block-4">

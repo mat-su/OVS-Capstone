@@ -1,36 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include '../functions.php';
+template_header('Voted Successfully');
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
-    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
-
-    <!--FontAwesome Kit-->
-    <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Voted Successfully</title>
-</head>
+?>
 
 <body>
-    <nav class="navbar navbar-expand text-white" style="background-color: #000000;">
-        <div class="container">
-            <ul class="navbar-nav ">
-                <li class="nav-item" style="margin-right: 10px;">
-                    <small>Call (02) 392-0455</small>
-                </li>
-                <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
-                </li>
-                <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="mailto:educpurponly101@gmail.com"><i class="fa fa-envelope"></i></a>
-                </li>
-                <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <!--Main navbar-->
     <!-- Navbar -->
@@ -39,7 +13,8 @@
         <div class="container-fluid" id="main-nav">
             <!-- Navbar brand -->
             <div class="container col-12">
-                <a class="navbar-brand lead mb-0 text-wrap" href="#"><img src="../assets/img/ovslogov2-ns.png" alt="" width="auto" height="40px"> PLMAR Online Voting System</a>
+                <a class="navbar-brand mb-0 text-wrap" href="index.php"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" alt="">
+                    <span class="brand">PLMAR Online Voting System</span></a>
             </div>
         </div>
         <!-- Container wrapper -->

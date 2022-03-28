@@ -60,7 +60,8 @@ if ($stmt->rowCount() > 0) {
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
             <title>Ballot Form</title>
-
+            <!-- Tab Logo -->
+            <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563"/>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
             <link rel="stylesheet" href="../assets/bootstrap/css/style.css">
@@ -88,33 +89,12 @@ if ($stmt->rowCount() > 0) {
         </head>
 
         <body>
-            <nav class="navbar navbar-expand text-white" style="background-color: #000000;">
-                <div class="container">
-                    <ul class="navbar-nav ">
-                        <li class="nav-item" style="margin-right: 10px;">
-                            <small>Call (02) 392-0455</small>
-                        </li>
-                        <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.facebook.com/cpaips/"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="mailto:educpurponly101@gmail.com"><i class="fa fa-envelope"></i></a>
-                        </li>
-                        <li class="list-inline-item"></li><a style="color:#ffffff" target="_blank" href="https://www.youtube.com/channel/UCz7GtBK1hzFv7eEyZD2Y7hw"><i class="fab fa-youtube"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
             <!--Main navbar-->
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
                 <!-- Container wrapper -->
                 <div class="container-fluid" id="main-nav">
-                    <!-- Navbar brand -->
-                    <div class="container col-12">
-                        <a class="navbar-brand lead mb-0 text-wrap" href="#"><img src="../assets/img/ovslogov2-ns.png" alt="" width="auto" height="40px"> PLMAR Online Voting System</a>
-                    </div>
-
-                    <a class="nav-link d-flex flex-column text-center" aria-current="page" href="dashboard.php"><i class="fas fa-home text-dark"></i><span class="small text-dark">Home</span></a>
+                    <a class="nav-link d-flex flex-column text-center" aria-current="page" href="dashboard.php"><i class="fas fa-home text-dark"></i><span class="small text-dark">Back</span></a>
                 </div>
                 <!-- Container wrapper -->
             </nav>
