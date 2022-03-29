@@ -330,7 +330,7 @@ require 'functions.php';
                 <div class="card">
                     <div class="img"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/6.SO-ILLUS_qcRhsb3FC.png?updatedAt=1636213464652" alt="ILLUS"></div>
                     <div class="content">
-                        <div class="title">ILLUS</div>
+                        <div class="title">ILUSTRADOS</div>
                         <div class="sub-title"></div>
                         <p class="lead mb-0">
 

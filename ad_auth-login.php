@@ -33,14 +33,17 @@ if (isset($_POST['access']) && isset($_POST['username']) && isset($_POST['passwo
                 $_SESSION['a_email'] = $admin_email;
                 $_SESSION['a_password'] = $admin_password;
                 $_SESSION['a_date'] = $admin_date;
-                header("Location: admin/dashboard.php");
+                $resp['feedback'] = 'authenticated';
+                $resp['action'] = 'admin/dashboard.php';
             } else {
-                header("Location: admin-signin.php?error=Incorrect Username or Password");
+                $resp['feedback'] = 'error';
+                $resp['action'] = 'Invalid Incorrect Username or Password';;
             }
         } else {
-            header("Location: admin-signin.php?error=Incorrect Username or Password");
+            $resp['feedback'] = 'error';
+            $resp['action'] = 'Invalid Incorrect Username or Password';;
         }
-    } 
+    }
     if ($access == 2) {
         $stmt = $conn->prepare("SELECT * FROM tbl_subadmin WHERE sa_username = :username");
         $stmt->bindParam(':username', $username, pdo::PARAM_STR);
@@ -66,13 +69,19 @@ if (isset($_POST['access']) && isset($_POST['username']) && isset($_POST['passwo
                 $_SESSION['sa_org_id'] = $admin_orgid;
                 $_SESSION['sa_username'] = $admin_username;
                 $_SESSION['sa_password'] = $admin_password;
-
-                header("Location: subadmin/dashboard.php");
+                $resp['feedback'] = 'authenticated';
+                $resp['action'] = 'subadmin/dashboard.php';
             } else {
-                header("Location: admin-signin.php?error=Incorrect Username or Password");
+                $resp['feedback'] = 'error';
+                $resp['action'] = 'Invalid Incorrect Username or Password';;
             }
         } else {
-            header("Location: admin-signin.php?error=Incorrect Username or Password");
+            $resp['feedback'] = 'error';
+            $resp['action'] = 'Invalid Incorrect Username or Password';;
         }
     }
+} else {
+    $resp['feedback'] = 'error';
+    $resp['action'] = 'Please contact your web developer';
 }
+echo json_encode($resp);
