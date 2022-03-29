@@ -13,13 +13,13 @@ document.querySelector('#lname').addEventListener('keyup', validateLastname);
 document.querySelector('#studnum').addEventListener('keyup', validateStudnum);
 document.querySelector('#course').addEventListener('change', validateCourse);
 document.querySelector('#chk_agree').addEventListener('click', validateChkBox);
-document.querySelector('#submit').addEventListener('click', validateChkBox);
-document.querySelector('#submit').addEventListener('click', hasFnameVal);
+document.querySelector('#register_button').addEventListener('click', validateChkBox);
+document.querySelector('#register_button').addEventListener('click', hasFnameVal);
 
-document.querySelector('#submit').addEventListener('click', hasLnameVal);
-document.querySelector('#submit').addEventListener('click', hasCourseVal);
-document.querySelector('#submit').addEventListener('click', hasStudnumVal);
-document.querySelector('#submit').addEventListener('click', hasEmailVal);
+document.querySelector('#register_button').addEventListener('click', hasLnameVal);
+document.querySelector('#register_button').addEventListener('click', hasCourseVal);
+document.querySelector('#register_button').addEventListener('click', hasStudnumVal);
+document.querySelector('#register_button').addEventListener('click', hasEmailVal);
 
 
 //const reSpaces = /^\S*$/;
@@ -250,11 +250,6 @@ function validatePassword() {
     form.addEventListener(
       'submit',
       function (event) {
-  console.log(`first name ${!validateFirstname()}`)
-  console.log(`middle name ${!validateMiddlename()}`)
-  console.log(`last name ${!validateLastname()}`)
-  console.log(`studnum ${!validateStudnum()}`)
-  console.log(`course ${!validateCourse()}`)
         if (
           !form.checkValidity() ||
           !validateEmail() ||
@@ -271,7 +266,7 @@ function validatePassword() {
           event.stopPropagation();
         } else {
           form.classList.add('was-validated');
-          $('#submit').prop('disabled', true);
+          $('#register_button').prop('disabled', true);
         }
       },
       false

@@ -31,20 +31,18 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             $_SESSION['v_studnum'] = $voter_studnum;
             $_SESSION['v_email'] = $voter_email;
             $_SESSION['v_password'] = $voter_password;
-
-            header("Location: voter/select-org.php");
+            $resp['feedback'] = 'authenticated';
+            $resp['action'] = 'voter/select-org.php';
         } else {
-            if ($_SESSION['index']) {
-                header("Location: index.php?error=Incorrect Email or Password");
-            } else {
-                header("Location: signup.php?error=Incorrect Email or Password");
-            }
+            $resp['feedback'] = 'error';
+            $resp['action'] = 'Invalid Incorrect Email or Password';
         }
     } else {
-        if ($_SESSION['index']) {
-            header("Location: index.php?error=Incorrect Email or Password");
-        } else {
-            header("Location: signup.php?error=Incorrect Email or Password");
-        }
+        $resp['feedback'] = 'error';
+        $resp['action'] = 'Invalid Incorrect Email or Password';
     }
+} else {
+    $resp['feedback'] = 'error';
+    $resp['action'] = 'Please contact your web developer';
 }
+echo json_encode($resp);

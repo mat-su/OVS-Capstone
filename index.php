@@ -1,8 +1,5 @@
 <?php
 require 'functions.php';
-session_start();
-$_SESSION['signup'] = false;
-$_SESSION['index'] = true;
 
 ?>
 
@@ -40,11 +37,74 @@ $_SESSION['index'] = true;
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!--JQuery Validation PlugIn-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
     <script>
         $(document).ready(function() {
+            const msg = document.querySelector('#msg');
             $('#VoterSignIn').on('hidden.bs.modal', function() {
                 $(this).find('form').trigger('reset');
+                $(msg).html("");
+                msg.classList.remove('alert');
+                msg.classList.remove('alert-danger');
+                $('input[name=email]').removeClass("is-valid").removeClass("is-invalid");
+                $('input[name=password]').removeClass("is-valid").removeClass("is-invalid");
             });
+            // Validator custom methods
+            $.validator.addMethod("validateEmail", function(value, element) {
+                const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return regexEmail.test(value);
+            }, "Please enter a valid email address.");
+
+            $('#frmSignIn').validate({
+                rules: {
+                    email: {
+                        required: true,
+                        validateEmail: true
+                    },
+                    password: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    email: {
+                        required: "Please enter your email address",
+                    },
+                    password: {
+                        required: "Please enter your password",
+                    }
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass("is-invalid").removeClass("is-valid");
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).addClass("is-valid").removeClass("is-invalid");
+                },
+                submitHandler: function() {
+                    let form = $('#frmSignIn');
+                    let actionUrl = form.attr('action');
+                    $.ajax({
+                        type: "POST",
+                        url: actionUrl,
+                        dataType: "JSON",
+                        data: form.serialize(), // serializes the form's elements.
+                        success: function(resp) {
+                            if (resp.feedback == 'authenticated') {
+                                window.location.href = resp.action;
+                            } else {
+                                msg.classList.add('alert');
+                                msg.classList.add('alert-danger');
+                                msg.setAttribute('role', 'alert');
+                                $(msg).html(`<i class="fa fa-times-circle fs-4 me-3"></i><small>${resp.action}</small>`);
+                                $('input[name=email]').addClass("is-invalid").removeClass("is-valid");
+                                $('input[name=password]').addClass("is-invalid").removeClass("is-valid");
+                            }
+                        }
+                    });
+                }
+            });
+
         });
     </script>
 
@@ -130,19 +190,7 @@ $_SESSION['index'] = true;
                 </div>
                 <div class="modal-body">
                     <form action="vot_auth-login.php" method="post" id="frmSignIn">
-                        <?php if (isset($_GET['error'])) { ?>
-                            <div class="alert alert-danger" role="alert">
-                                <i class="fa fa-times-circle fs-4 me-3"></i><small><?= $_GET['error'] ?></small>
-                            </div>
-                            <script type="text/javascript">
-                                $(window).on('load', function() {
-                                    $('#VoterSignIn').modal('toggle');
-                                });
-                                $('#VoterSignIn').on('hidden.bs.modal', function() {
-                                    window.location.replace("index.php");
-                                });
-                            </script>
-                        <?php } ?>
+                        <div id="msg"></div>
                         <div class="form-group mb-3">
                             <!--Rica: I add label for screen readers--> <label for="email">Email Address</label>
                             <input class="form-control validate" style="font-family:FontAwesome;" type="email" name="email" placeholder="&#xf007; Email Address" required="required">
@@ -221,7 +269,7 @@ $_SESSION['index'] = true;
         <img id="sae_img" data-bss-hover-animate="pulse"" src=" https://ik.imagekit.io/nwlfpk0xpdg/img/2_easy_jBLOAIEDq.png?ik-sdk-version=javascript-1.4.3&updatedAt=1648321343706" alt="">
     </div>
 
-
+    <div id="student_org" style="background-color: #f8f9fa;"><br></div>
 
     <!--Student Org Card Carousel-->
     <section id="studorg" class="bg-light">

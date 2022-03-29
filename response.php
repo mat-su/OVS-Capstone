@@ -78,54 +78,6 @@
     </nav>
     <!-- End Navbar -->
 
-
-    <!-- Modal -->
-    <div class="modal fade" id="VoterSignIn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-login">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="logo">
-                        <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/plmar__Bd61zVwi.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213486017" alt="">
-                    </div>
-                    <h2 class="modal-title w-100 font-weight-bold"><strong>Voter Login</strong></h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="vot_auth-login.php" method="post" id="frmSignIn">
-                        <?php if (isset($_GET['error'])) { ?>
-                            <div class="alert alert-danger" role="alert">
-                                <i class="fa fa-times-circle fs-4 me-3"></i><small><?= $_GET['error'] ?></small>
-                            </div>
-                            <script type="text/javascript">
-                                $(window).on('load', function() {
-                                    $('#VoterSignIn').modal('toggle');
-                                });
-                                $('#VoterSignIn').on('hidden.bs.modal', function() {
-                                    window.location.replace("index.php");
-                                });
-                            </script>
-                        <?php } ?>
-                        <div class="form-group mb-3">
-                            <!--Rica: I add label for screen readers--> <label for="email">Email Address</label>
-                            <input class="form-control validate" style="font-family:FontAwesome;" type="email" name="email" placeholder="&#xf007; Email Address" required="required">
-                        </div>
-                        <div class="form-group mb-3">
-                            <!--Rica: I add label for screen readers--> <label for="email">Password</label>
-                            <input class="form-control" type="password" style="font-family:FontAwesome;" name="password" placeholder="&#xf023; Password" required="required">
-                        </div>
-                        <div class="form-group mb-3 text-center">
-                            <button class="btn btn-primary" type="submit">Sign In</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    No account yet? <a class="" href="signup.php" style="color:blue; text-decoration: none;">Sign up here.</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End of Modal Voter Signin Section-->
-
     <div id="response_unsuccessful" class="container gap-5 mt-5">
         <div class="row">
             <div class="col col-md-6 offset-md-3">

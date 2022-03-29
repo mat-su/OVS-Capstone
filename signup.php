@@ -1,8 +1,5 @@
 <?php
 require 'functions.php';
-session_start();
-$_SESSION['signup'] = true;
-$_SESSION['index'] = false;
 
 $conn = MYSQL_DB_Connection();
 $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS courses FROM tbl_course");
@@ -23,7 +20,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
     <link rel="stylesheet" href="css/style_index.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
-  
+
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
@@ -36,6 +33,8 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <!--JQuery Validation PlugIn-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
     <script>
         $(document).ready(function() {
             $('#studnum').keyup(function(e) {
@@ -102,19 +101,70 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                     $('#btn_sendOTP').prop('disabled', true);
                 }
             });
-        });
-    </script>
-    <script type="text/javascript">
-        $("body").prepend('<div id="preloader">Loading...</div>');
-        $(document).ready(function() {
-            $("#preloader").remove();
-        });
-        $(document).ready(function() {
             $('#VoterSignIn').on('hidden.bs.modal', function() {
                 $(this).find('form').trigger('reset');
+                $(msg).html("");
+                msg.classList.remove('alert');
+                msg.classList.remove('alert-danger');
+                $('input[name=email]').removeClass("is-valid").removeClass("is-invalid");
+                $('input[name=password]').removeClass("is-valid").removeClass("is-invalid");
+            });
+            // Validator custom methods
+            $.validator.addMethod("validateEmail", function(value, element) {
+                const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return regexEmail.test(value);
+            }, "Please enter a valid email address.");
+
+            $('#frmSignIn').validate({
+                rules: {
+                    email: {
+                        required: true,
+                        validateEmail: true
+                    },
+                    password: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    email: {
+                        required: "Please enter your email address",
+                    },
+                    password: {
+                        required: "Please enter your password",
+                    }
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass("is-invalid").removeClass("is-valid");
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).addClass("is-valid").removeClass("is-invalid");
+                },
+                submitHandler: function() {
+                    let form = $('#frmSignIn');
+                    let actionUrl = form.attr('action');
+                    $.ajax({
+                        type: "POST",
+                        url: actionUrl,
+                        dataType: "JSON",
+                        data: form.serialize(), // serializes the form's elements.
+                        success: function(resp) {
+                            if (resp.feedback == 'authenticated') {
+                                window.location.href = resp.action;
+                            } else {
+                                msg.classList.add('alert');
+                                msg.classList.add('alert-danger');
+                                msg.setAttribute('role', 'alert');
+                                $(msg).html(`<i class="fa fa-times-circle fs-4 me-3"></i><small>${resp.action}</small>`);
+                                $('input[name=email]').addClass("is-invalid").removeClass("is-valid");
+                                $('input[name=password]').addClass("is-invalid").removeClass("is-valid");
+                            }
+                        }
+                    });
+                }
             });
         });
     </script>
+
     <style>
         /*START OF RICA REVISE*/
         body {
@@ -195,7 +245,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
             align-items: center;
 
         }
-        
+
         /*about section*/
         #about {
             font-family: 'Montserrat', sans-serif !important;
@@ -222,9 +272,8 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
         #studorg h2 {
             font-family: 'Montserrat', sans-serif !important;
         }
-
     </style>
-    
+
 </head>
 
 <body>
@@ -298,133 +347,133 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
     <section class="reg-section" id="sign-up">
         <div class="container-fluid px-5">
             <!--<div class="row g-0">-->
-               
 
-                <div class=" order-lg-2 reg-section-text">
 
-                    <h3 id="form__head" class="mb-4 ">Registration Form</h3>
-                    <form id="newform" action="auth.php" method="POST" class="needs-validation" novalidate>
+            <div class=" order-lg-2 reg-section-text">
 
-                        <div class="flex-container">
-                            <!--Left Column-->
-                            <div class="flex-child">
-                                <div class="form-group">
-                                    <!--Firstname-->
-                                    <label for="fname">Firstname</label>
-                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="Firstname" required form="newform" />
-                                    <div class="invalid-feedback mb-2">Enter a valid Firstname.</div>
-                                    <div class="valid-feedback mb-2">Looks Good</div>
-                                </div>
+                <h3 id="form__head" class="mb-4 ">Registration Form</h3>
+                <form id="newform" action="auth.php" method="POST" class="needs-validation" novalidate>
 
-                                <div class="form-group">
-                                    <!--Middlename-->
-                                    <label for="mname">Middlename</label>
-                                    <input type="text" class="form-control" id="mname" name="mname" placeholder="Middlename"  />
-                                    <div class="invalid-feedback mb-2">Enter a valid Middlename.</div>
-                                    <div class="valid-feedback mb-2">Looks Good</div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!--Lastname-->
-                                    <label for="lname">Lastname</label>
-                                    <input type="text" class="form-control" id="lname" name="lname" placeholder="Lastname" required />
-                                    <div class="invalid-feedback mb-2">Enter a valid Lastname.</div>
-                                    <div class="valid-feedback mb-2">Looks Good</div>
-                                </div>
+                    <div class="flex-container">
+                        <!--Left Column-->
+                        <div class="flex-child">
+                            <div class="form-group">
+                                <!--Firstname-->
+                                <label for="fname">Firstname</label>
+                                <input type="text" class="form-control" id="fname" name="fname" placeholder="Firstname" required form="newform" />
+                                <div class="invalid-feedback mb-2">Enter a valid Firstname.</div>
+                                <div class="valid-feedback mb-2">Looks Good</div>
                             </div>
-                            <!--End Left-->
 
-                            <!--Right Column-->
-                            <div class="flex-child">
-                                <div class="form-group">
-                                    <!--Student Number-->
-                                    <label for="studnum">Student Number</label>
-                                    <input type="studnum" class="form-control" id="studnum" name="studnum" maxlength="13" placeholder="PM-XX-XXXXX-X" required />
-                                    <div class="invalid-feedback mb-2">Student Number cannot be blank or format is invalid
-                                    </div>
-                                    <div class="valid-feedback mb-2">Looks Good</div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!--Course-->
-                                    <label for="course">Course</label>
-                                    <select class="form-select" id="course" name="course" aria-label="Default select example">
-                                        <option value="">--Select Course--</option>
-                                        <?php foreach ($courses as $c) : ?>
-                                            <option value="<?= $c['course'] ?>"><?= $c['courses'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <div class="invalid-feedback mb-2">You haven't select a course
-                                    </div>
-                                    <div class="valid-feedback mb-2">Looks Good</div>
-                                </div>
+                            <div class="form-group">
+                                <!--Middlename-->
+                                <label for="mname">Middlename</label>
+                                <input type="text" class="form-control" id="mname" name="mname" placeholder="Middlename" />
+                                <div class="invalid-feedback mb-2">Enter a valid Middlename.</div>
+                                <div class="valid-feedback mb-2">Looks Good</div>
                             </div>
-                            <!--End Right-->
-                        </div>
 
-                        <div style="padding-left: 1em;">
-                            <b id="getdetails"></b>
+                            <div class="form-group">
+                                <!--Lastname-->
+                                <label for="lname">Lastname</label>
+                                <input type="text" class="form-control" id="lname" name="lname" placeholder="Lastname" required />
+                                <div class="invalid-feedback mb-2">Enter a valid Lastname.</div>
+                                <div class="valid-feedback mb-2">Looks Good</div>
+                            </div>
                         </div>
+                        <!--End Left-->
 
-                        <!--Flex container-->
-                        <div class="flex-container mt-4">
-                            <!--Left Column-->
-                            <div class="flex-child col-md-8">
-                                <label for="email">Email Address</label>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <!--Email-->
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="plmar@ovs.com" required />
-                                        <div class="input-group-append">
-                                            <button id="btn_sendOTP" class="btn btn-outline-dark" type="submit"><small>Send
-                                                    OTP</small></button>
-                                        </div>
-                                        <div class="invalid-feedback mb-3">Email cannot be blank. Please Check Mail again.
-                                        </div>
-                                        <div class="valid-feedback mb-3">
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    Looks Good
-                                                </div>
+                        <!--Right Column-->
+                        <div class="flex-child">
+                            <div class="form-group">
+                                <!--Student Number-->
+                                <label for="studnum">Student Number</label>
+                                <input type="studnum" class="form-control" id="studnum" name="studnum" maxlength="13" placeholder="PM-XX-XXXXX-X" required />
+                                <div class="invalid-feedback mb-2">Student Number cannot be blank or format is invalid
+                                </div>
+                                <div class="valid-feedback mb-2">Looks Good</div>
+                            </div>
+
+                            <div class="form-group">
+                                <!--Course-->
+                                <label for="course">Course</label>
+                                <select class="form-select" id="course" name="course" aria-label="Default select example">
+                                    <option value="">--Select Course--</option>
+                                    <?php foreach ($courses as $c) : ?>
+                                        <option value="<?= $c['course'] ?>"><?= $c['courses'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <div class="invalid-feedback mb-2">You haven't select a course
+                                </div>
+                                <div class="valid-feedback mb-2">Looks Good</div>
+                            </div>
+                        </div>
+                        <!--End Right-->
+                    </div>
+
+                    <div style="padding-left: 1em;">
+                        <b id="getdetails"></b>
+                    </div>
+
+                    <!--Flex container-->
+                    <div class="flex-container mt-4">
+                        <!--Left Column-->
+                        <div class="flex-child col-md-8">
+                            <label for="email">Email Address</label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <!--Email-->
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="plmar@ovs.com" required />
+                                    <div class="input-group-append">
+                                        <button id="btn_sendOTP" class="btn btn-outline-dark" type="submit"><small>Send
+                                                OTP</small></button>
+                                    </div>
+                                    <div class="invalid-feedback mb-3">Email cannot be blank. Please Check Mail again.
+                                    </div>
+                                    <div class="valid-feedback mb-3">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                Looks Good
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--End Left-->
-                            <!--Right Column-->
-                            <div class="flex-child col-md-4">
-                                <div class="form-group">
-                                    <div class="input-group" id=v_input_group hidden>
-                                        <input type="text" maxlength="6" class="form-control mb-2" placeholder="" name="otp" id="otp">
-                                        <div class="input-group-append">
-                                            <button id="btn_verOTP" class="btn btn-outline-dark" type="submit" form="newform"><small>Verify
-                                                    OTP</small></button>
-                                        </div>
+                        </div>
+                        <!--End Left-->
+                        <!--Right Column-->
+                        <div class="flex-child col-md-4">
+                            <div class="form-group">
+                                <div class="input-group" id=v_input_group hidden>
+                                    <input type="text" maxlength="6" class="form-control mb-2" placeholder="" name="otp" id="otp">
+                                    <div class="input-group-append">
+                                        <button id="btn_verOTP" class="btn btn-outline-dark" type="submit" form="newform"><small>Verify
+                                                OTP</small></button>
                                     </div>
-                                    <div><span id="getConfirmation"></span></div>
                                 </div>
+                                <div><span id="getConfirmation"></span></div>
                             </div>
-                            <!--End Right-->
                         </div>
-                        <!--Flex container-->
-                        <div class="" style="padding-left: 1em;">
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" id="chk_agree" form="newform" required>
-                                <label class="form-check-label" for="chk_agree">I agree to the <a href="terms_conditions.php">Terms &amp Conditions | Privacy Policy</a></label>
-                                <div class="invalid-feedback">You must agree before submitting</div>
-                            </div>
-                            <button id="register_button" type="submit" class=" mt-4 mb-4 d-block w-100 btn float-end" id="submit">Submit
-                            </button>
+                        <!--End Right-->
+                    </div>
+                    <!--Flex container-->
+                    <div class="" style="padding-left: 1em;">
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="chk_agree" form="newform" required>
+                            <label class="form-check-label" for="chk_agree">I agree to the <a href="terms_conditions.php">Terms &amp Conditions | Privacy Policy</a></label>
+                            <div class="invalid-feedback">You must agree before submitting</div>
                         </div>
-                    </form>
-                </div>
+                        <button id="register_button" type="submit" class=" mt-4 mb-4 d-block w-100 btn float-end">Submit
+                        </button>
+                    </div>
+                </form>
             </div>
+        </div>
         <!--</div>-->
     </section>
 
- <!-- Modal -->
- <div class="modal fade" id="VoterSignIn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- Modal -->
+    <div class="modal fade" id="VoterSignIn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-login">
             <div class="modal-content">
                 <div class="modal-header">
@@ -436,19 +485,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                 </div>
                 <div class="modal-body">
                     <form action="vot_auth-login.php" method="post" id="frmSignIn">
-                        <?php if (isset($_GET['error'])) { ?>
-                            <div class="alert alert-danger" role="alert">
-                                <i class="fa fa-times-circle fs-4 me-3"></i><small><?= $_GET['error'] ?></small>
-                            </div>
-                            <script type="text/javascript">
-                                $(window).on('load', function() {
-                                    $('#VoterSignIn').modal('toggle');
-                                });
-                                $('#VoterSignIn').on('hidden.bs.modal', function() {
-                                    window.location.replace("signup.php");
-                                });
-                            </script>
-                        <?php } ?>
+                        <div id="msg"></div>
                         <div class="form-group mb-3">
                             <!--Rica: I add label for screen readers--> <label for="email">Email Address</label>
                             <input class="form-control validate" style="font-family:FontAwesome;" type="email" name="email" placeholder="&#xf007; Email Address" required="required">
@@ -458,7 +495,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                             <input class="form-control" type="password" style="font-family:FontAwesome;" name="password" placeholder="&#xf023; Password" required="required">
                         </div>
                         <div class="form-group mb-3 text-center">
-                            <button class="btn btn-primary" type="submit">Sign In</button>
+                            <button class="btn btn-primary" type="submit" form="frmSignIn">Sign In</button>
                         </div>
                     </form>
                 </div>
@@ -468,12 +505,12 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
             </div>
         </div>
     </div>
-    <!--End of Modal Voter Signin Section-->
+    <!-- End of Modal Voter Signin Section -->
 
 
 
     <!--End of Sign up-->
-   
+
 
     <!--Modal-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
