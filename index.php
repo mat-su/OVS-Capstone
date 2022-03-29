@@ -21,8 +21,9 @@ $_SESSION['index'] = true;
     <link rel="stylesheet" href="css/style_index.css">
 
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-
+    <!--Font-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">

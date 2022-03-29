@@ -82,8 +82,12 @@ body {
 }
 
 /*HERO section*/
+#hero{
+    padding-left: 100px;
+    padding-right: 100px;
+}
 #hero_header, #hero{
-    font-family: 'Montserrat', sans-serif !important;
+    font-family: 'Montserrat', sans-serif !important;   
 }
 #hero_header{
     color: #ffc300;
