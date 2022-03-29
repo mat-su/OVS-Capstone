@@ -1,3 +1,7 @@
+body {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 /* Nav item color */
 .main-nav a {
   color: #3d3636 !important;
@@ -174,7 +178,7 @@
 .navbar-scroll .nav-link,
 .navbar-scroll .navbar-toggler-icon,
 .navbar-scroll .navbar-brand {
-  color: #262626;
+  color: #ffffff;
 }
 
 /* Color of the navbar BEFORE scroll */
@@ -186,7 +190,7 @@
 .navbar-scrolled .nav-link,
 .navbar-scrolled .navbar-toggler-icon,
 .navbar-scroll .navbar-brand {
-  color: #262626;
+  color: #ffffff;
 }
 
 /* Color of the navbar AFTER scroll */
@@ -310,47 +314,47 @@
   transform: translateY(1px);
 }
 
-:root {
-  --main-text-color: #1a75d1;
-  --second-text-color: #0a246b;
-}
-
-.primary-text {
-  color: var(--main-text-color);
-}
-
-.second-text {
-  color: var(--second-text-color);
-}
 
 .rounded-full {
   border-radius: 100%;
 }
 
-
+/*dashboard voter*/
 /*add rica*/
 /*Sidebar*/
+.navbar{
+  background-color: #001d3d;
+  position: fixed;
+}
+
+#button_toggle{
+  border-color: #ffffff;
+}
+
 #wrapper {
   display: flex;
   align-items: stretch;
   overflow-x: hidden;
-  background-color: rgba(124, 156, 216, 0.233);
 }
 
 #sidebar {
   min-width: 150px;
   max-width: 150px;
   min-height: 100vh;
-  position: fixed;
+  /*position: fixed;*/
 }
 
 #sidebar-wrapper {
+  background-color: #001d3d;
+  padding-top: 104px;
   min-height: 100vh;
   margin-left: -17rem;
   -webkit-transition: margin 0.25s ease-out;
   -moz-transition: margin 0.25s ease-out;
   -o-transition: margin 0.25s ease-out;
   transition: margin 0.25s ease-out;
+  
+ 
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -364,6 +368,10 @@
 
 #page-content-wrapper {
   min-width: 100vw;
+ 
+}
+#upper-nav h2{
+  color: #ffffff;
 }
 
 #wrapper.toggled #sidebar-wrapper {
