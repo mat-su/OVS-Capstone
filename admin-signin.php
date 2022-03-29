@@ -17,24 +17,37 @@ if (!isset($_SESSION['a_id']) && !isset($_SESSION['a_email'])) {
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+        <!--Font-->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    
         <!--FontAwesome Kit-->
         <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+
+        <!--CSS-->
         <link rel="stylesheet" href="assets/bootstrap/css/style.css">
-        <title>Admin Signin</title>
+
     </head>
 
     <body>
         
         <!---Form Login-->
         <section class="vote-photo">
-            <div class="form-container shadow-lg p-3 bg-body rounded">
-                <div class="image-holder"></div>
+            
+            <div class="form-container shadow-lg bg-body rounded ">
+            <div id="div-button-back">
+                        <a href="index.php" id="button-back">Back</a>                        
+                    </div>
+                <div class="d-flex">
+                <div class="image-holder">
+                    <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-500/Man_sitting_at_desk_and_unlocking_computer_nvo-dQYzc.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648468199469" alt="">
+                </div>
 
-                <form method="post" action="ad_auth-login.php" id="ad_logform">
-                    <h2 class="text-center display-6"><strong>Administrator Login</strong></h2>
-                    <h5 class="text-center display-6">Keep Connected</h5>
+                <form method="post" action="ad_auth-login.php" id="ad_logform" class="p-5">
+                    
+                    <h4 class="text-center"><strong>Administrator Login</strong></h4>
+                    <h6 class="text-center">Keep Connected</h6>
                     <div class="mb-3 mt-5">
                         <?php if (isset($_GET['error'])) { ?>
                             <div class="alert alert-danger" role="alert">
@@ -47,12 +60,18 @@ if (!isset($_SESSION['a_id']) && !isset($_SESSION['a_email'])) {
                             <option value="2">Sub Admin</option>
                         </select>
                     </div>
-                    <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Username" required></div>
-                    <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
+                    <div class="mb-3">
+                        <label for="username">Username</label>
+                        <input class="form-control" type="text" name="username" placeholder="plmar@ovs.com" required></div>
+                    <div class="mb-3">
+                        <label for="password">Password</label>
+                        <input class="form-control" type="password" name="password" placeholder="********" required></div>
 
-                    <div class="mb-5"><button class="btn btn-primary d-block w-100" type="submit">Sign In</button></div>
+                    <div class="mb-5"><button id="button-red"class="btn d-block w-100" type="submit">Sign In</button></div>
 
                 </form>
+                </div>
+                
             </div>
         </section>
 

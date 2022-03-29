@@ -45,7 +45,9 @@
 
 .vote-photo {
   background: #f1f7fc;
-  padding: 80px 0;
+  padding: 50px 0;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 .vote-photo .image-holder {
@@ -60,7 +62,7 @@
   max-width: 900px;
   width: 90%;
   margin: 0 auto;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 5px #0000001a;
 }
 
 .vote-photo form {
@@ -70,6 +72,27 @@
   padding: 40px 60px;
   color: #505e6c;
 }
+
+#button-red{
+  background-color: #d00000;
+  color: #ffffff;
+}
+
+#button-red:hover{
+  background-color: #d00000;
+  color: #ffc300;
+}
+#button-back{
+  color: #001d3d;  
+}
+
+#div-button-back{
+  text-align: right;
+  padding-top: 40px;
+  padding-right: 48px;
+  
+}
+
 
 @media (max-width:991px) {
   .vote-photo form {

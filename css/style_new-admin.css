@@ -1,0 +1,11 @@
+body{
+    font-family: 'Montserrat', sans-serif;   
+}
+
+#btnProceed{
+    background-color: #d00000;
+    color: #ffffff;
+}
+#btnProceed:hover{
+    color: #001d3d;
+}

@@ -44,6 +44,13 @@ if (isset($_GET['continue'])) {
     <!--FontAwesome Kit-->
     <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--css file-->
+    <link rel="stylesheet" href="css/style_new-admin.css">
+
+    <!--Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+ 
     <title>Create Admin Account</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!--JQuery Validation PlugIn-->
@@ -144,7 +151,7 @@ if (isset($_GET['continue'])) {
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" id="btnProceed" form="frmNA" class="btn btn-primary">Proceed</button>
+                        <button type="submit" id="btnProceed" form="frmNA" class="btn">Proceed</button>
                     </div>
                 </div>
             </div>
