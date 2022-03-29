@@ -83,18 +83,12 @@ body {
 }
 
 /*HERO section*/
-<<<<<<< HEAD
-#hero_header,
-#hero {
-    font-family: 'Montserrat', sans-serif !important;
-=======
 #hero{
     padding-left: 100px;
     padding-right: 100px;
 }
 #hero_header, #hero{
     font-family: 'Montserrat', sans-serif !important;   
->>>>>>> rica-git
 }
 
 #hero_header {
@@ -214,5 +208,5 @@ h6,
 #password-error {
     color: red;
     font-style: italic;
-    font-size: 15px;
+    font-size: 13px;
 }

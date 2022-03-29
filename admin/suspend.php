@@ -6,7 +6,7 @@ $stmt = $conn->query("SELECT * FROM tbl_admin");
 if ($stmt->rowCount() == 1) {
     $output = '
     <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
-        <strong>Cant Perform the Action!</strong> You should setup first your successor.
+        <strong>Can\'t Perform the Action!</strong> You should setup first your successor.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>';
 } else {
