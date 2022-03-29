@@ -81,7 +81,7 @@ function template_header($title)
           #enddate-error {
               color: red;
               font-style: italic;
-              font-size: 15px;
+              font-size: 13px;
           }
       </style>
   </head>
