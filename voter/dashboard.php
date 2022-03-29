@@ -13,13 +13,13 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
     $fullname = $voter['fullname'];
 
     $org_id = $_SESSION['org_id'];
-    $stmt = $conn->prepare("SELECT COUNT(*) as c FROM tbl_candidates WHERE c_orgid = $org_id");
+    $stmt = $conn->prepare("SELECT COUNT(*) as c FROM tbl_candidates WHERE c_orgid = :id");
     $stmt->bindParam(':id', $org_id, PDO::PARAM_INT);
     $stmt->execute();
     $candi = $stmt->fetch(PDO::FETCH_ASSOC);
     $countCandi = $candi['c'];
 
-    $stmt = $conn->prepare("SELECT COUNT(*) as c FROM tbl_partylist WHERE p_orgid = $org_id");
+    $stmt = $conn->prepare("SELECT COUNT(*) as c FROM tbl_partylist WHERE p_orgid = :id");
     $stmt->bindParam(':id', $org_id, PDO::PARAM_INT);
     $stmt->execute();
     $party = $stmt->fetch(PDO::FETCH_ASSOC);
