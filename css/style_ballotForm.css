@@ -1,0 +1,53 @@
+body{
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+#submit{
+        background-color: #001d3d;
+        color: #ffffff;
+        padding: 9px 15px;
+        border-radius: 5px;
+}
+
+#submit:hover{   
+     color: #ffc300;    
+}
+
+#clear{
+    border-color: #d00000;
+}
+#clear:hover{
+    background-color: #d00000e3;
+    color: #ffffff;
+}
+
+
+.bg-blue{
+    background-color: #001d3d !important;
+    color:#ffffff;
+}
+
+.bg-red{
+    background-color: #d00000;
+    color: #ffffff;
+}
+.d-flex{
+    align-items: center;
+}
+
+
+
+.btn-red{
+    border-color: #d00000 !important;    
+}
+.btn-red:hover{
+    background-color: #d00000e3; !important;    
+}
+
+.btn-blue{
+    background-color: #001d3d !important;
+    color:#ffffff !important;
+}
+.btn-blue:hover{
+    color: #ffc300 !important;    
+}
