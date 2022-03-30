@@ -54,6 +54,10 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
         <link rel="stylesheet" href="style.css">
 
+        <!--Font-->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    
+
         <!--FontAwesome Kit-->
         <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -72,15 +76,12 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
     <body>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
-            <div class="bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading text-center py-2 fs-3 fw-bold text-uppercase border-bottom">
-                    <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563">1VOTE 4PLMAR</span>
-                    <p class="my-0">OVS</p>
-                </div>
+            <div id="sidebar-wrapper">
+               
                 <div class="list-group list-group-flush">
-                    <a href="dashboard.php" class="list-group-item list-group-item-action second-text fw-bold active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="partylist.php" class="list-group-item list-group-item-action second-text fw-bold "><i class="fas fa-fist-raised me-2"></i> Partylist</a>
-                    <a href="rules_regulations.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="fas fa-tasks me-2"></i>Rules & Regulations</a>
+                    <a href="dashboard.php" class="list-group-item list-group-item-action  fw-bold active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="partylist.php" class="list-group-item list-group-item-action  fw-bold "><i class="fas fa-fist-raised me-2"></i> Partylist</a>
+                    <a href="rules_regulations.php" class="list-group-item list-group-item-action  fw-bold"><i class="fas fa-tasks me-2"></i>Rules & Regulations</a>
 
                     <!--Election Schedule Section -->
                     <div class="container-fluid pt-4 text-center ">
@@ -90,11 +91,11 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                             <?php if (!empty($sched)) { ?>
                                 <div class="fw-bold">
                                     <div class="mt-4">
-                                        <span class="text-danger">STARTS</span><br>
+                                        <span>STARTS</span><br>
                                         <?= $sched['strt_dw'] ?> <?= $sched['strt_dm'] ?> <?= $sched['strt_sd1'] ?> <?= $sched['strt_sd2'] ?> <?= $strt_time ?>
                                     </div>
                                     <div class="mt-4">
-                                        <span class="text-danger">ENDS</span><br> <?= $sched['end_dw'] ?> <?= $sched['end_dm'] ?> <?= $sched['end_sd1'] ?> <?= $sched['end_sd2'] ?> <?= $end_time ?>
+                                        <span>ENDS</span><br> <?= $sched['end_dw'] ?> <?= $sched['end_dm'] ?> <?= $sched['end_sd1'] ?> <?= $sched['end_sd2'] ?> <?= $end_time ?>
                                     </div>
                                 </div>
                             <?php } else { ?>
@@ -103,7 +104,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                             <div class="divider div-transparent mb-1"></div>
 
                             <div class="mt-4">
-                                <button id="btn_vn" class="btn btn-lg btn-danger" onclick="location.href='ballot-form.php'" type="button" disabled>
+                                <button id="btn_vn" class="btn btn-lg" onclick="location.href='ballot-form.php'" type="button" disabled>
                                     Vote Now</button>
                             </div>
 
@@ -115,19 +116,20 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
             <!-- /#sidebar-wrapper -->
             <!-- Page Content -->
             <div id="page-content-wrapper">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-4">
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                        <h2 class="fs-4 m-0">VOTER PORTAL</h2>
+                <nav  class="navbar navbar-expand-lg navbar-dark py-4 px-4">
+                    <div id="upper-nav" class="d-flex align-items-center">
+                        <i class="fas fa-align-left fs-4 me-3" id="menu-toggle"></i>
+                            <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563"></span>
+                        <h2>VOTER PORTAL</h2>
                     </div>
-
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    
+                    <button id="button_toggle" class="navbar-toggler navbar-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-user me-2"></i><?= $fullname ?>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -149,7 +151,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                     <p class="fs-4">Dashboard</p>
                     <div class="row g-3 my-2">
                         <div class="col-md-12">
-                            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center text-center rounded">
+                            <div class="p-3 shadow-sm d-flex justify-content-around align-items-center text-center rounded">
                                 <div class="container text-wrap">
                                     <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/welcome_Cupeh9RV8.png?updatedAt=1636213495762" alt="" width="auto" height="200">
                                     <h3 class="fs-2">Welcome Voter!</h3>
@@ -169,7 +171,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                         </div>
                         <!--tally-->
                         <div class="col-md-12" style="display:none;">
-                            <div id="chart-container" class="p-3 shadow-sm rounded bg-white row">
+                            <div id="chart-container" class="p-3 shadow-sm rounded row">
                                 <h3 class="text-center"><u><?= $_SESSION['org_acr'] . ' CHOICE ' . date("Y"); ?></u></h3>
                                 <h2 class="text-center">ELECTION RESULTS</h2>
                                 <?php $positions = fetchAll_OrgStructure($org_id);
@@ -194,7 +196,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                     <h3 class="fs-2"><?= $countParty ?></h3>
                                     <p class="fs-5">Partylist</p>
                                 </div>
-                                <i class="fas fa-fist-raised fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                                <i class="fas fa-fist-raised fs-1 primary-text border rounded-full p-3"></i>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -203,7 +205,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                     <h3 class="fs-2"><?= $countCandi ?></h3>
                                     <p class="fs-5">Candidates</p>
                                 </div>
-                                <i class="fas fa-id-card-alt fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                                <i class="fas fa-id-card-alt fs-1 primary-text border rounded-full p-3"></i>
                             </div>
                         </div>
 
