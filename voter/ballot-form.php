@@ -64,7 +64,12 @@ if ($stmt->rowCount() > 0) {
             <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563"/>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-            <link rel="stylesheet" href="../assets/bootstrap/css/style.css">
+            <!--<link rel="stylesheet" href="../assets/bootstrap/css/style.css">-->
+            <link rel="stylesheet" href="../css/style_ballotForm.css">
+
+            <!--Font-->
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+ 
 
             <!--FontAwesome Kit-->
             <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
@@ -91,7 +96,7 @@ if ($stmt->rowCount() > 0) {
         <body>
             <!--Main navbar-->
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <nav class="navbar navbar-expand-lg ">
                 <!-- Container wrapper -->
                 <div class="container-fluid" id="main-nav">
                     <a class="nav-link d-flex flex-column text-center" aria-current="page" href="dashboard.php"><i class="fas fa-home text-dark"></i><span class="small text-dark">Back</span></a>
@@ -115,8 +120,8 @@ if ($stmt->rowCount() > 0) {
                     </div>
                 <?php } ?>
                 <div class="row">
-                    <div class="col-md-12 rounded-top bg-dark text-white border border-dark">
-                        <h3 class="display-1 fs-2 text-center">-Ballot-</h3>
+                    <div class="col-md-12 rounded-top bg-blue p-3">
+                        <h3 class="display-1 fs-2 text-center ">BALLOT FORM</h3>
                         <h3 class="display-4 fs-5 text-center"><?= $_SESSION['org_name'] ?></h3>
                     </div>
                     <div class="col-lg-12 rounded-bottom border border-dark ">
@@ -124,7 +129,7 @@ if ($stmt->rowCount() > 0) {
                             <div class="row">
                                 <?php foreach ($org_struc as $o) : ?>
                                     <div class="col-md-4 mx-0 my-3">
-                                        <h5 class="bg-dark text-white text-center m-0 rounded-top "><?= $o['position'] ?>:</h5>
+                                        <h5 class="bg-red text-center m-0 rounded-top "><?= $o['position'] ?>:</h5>
                                         <div class="col-12 rounded-bottom border border-dark ">
                                             <div class="container d-flex justify-content-center mt-2 fst-italic">
                                                 <?php
@@ -141,11 +146,12 @@ if ($stmt->rowCount() > 0) {
                                                     $dir_img_file = './img-uploads/' . $c['img'];
                                                     $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png';
                                             ?>
-                                                    <div class="form-check mx-3 my-3">
+                                                    <div class="form-check mx-3 my-3 d-flex">
 
-                                                        <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
 
                                                         <input class="form-check-input" type="radio" name="<?= $o['position'] ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>">
+                                                        <img class="rounded-circle border img-fluid m-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
+
                                                         <label id="<?= $o['position'] ?>" class="form-check-label">
                                                             <?= $c['cname'] ?>
                                                         </label>
@@ -171,9 +177,9 @@ if ($stmt->rowCount() > 0) {
                             </div>
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end p-3">
-                                <button class="btn btn-primary" id="submit" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="ballot" onclick="displayBallot()">Submit
+                                <button class="btn " id="submit" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="ballot" onclick="displayBallot()">Submit
                                     Ballot</button>
-                                <button class="btn btn-primary me-md-2" id="clear" type="button" onclick="clearRadio()">Clear</button>
+                                <button class="btn me-md-2" id="clear" type="button" onclick="clearRadio()">Clear</button>
                             </div>
                         </form>
 
@@ -196,8 +202,8 @@ if ($stmt->rowCount() > 0) {
                             <div id="voted" class="p-3"></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" id="proceed" class="btn btn-primary" form="ballot" name="submit">Proceed</button>
+                            <button type="button" class="btn btn-red" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" id="proceed" class="btn btn-blue" form="ballot" name="submit">Proceed</button>
                         </div>
                     </div>
                 </div>
