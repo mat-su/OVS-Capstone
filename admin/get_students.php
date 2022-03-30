@@ -29,9 +29,7 @@ if ($stmt->rowCount() == 1) {
 
     $columns_arr = array(
         "enr_studnum",
-        "enr_fname",
-        "enr_mname",
-        "enr_lname",
+        "name",
         "enr_course",
         "enr_yrlevel"
     );

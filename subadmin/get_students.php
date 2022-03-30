@@ -35,10 +35,8 @@ if ($stmt->rowCount() == 1) {
 
     $columns_arr = array(
         "enr_studnum",
-        "enr_fname",
-        "enr_mname",
-        "enr_lname",
-        "enr_yrlevel"
+        "name",
+        "enr_yrlevel",       
     );
 
     $query = $conn->query($stmt . $search_where . "ORDER BY {$columns_arr[$order[0]['column']]} {$order[0]['dir']} limit {$length} offset {$start} ");

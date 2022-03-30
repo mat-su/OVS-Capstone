@@ -1,5 +1,14 @@
 <?php
 require 'functions.php';
+session_start();
+if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['org_id']) && isset($_SESSION['org_name'])) {
+    header("Location: voter/dashboard.php");
+} else if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
+    header("Location: admin/dashboard.php");
+} else if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
+    header("Location: subadmin/dashboard.php");
+} else {
+
 
 ?>
 
@@ -551,3 +560,7 @@ require 'functions.php';
 </body>
 
 </html>
+
+<?php
+}
+?>

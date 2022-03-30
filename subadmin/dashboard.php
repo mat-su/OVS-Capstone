@@ -92,12 +92,14 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
                             <div id="chart-container" class="p-3 shadow-sm rounded bg-white row">
                                 <h3 class="text-center"><u><?= $org_acr . ' CHOICE ' . date("Y"); ?></u></h3>
                                 <h2 class="text-center">ELECTION RESULTS</h2>
-                                <?php $positions = fetchAll_OrgStructure($sa_orgid);
-                                foreach ($positions as $p) : ?>
-                                    <div class="col-md-6">
-                                        <canvas id="<?= $p['position'] ?>"></canvas>
-                                    </div>
-                                <?php endforeach; ?>
+                                <div class="row m-0">
+                                    <?php $positions = fetchAll_OrgStructure($sa_orgid);
+                                    foreach ($positions as $p) : ?>
+                                        <div class="col-md-6 border">
+                                            <canvas id="<?= $p['position'] ?>"></canvas>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
                         <!--/-end of tally-->
