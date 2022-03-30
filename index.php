@@ -252,7 +252,7 @@ require 'functions.php';
                 <div class="col-md-4" id="hero_text">
                     <h1 id="hero_header">Voting made easy & secure!</h1>
                     <p> The platform that provide quality assurance and equitable balance among the administration, candidates, and voters.</p>
-                    <button id="register_button">Register to VOTE!</button>
+                    <a href="signup.php"><button id="register_button" >Register to VOTE!</button></a>
                 </div>
                 <div class="col-md-8">
                     <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/hero_c3vLzDFbO.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648298535312" class="img-fluid">
@@ -341,7 +341,7 @@ require 'functions.php';
                 <div class="card">
                     <div class="img"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/7.SO-deps_DOBr3oW_S.png?updatedAt=1636213466086" alt="DEPS"></div>
                     <div class="content">
-                        <div class="title">DEPS</div>
+                        <div class="title">SPED</div>
                         <div class="sub-title"></div>
                         <p class="lead mb-0">
 
