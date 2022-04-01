@@ -53,85 +53,91 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
             }
 
 ?>
-        <!DOCTYPE html>
-        <html>
+            <!DOCTYPE html>
+            <html>
 
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-            <title>Ballot Form</title>
-            <!-- Tab Logo -->
-            <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563"/>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-            <!--<link rel="stylesheet" href="../assets/bootstrap/css/style.css">-->
-            <link rel="stylesheet" href="../css/style_ballotForm.css">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+                <title>Ballot Form</title>
+                <!-- Tab Logo -->
+                <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+                <!--<link rel="stylesheet" href="../assets/bootstrap/css/style.css">-->
+                <link rel="stylesheet" href="../css/style_ballotForm.css">
 
-            <!--Font-->
-            <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
- 
+                <!--Font-->
+                <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 
-            <!--FontAwesome Kit-->
-            <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-            <!-- Bootstrap CSS -->
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-            <script>
-                $(document).ready(function() {
-                    $('#loader').fadeOut(400);
+                <!--FontAwesome Kit-->
+                <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-                    $('#proceed').click(function() {
-                        $(function() {
-                            $('#staticBackdrop').modal('toggle');
-                            $('#loader').show();
-                            $('#clear, #submit').prop('disabled', true);
+                <!-- Bootstrap CSS -->
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                <script>
+                    $(document).ready(function() {
+                        $('#loader').fadeOut(400);
+
+                        $('#proceed').click(function() {
+                            $(function() {
+                                $('#staticBackdrop').modal('toggle');
+                                $('#loader').show();
+                                $('#clear, #submit').prop('disabled', true);
+                            });
                         });
                     });
-                });
-            </script>
-        </head>
+                </script>
+            </head>
 
-        <body>
-            <!--Main navbar-->
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg ">
-                <!-- Container wrapper -->
-                <div class="container-fluid" id="main-nav">
-                    <a class="nav-link d-flex flex-column text-center" aria-current="page" href="dashboard.php"><i class="fas fa-home text-dark"></i><span class="small text-dark">Back</span></a>
-                </div>
-                <!-- Container wrapper -->
-            </nav>
-            <!-- End Navbar -->
-            <div class="d-flex justify-content-center" id="loader_section">
-                <div class="lds-ellipsis" id="loader">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-            <!--Ballot-->
-            <div class="container px-5 my-4">
-                <?php if (isset($_GET['err'])) { ?>
-                    <div class="alert alert-danger mt-3" role="alert">
-                        <i class="fas fa-times fs-4 me-3"></i><span><?= $_GET['err'] ?></span>
+            <body>
+                <!--Main navbar-->
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg ">
+                    <!-- Container wrapper -->
+                    <div class="container-fluid" id="main-nav">
+                        <a class="nav-link d-flex flex-column text-center" aria-current="page" href="dashboard.php"><i class="fas fa-home text-dark"></i><span class="small text-dark">Back</span></a>
                     </div>
-                <?php } ?>
-                <div class="row">
-                    <div class="col-md-12 rounded-top bg-blue p-3">
-                        <h3 class="display-1 fs-2 text-center ">BALLOT FORM</h3>
-                        <h3 class="display-4 fs-5 text-center"><?= $_SESSION['org_name'] ?></h3>
+                    <!-- Container wrapper -->
+                </nav>
+                <!-- End Navbar -->
+                <div class="d-flex justify-content-center" id="loader_section">
+                    <div class="lds-ellipsis" id="loader">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
                     </div>
-                    <div class="col-lg-12 rounded-bottom border border-dark ">
-                        <form id="ballot" action="send-ballot.php" method="post">
-                            <div class="row">
-                                <?php foreach ($org_struc as $o) : ?>
-                                    <div class="col-md-4 mx-0 my-3">
-                                        <h5 class="bg-red text-center m-0 rounded-top "><?= $o['position'] ?>:</h5>
-                                        <div class="col-12 rounded-bottom border border-dark ">
-                                            <div class="container d-flex justify-content-center mt-2 fst-italic">
+                </div>
+                <!--Ballot-->
+                <div class="container px-5 my-4">
+                    <?php if (isset($_GET['err'])) { ?>
+                        <div class="alert alert-danger mt-3" role="alert">
+                            <i class="fas fa-times fs-4 me-3"></i><span><?= $_GET['err'] ?></span>
+                        </div>
+                    <?php } ?>
+                    <div class="row">
+                        <div class="col-md-12 rounded-top bg-blue p-3">
+                            <h3 class="display-1 fs-2 text-center ">BALLOT FORM</h3>
+                            <h3 class="display-4 fs-5 text-center"><?= $_SESSION['org_name'] ?></h3>
+                        </div>
+                        <div class="col-lg-12 rounded-bottom border border-dark ">
+                            <form id="ballot" action="send-ballot.php" method="post">
+                                <div class="row">
+                                    <?php foreach ($org_struc as $o) : ?>
+                                        <div class="col-md-4 mx-0 my-3">
+                                            <h5 class="bg-red text-center m-0 rounded-top "><?= $o['position'] ?>:</h5>
+                                            <div class="col-12 rounded-bottom border border-dark ">
+                                                <div class="container d-flex justify-content-center mt-2 fst-italic">
+                                                    <?php
+                                                    if ($o['seats'] > 1) {
+                                                        echo "--Choose up to " . $o['seats'] . " candidates--";
+                                                    }
+                                                    ?>
+                                                </div>
                                                 <?php
                                                 $can = fetchAll_CandidatesforBallot($org_id, $o['id']);
                                                 foreach ($can as $c) {
@@ -140,11 +146,12 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                                         $dir_img_file = './img-uploads/' . $c['img'];
                                                         $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png';
                                                 ?>
-                                                        <div class="form-check mx-3 my-3">
+                                                        <div class="form-check mx-3 my-3 d-flex">
 
-                                                            <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
 
                                                             <input class="form-check-input" type="radio" name="<?= $o['position'] ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>">
+                                                            <img class="rounded-circle border img-fluid m-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
+
                                                             <label id="<?= $o['position'] ?>" class="form-check-label">
                                                                 <?= $c['cname'] ?>
                                                             </label>
@@ -165,49 +172,16 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                                 <?php    }
                                                 }  ?>
                                             </div>
-                                            <?php
-                                            $can = fetchAll_CandidatesforBallot($org_id, $o['id']);
-                                            foreach ($can as $c) {
-                                                if ($c['seats'] == 1) {
-
-                                                    $dir_img_file = './img-uploads/' . $c['img'];
-                                                    $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png';
-                                            ?>
-                                                    <div class="form-check mx-3 my-3 d-flex">
-
-
-                                                        <input class="form-check-input" type="radio" name="<?= $o['position'] ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>">
-                                                        <img class="rounded-circle border img-fluid m-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
-
-                                                        <label id="<?= $o['position'] ?>" class="form-check-label">
-                                                            <?= $c['cname'] ?>
-                                                        </label>
-                                                    </div>
-                                                <?php
-                                                } else {
-                                                    $dir_img_file = './img-uploads/' . $c['img'];
-                                                    $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png'; ?>
-                                                    <div class="form-check mx-3 my-3">
-
-                                                        <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
-
-                                                        <input class="form-check-input" type="checkbox" name="<?= $o['position'] . '[]' ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>" data-max="<?= $c['seats'] ?>">
-                                                        <label id="<?= $o['position'] ?>" class="form-check-label">
-                                                            <?= $c['cname'] ?>
-                                                        </label>
-                                                    </div>
-                                            <?php    }
-                                            }  ?>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
 
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end p-3">
-                                <button class="btn " id="submit" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="ballot" onclick="displayBallot()">Submit
-                                    Ballot</button>
-                                <button class="btn me-md-2" id="clear" type="button" onclick="clearRadio()">Clear</button>
-                            </div>
-                        </form>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end p-3">
+                                    <button class="btn " id="submit" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="ballot" onclick="displayBallot()">Submit
+                                        Ballot</button>
+                                    <button class="btn me-md-2" id="clear" type="button" onclick="clearRadio()">Clear</button>
+                                </div>
+                            </form>
 
                         </div>
                     </div>
@@ -217,19 +191,20 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
 
                 <!--Ballot Preview Modal-->
 
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Ballot Preview</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="voted" class="p-3"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-red" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" id="proceed" class="btn btn-blue" form="ballot" name="submit">Proceed</button>
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Ballot Preview</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="voted" class="p-3"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-red" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" id="proceed" class="btn btn-blue" form="ballot" name="submit">Proceed</button>
+                            </div>
                         </div>
                     </div>
                 </div>
