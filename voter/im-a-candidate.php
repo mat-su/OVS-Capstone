@@ -55,15 +55,34 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+        <!-- Summernote -->
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+        <!-- Cropper CSS -->
+        <link href="../cropperjs/cropper.min.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
+        <style type="text/css">
+            #image {
+                display: block;
+                max-width: 100%;
+            }
+
+            .preview {
+                overflow: hidden;
+                width: 160px;
+                height: 160px;
+                margin: 10px;
+                border: 1px solid red;
+            }
+        </style>
+
         <div class="d-flex toggled" id="wrapper">
             <div id="page-content-wrapper">
-                <div class="container">
-
+                <div class="container" id="candidate-container">
+                    <div id="notify"></div>
                     <!--Candidate 1-->
                     <?php if (isset($_GET['err'])) { ?>
                         <div class="alert alert-danger mt-3" role="alert">
@@ -90,14 +109,44 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                         <br><small class="text-danger">*Image must be less than 1mb</small>
                                     </p>
                                 </div>
-                                <form action="upload-profile-img.php" method="POST" enctype="multipart/form-data">
+                                <form method="POST" enctype="multipart/form-data">
                                     <div class="input-group input-group-sm ">
                                         <input type="file" name="profile-img" class="form-control" id="profile-img" aria-label="Upload" accept="image/*" required>
-                                        <button class="btn btn-outline-primary" type="submit" id="btn_upload" name="upload">Upload</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
+                        <!-- Modal for crop -->
+                        <div class="modal fade" id="modal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Crop image</h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="img-container">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <!--  default image where we will set the src via jquery-->
+                                                    <img id="image">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="preview"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="btn-cancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary" id="crop">Upload and Crop</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Modal for crop -->
 
                         <div class="col-md-6">
                             <h3 class="fs-2"><?= $fullname ?></h3>
@@ -209,7 +258,133 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
             });
             $('span.note-icon-caret').remove();
         </script>
+        <!-- Cropper JS -->
+        <script src="../cropperjs/cropper.min.js" type="text/javascript"></script>
+        <script>
+            var bs_modal = $('#modal');
+            var image = document.getElementById('image');
+            var cropper, reader, file;
 
+
+            $("body").on("change", "#profile-img", function(e) {
+                var files = e.target.files;
+                console.log(files.length);
+                file = files[0];
+                if (files.length > 0) {
+                    var extension = file.name.split('.').pop().toLowerCase();
+
+                    const validExtension = ['jpg', 'jpeg', 'png', 'gif'];
+                    if (validExtension.includes(extension)) {
+                        if (file.size < 1048576) {
+                            var done = function(url) {
+                                image.src = url;
+                                bs_modal.modal('show');
+                            };
+
+                            if (files && files.length > 0) {
+                                if (URL) {
+                                    done(URL.createObjectURL(file));
+                                } else if (FileReader) {
+                                    reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        done(reader.result);
+                                    };
+                                    reader.readAsDataURL(file);
+                                }
+                            }
+                        } else {
+                            let notify = document.querySelector('#notify');
+                            if (notify != null) {
+                                notify.remove();
+                            }
+                            var _icon = $('<i>');
+                            _icon.attr('id', 'x-icon');
+                            _icon.addClass('fas fa-times fs-4 me-3');
+                            var _el = $('<div>');
+                            _el.hide();
+                            _el.addClass('alert alert-danger alert_msg form-group');
+                            _el.attr('id', 'notify');
+                            _el.text('File must be less than 1MB.');
+                            _el.prepend(_icon);
+                            $('#candidate-container').prepend(_el);
+                            _el.show('slow');
+                        }
+                    } else {
+                        let notify = document.querySelector('#notify');
+                        if (notify != null) {
+                            notify.remove();
+                        }
+                        var _icon = $('<i>');
+                        _icon.attr('id', 'x-icon');
+                        _icon.addClass('fas fa-times fs-4 me-3');
+                        var _el = $('<div>');
+                        _el.hide();
+                        _el.addClass('alert alert-danger alert_msg form-group');
+                        _el.attr('id', 'notify');
+                        _el.text('Must be a valid image file extension.');
+                        _el.prepend(_icon);
+                        $('#candidate-container').prepend(_el)
+                        _el.show('slow');
+                    }
+                    $('.alert').delay(3000).slideUp(200, function() {
+                        $(this).alert('close');
+                    });
+                    $('#profile-img').val("");
+                }
+            });
+
+            bs_modal.on('shown.bs.modal', function() {
+                cropper = new Cropper(image, {
+                    aspectRatio: 1,
+                    viewMode: 0,
+                    preview: '.preview'
+                });
+            }).on('hidden.bs.modal', function() {
+                cropper.destroy();
+                cropper = null;
+                $('#profile-img').val("");
+            });
+
+            $("#crop").click(function() {
+                $('#modal #btn-cancel').remove();
+                $('#modal #crop').text("");
+                $('#modal button').attr('disabled', true)
+                $('#modal #crop').append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Uploading...');
+
+
+                canvas = cropper.getCroppedCanvas({
+                    width: 720,
+                    height: 720,
+                });
+
+                canvas.toBlob(function(blob) {
+                    url = URL.createObjectURL(blob);
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function() {
+                        var base64data = reader.result;
+
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "upload-profile-img.php",
+                            data: {
+                                image: base64data
+                            },
+                            success: function(resp) {
+                                bs_modal.modal('hide');
+                                if (!!resp.success) {
+                                    alert("Image Successfully Uploaded!");
+                                    window.location.href = resp.action;
+                                } else {
+                                    alert(resp.action);
+                                }
+                            }
+                        });
+                    };
+                });
+            });
+        </script>
     </body>
 
 
