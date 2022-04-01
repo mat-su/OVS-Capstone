@@ -46,7 +46,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                 e.preventDefault();
                 $('#btn_sendOTP').prop('disabled', true);
                 var email = $('#email').val().trim();
-
+                $('#btn_sendOTP').text("").append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...');
                 $.ajax({
                     type: "POST",
                     url: "send-otp.php",
@@ -55,6 +55,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                     },
                     dataType: "text",
                     success: function(response) {
+                        $('#btn_sendOTP').text("Send OTP");
                         $("#getdetails").html(response);
                     }
                 });
@@ -64,7 +65,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                 e.preventDefault();
                 var email = $('#email').val().trim();
                 var otp = $('#otp').val().trim();
-
+                $('#btn_verOTP').text("").append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Verifying...');
                 $.ajax({
                     type: "POST",
                     url: "verify-otp.php",
@@ -74,6 +75,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                     },
                     dataType: "text",
                     success: function(response) {
+                        $('#btn_verOTP').text("Verify OTP")
                         $("#getConfirmation").html(response);
                     }
                 });
@@ -108,6 +110,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                 msg.classList.remove('alert-danger');
                 $('input[name=email]').removeClass("is-valid").removeClass("is-invalid");
                 $('input[name=password]').removeClass("is-valid").removeClass("is-invalid");
+                validator.resetForm();
             });
             // Validator custom methods
             $.validator.addMethod("validateEmail", function(value, element) {
@@ -115,7 +118,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                 return regexEmail.test(value);
             }, "Please enter a valid email address.");
 
-            $('#frmSignIn').validate({
+            let validator = $('#frmSignIn').validate({
                 rules: {
                     email: {
                         required: true,
@@ -140,6 +143,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                     $(element).addClass("is-valid").removeClass("is-invalid");
                 },
                 submitHandler: function() {
+                    $('#frmSignIn button[type=submit]').text("").append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Signing...');
                     let form = $('#frmSignIn');
                     let actionUrl = form.attr('action');
                     $.ajax({
@@ -157,6 +161,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                                 $(msg).html(`<i class="fa fa-times-circle fs-4 me-3"></i><small>${resp.action}</small>`);
                                 $('input[name=email]').addClass("is-invalid").removeClass("is-valid");
                                 $('input[name=password]').addClass("is-invalid").removeClass("is-valid");
+                                $('#frmSignIn button[type=submit]').text("Sign In");
                             }
                         }
                     });
@@ -443,6 +448,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                         <!--End Left-->
                         <!--Right Column-->
                         <div class="flex-child col-md-4">
+                        <label for="email" style="visibility: hidden;">----</label>
                             <div class="form-group">
                                 <div class="input-group" id=v_input_group hidden>
                                     <input type="text" maxlength="6" class="form-control mb-2" placeholder="" name="otp" id="otp">
@@ -463,7 +469,7 @@ $courses = $conn->query("SELECT course, CONCAT(course, ' (', acronym, ')') AS co
                             <label class="form-check-label" for="chk_agree">I agree to the <a href="terms_conditions.php">Terms &amp Conditions | Privacy Policy</a></label>
                             <div class="invalid-feedback">You must agree before submitting</div>
                         </div>
-                        <button id="register_button" type="submit" class=" mt-4 mb-4 d-block w-100 btn float-end">Submit
+                        <button id="register_button" type="submit" class=" mt-4 mb-4 d-block  btn float-end">Submit
                         </button>
                     </div>
                 </form>
