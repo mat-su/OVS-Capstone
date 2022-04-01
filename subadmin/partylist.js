@@ -7,6 +7,7 @@ $(function () {
         $('select').removeClass('is-valid');
         $('input').removeClass('is-invalid');
         $('select').removeClass('is-invalid');
+        $('.alert-danger').remove();
     }
 
     function draw_data() {

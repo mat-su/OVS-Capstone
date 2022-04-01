@@ -58,10 +58,12 @@ $(function () {
                     $(this).find('form').trigger('reset');
                     validator.resetForm();
                     clearBS_Validation();
+                    $('.alert-danger').remove();
                 });
                 $('.edit_data').click(function () {
                     updValidator.resetForm();
                     clearBS_Validation();
+                    $('.alert-danger').remove();
                     $.ajax({
                         url: './get_single.php',
                         data: {
@@ -240,7 +242,7 @@ $(function () {
     }, "Please enter a valid email address.");
 
     $.validator.addMethod("validateName", function (value, element) {
-        const regexName = /^[a-zA-ZÑñ]+(([',. -][a-zA-Z Ññ])?[a-zA-ZÑñ]*)*$/;
+        const regexName = /^[a-zA-ZÑñ ]+(([',. -][a-zA-Z Ññ])?[a-zA-ZÑñ]*)*$/;
         return this.optional(element) || regexName.test(value);
     });
 
@@ -333,7 +335,7 @@ $(function () {
                             _el.addClass('alert alert-danger alert_msg form-group')
                             _el.attr('id', 'notify');
                             _el.text(resp.msg);
-                            $('#frm_edit_sub').append(_el)
+                            $('#frm_edit_sub').prepend(_el)
                             _el.show('slow')
                         } else {
                             let notify = document.querySelector('#notify');

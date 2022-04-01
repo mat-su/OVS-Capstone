@@ -601,7 +601,7 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
                 });
 
                 $.validator.addMethod("validateName", function(value, element) {
-                    const regexName = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+                    const regexName = /^[a-zA-Z ]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
                     return this.optional(element) || regexName.test(value);
                 });
 

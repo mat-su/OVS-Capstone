@@ -16,7 +16,7 @@ if (isset($partylist) && isset($id) && isset($_SESSION['sa_org_id'])) {
     $stmt->bindParam(":org_id", $sa_orgid, pdo::PARAM_INT);
     $stmt->execute();
     
-    if ($origParty == $partylist || $stmt->rowCount() == 0){
+    if (strtolower($origParty) == strtolower($partylist) || $stmt->rowCount() == 0){
         $stmt = $conn->prepare("UPDATE tbl_partylist SET pname = :pname WHERE id = :id AND p_orgid = :org_id");
         $stmt->bindParam(':pname', $partylist, pdo::PARAM_STR);
         $stmt->bindParam(':id', $id, pdo::PARAM_INT);

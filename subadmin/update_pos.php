@@ -16,7 +16,7 @@ if (isset($position) && isset($seats) && isset($pos_id) && isset($_SESSION['sa_o
     $stmt->bindParam(":org_id", $sa_orgid, pdo::PARAM_INT);
     $stmt->execute();
     
-    if ($origPos == $position || $stmt->rowCount() == 0){
+    if (strtolower($origPos) == strtolower($position) || $stmt->rowCount() == 0){
         $stmt = $conn->prepare("UPDATE tbl_org_struct SET position = :pos, seats = :seats WHERE id = :id AND org_id = :org_id");
         $stmt->bindParam(':pos', $position, pdo::PARAM_STR);
         $stmt->bindParam(':seats', $seats, pdo::PARAM_INT);
