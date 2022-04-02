@@ -271,7 +271,7 @@ function ChartTally($org_id, $pos_id)
     LEFT JOIN tbl_org_struct p ON p.id = c.c_position
     LEFT JOIN tbl_partylist pa ON pa.id = c.c_party
     GROUP BY c.c_id
-    HAVING c.c_orgid = $org_id AND p.id = $pos_id
+    HAVING c.c_orgid = :id AND p.id = :posID
     ORDER BY c.c_position ASC;"
   );
   $stmt->bindParam(':id', $org_id, PDO::PARAM_INT);

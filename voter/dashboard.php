@@ -6,7 +6,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
     $_SESSION['dashboard'] = true;
     $_SESSION['partylist'] = false;
     $id = $_SESSION['v_id'];
-    $stmt = $conn->prepare("SELECT CONCAT(v_fname, ' ', v_lname) AS fullname FROM tbl_voter WHERE v_id = :id");
+    $stmt = $conn->prepare("SELECT v_fname, CONCAT(v_fname, ' ', v_lname) AS fullname FROM tbl_voter WHERE v_id = :id");
     $stmt->bindParam(':id', $id, PDO::PARAM_STR);
     $stmt->execute();
     $voter = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -71,31 +71,35 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <!-- Chart Plugins -->
         <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
+
+        <!--SmoothScroll JS-->
+        <script src="../assets/js/smoothScroll.js"></script>
+
     </head>
 
     <body>
-        <div class="d-flex" id="wrapper">
+        <div class="d-flex " id="wrapper">
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
                
                 <div class="list-group list-group-flush">
-                    <a href="dashboard.php" class="list-group-item list-group-item-action  fw-bold active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="partylist.php" class="list-group-item list-group-item-action  fw-bold "><i class="fas fa-fist-raised me-2"></i> Partylist</a>
-                    <a href="rules_regulations.php" class="list-group-item list-group-item-action  fw-bold"><i class="fas fa-tasks me-2"></i>Rules & Regulations</a>
+                    <a href="dashboard.php" class="bg-red fw-bold px-3 py-2 text-decoration-none active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="partylist.php" class="bg-blue fw-bold px-3 py-2 text-decoration-none"><i class="fas fa-fist-raised me-2"></i> Partylist</a>
+                    <a href="rules_regulations.php" class="bg-blue fw-bold px-3 py-2 text-decoration-none"><i class="fas fa-tasks me-2"></i>Rules & Regulations</a>
 
                     <!--Election Schedule Section -->
-                    <div class="container-fluid pt-4 text-center ">
+                    <div class="container-fluid pt-5 text-center ">
 
-                        <div class="rounded bg-gradient-4 text-dark shadow py-5 text-center">
-                            <h6 class=" fw-bolder fs-5"><i class="far fa-calendar-alt"></i> ELECTION SCHEDULE</h6>
+                        <div class="rounded border text-white shadow py-5 text-center">
+                            <h6 class=" fw-bolder schedHead"><i class="far fa-calendar-alt"></i>  ELECTION SCHEDULE</h6>
                             <?php if (!empty($sched)) { ?>
-                                <div class="fw-bold">
+                                <div>
                                     <div class="mt-4">
-                                        <span>STARTS</span><br>
+                                        <span class="fw-bold">STARTS</span><br>
                                         <?= $sched['strt_dw'] ?> <?= $sched['strt_dm'] ?> <?= $sched['strt_sd1'] ?> <?= $sched['strt_sd2'] ?> <?= $strt_time ?>
                                     </div>
                                     <div class="mt-4">
-                                        <span>ENDS</span><br> <?= $sched['end_dw'] ?> <?= $sched['end_dm'] ?> <?= $sched['end_sd1'] ?> <?= $sched['end_sd2'] ?> <?= $end_time ?>
+                                        <span class="fw-bold">ENDS</span><br> <?= $sched['end_dw'] ?> <?= $sched['end_dm'] ?> <?= $sched['end_sd1'] ?> <?= $sched['end_sd2'] ?> <?= $end_time ?>
                                     </div>
                                 </div>
                             <?php } else { ?>
@@ -116,20 +120,19 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
             <!-- /#sidebar-wrapper -->
             <!-- Page Content -->
             <div id="page-content-wrapper">
-                <nav  class="navbar navbar-expand-lg navbar-dark py-4 px-4">
-                    <div id="upper-nav" class="d-flex align-items-center">
-                        <i class="fas fa-align-left fs-4 me-3" id="menu-toggle"></i>
+                <nav  class="navbar navbar-expand-lg py-4 px-4">
+                    <div id="upper-nav" class="d-flex align-items-center ">
+                        <i class="fas fa-align-left fs-4 me-3 text-white" id="menu-toggle"></i>
                             <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563"></span>
                         <h2>VOTER PORTAL</h2>
-                    </div>
-                    
-                    <button id="button_toggle" class="navbar-toggler navbar-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    </div>                    
+                    <button id="button_toggle" class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle  text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-user me-2"></i><?= $fullname ?>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -148,20 +151,46 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                             <i class="fas fa-times fs-4 me-3"></i><span><?= $_GET['err'] ?></span>
                         </div>
                     <?php } ?>
-                    <p class="fs-4">Dashboard</p>
                     <div class="row g-3 my-2">
                         <div class="col-md-12">
                             <div class="p-3 shadow-sm d-flex justify-content-around align-items-center text-center rounded">
-                                <div class="container text-wrap">
+                                <div class="container text-wrap py-5">
                                     <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/welcome_Cupeh9RV8.png?updatedAt=1636213495762" alt="" width="auto" height="200">
-                                    <h3 class="fs-2">Welcome Voter!</h3>
-                                    <p class="fs-5">Always exercise your right to vote and be part of the school affairs.</p>
-                                    <p><em><b><?= $_SESSION['org_name'] ?></b></em></p>
+                                    <h3 class="fs-2">Welcome to OVS!</h3>
+                                    <p class="fs-6">Hi <b><?= $voter['v_fname'] ?></b>! We are excited to have you here. Always exercise your right to vote and be part of the school affairs. Do it for the good change.</p>
+                                    <p style="color: #d00000;">Your STUDENT ORGANIZATION: <em><b><?= $_SESSION['org_name'] ?></b></em></p>                                  
+                                    <a href="#canpar" class="smoothScroll">
+                                    <p class=" py-5">Scroll more for updates.<i class="fa fa-angle-double-down" aria-hidden="true"></i></p>
+                                    </a>
                                 </div>
-                            </div>
+                                
                         </div>
-                        <div class="col-md-12" style="display: none;">
-                            <div id="v-turnout" class="p-3 shadow-sm rounded" style="background-color: #ffe6ee;">
+                            <!--No. of candidate and partylist-->
+                            <div  id="canpar"class="d-flex justify-content-around ">
+                                <div class="col-md-4 py-5 ">
+                                    <div class="bg-blue shadow-sm d-flex justify-content-around align-items-center rounded text-center p-5">
+                                        <div>
+                                            <h3 class="fs-2"><?= $countParty ?></h3>
+                                            <p class="fs-5">Partylist</p>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-4 py-5" >
+                                    <div class="bg-blue shadow-sm d-flex justify-content-around align-items-center rounded text-center p-5">
+                                        <div>
+                                            <h3 class="fs-2"><?= $countCandi ?></h3>
+                                            <p class="fs-5">Candidates</p>
+                                        </div>
+                                      
+                                    </div>
+                                </div>                        
+                            </div>
+                          
+                        <!--End of No. of candidate and partylist--> 
+                        
+                        <div class="col-md-12 p-5" style="display: none;">
+                            <div id="v-turnout" class="p-3 shadow-sm rounded" >
                                 <div class="text-center">
                                     <div class="spinner-border text-primary" role="status">
                                         <span class="visually-hidden">Loading...</span>
@@ -169,8 +198,9 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                 </div>
                             </div>
                         </div>
+
                         <!--tally-->
-                        <div class="col-md-12" style="display:none;">
+                        <div class="col-md-12 p-5" style="display:none;">
                             <div id="chart-container" class="p-3 shadow-sm rounded row">
                                 <h3 class="text-center"><u><?= $_SESSION['org_acr'] . ' CHOICE ' . date("Y"); ?></u></h3>
                                 <h2 class="text-center">ELECTION RESULTS</h2>
@@ -185,29 +215,11 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                         <!--/-end of tally-->
 
                         <!--elected officers-->
-                        <div class="col-md-12" style="display:none;">
+                        <div class="col-md-12 p-5" style="display:none;">
                             <div id="EO" class="shadow-sm rounded bg-white"></div>
                         </div>
                         <!--/-end of elected officers-->
-
-                        <div class="col-md-6">
-                            <div class="p-3 bg-info shadow-sm d-flex justify-content-around align-items-center rounded text-center">
-                                <div>
-                                    <h3 class="fs-2"><?= $countParty ?></h3>
-                                    <p class="fs-5">Partylist</p>
-                                </div>
-                                <i class="fas fa-fist-raised fs-1 primary-text border rounded-full p-3"></i>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="p-3 bg-info shadow-sm d-flex justify-content-around align-items-center rounded text-center">
-                                <div>
-                                    <h3 class="fs-2"><?= $countCandi ?></h3>
-                                    <p class="fs-5">Candidates</p>
-                                </div>
-                                <i class="fas fa-id-card-alt fs-1 primary-text border rounded-full p-3"></i>
-                            </div>
-                        </div>
+                       
 
                     </div>
 
@@ -283,6 +295,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         </script>
         <script>
             //setup
+         
             <?php foreach ($positions as $p) :
                 $tally = ChartTally($org_id, $p['id']);
                 $name = array();
@@ -364,6 +377,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                 );
             <?php endforeach; ?>
         </script>
+
+
     </body>
 
     </html>

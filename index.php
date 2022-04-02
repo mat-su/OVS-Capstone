@@ -20,7 +20,7 @@ require 'functions.php';
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <!--Font-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -51,6 +51,8 @@ require 'functions.php';
                 msg.classList.remove('alert-danger');
                 $('input[name=email]').removeClass("is-valid").removeClass("is-invalid");
                 $('input[name=password]').removeClass("is-valid").removeClass("is-invalid");
+                $('#email-error').remove();
+                $('#password-error').remove();
             });
             // Validator custom methods
             $.validator.addMethod("validateEmail", function(value, element) {
@@ -83,6 +85,7 @@ require 'functions.php';
                     $(element).addClass("is-valid").removeClass("is-invalid");
                 },
                 submitHandler: function() {
+                    $('#frmSignIn button[type=submit]').text("").append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Signing...');
                     let form = $('#frmSignIn');
                     let actionUrl = form.attr('action');
                     $.ajax({
@@ -100,6 +103,7 @@ require 'functions.php';
                                 $(msg).html(`<i class="fa fa-times-circle fs-4 me-3"></i><small>${resp.action}</small>`);
                                 $('input[name=email]').addClass("is-invalid").removeClass("is-valid");
                                 $('input[name=password]').addClass("is-invalid").removeClass("is-valid");
+                                $('#frmSignIn button[type=submit]').text("Sign In");
                             }
                         }
                     });

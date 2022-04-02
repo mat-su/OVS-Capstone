@@ -47,6 +47,9 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
 
+         <!--Font-->
+         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    
         <!--FontAwesome Kit-->
         <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -77,74 +80,72 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
 
     <body>
         <div class="d-flex " id="wrapper">
-            <!-- Sidebar -->
-            <nav class="bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading text-center py-2 fs-3 fw-bold text-uppercase border-bottom">
-                    <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563">1VOTE 4PLMAR</span>
-                    <p class="my-0">OVS</p>
-                </div>
-                <div class="list-group list-group-flush">
-                    <a href="dashboard.php" class="list-group-item list-group-item-action second-text fw-bold "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="partylist.php" class="list-group-item list-group-item-action second-text fw-bold active"><i class="fas fa-fist-raised me-2"></i> Partylist</a>
-                    <a href="rules_regulations.php" class="list-group-item list-group-item-action second-text fw-bold"><i class="fas fa-tasks me-2"></i>Rules & Regulations</a>
+             <!-- Sidebar -->
+             <div id="sidebar-wrapper">
+               
+               <div class="list-group list-group-flush">
+                   <a href="dashboard.php" class="bg-blue fw-bold px-3 py-2 text-decoration-none"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                   <a href="partylist.php" class="bg-red fw-bold px-3 py-2 text-decoration-none active"><i class="fas fa-fist-raised me-2"></i> Partylist</a>
+                   <a href="rules_regulations.php" class="bg-blue fw-bold px-3 py-2 text-decoration-none"><i class="fas fa-tasks me-2"></i>Rules & Regulations</a>
 
-                    <!--Election Schedule Section -->
-                    <div class="container-fluid pt-4 text-center ">
+                   <!--Election Schedule Section -->
+                   <div class="container-fluid pt-5 text-center ">
 
-                        <div class="rounded bg-gradient-4 text-dark shadow py-5 text-center">
-                            <h6 class=" fw-bolder fs-5"><i class="far fa-calendar-alt"></i> ELECTION SCHEDULE</h6>
-                            <?php if (!empty($sched)) { ?>
-                                <div class="fw-bold">
-                                    <div class="mt-4">
-                                        <span class="text-danger">STARTS</span><br>
-                                        <?= $sched['strt_dw'] ?> <?= $sched['strt_dm'] ?> <?= $sched['strt_sd1'] ?> <?= $sched['strt_sd2'] ?> <?= $strt_time ?>
-                                    </div>
-                                    <div class="mt-4">
-                                        <span class="text-danger">ENDS</span><br> <?= $sched['end_dw'] ?> <?= $sched['end_dm'] ?> <?= $sched['end_sd1'] ?> <?= $sched['end_sd2'] ?> <?= $end_time ?>
-                                    </div>
-                                </div>
-                            <?php } else { ?>
-                                <small class="fw-bold">NOT YET SET</small>
-                            <?php } ?>
-                            <div class="divider div-transparent mb-1"></div>
+                       <div class="rounded border text-white shadow py-5 text-center">
+                           <h6 class=" fw-bolder schedHead"><i class="far fa-calendar-alt"></i>  ELECTION SCHEDULE</h6>
+                           <?php if (!empty($sched)) { ?>
+                               <div>
+                                   <div class="mt-4">
+                                       <span class="fw-bold">STARTS</span><br>
+                                       <?= $sched['strt_dw'] ?> <?= $sched['strt_dm'] ?> <?= $sched['strt_sd1'] ?> <?= $sched['strt_sd2'] ?> <?= $strt_time ?>
+                                   </div>
+                                   <div class="mt-4">
+                                       <span class="fw-bold">ENDS</span><br> <?= $sched['end_dw'] ?> <?= $sched['end_dm'] ?> <?= $sched['end_sd1'] ?> <?= $sched['end_sd2'] ?> <?= $end_time ?>
+                                   </div>
+                               </div>
+                           <?php } else { ?>
+                               <small class="fw-bold">NOT YET SET</small>
+                           <?php } ?>
+                           <div class="divider div-transparent mb-1"></div>
 
-                            <div class="mt-4">
-                                <button id="btn_vn" class="btn btn-lg btn-danger" onclick="location.href='ballot-form.php'" type="button" disabled>
-                                    Vote Now</button>
-                            </div>
-                        </div>
+                           <div class="mt-4">
+                               <button id="btn_vn" class="btn btn-lg" onclick="location.href='ballot-form.php'" type="button" disabled>
+                                   Vote Now</button>
+                           </div>
 
-                    </div>
-                </div>
-            </nav>
-            <!-- /#sidebar-wrapper -->
+                       </div>
 
-            <!-- Page Content -->
-            <div id="page-content-wrapper">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-4 sticky-top">
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                        <h2 class="fs-4 m-0">VOTER PORTAL</h2>
-                    </div>
+                   </div>
+               </div>
+           </div>
+           <!-- /#sidebar-wrapper -->
+           <!-- Page Content -->
+           <div id="page-content-wrapper">
+               <nav  class="navbar navbar-expand-lg py-4 px-4">
+                   <div id="upper-nav" class="d-flex align-items-center ">
+                       <i class="fas fa-align-left fs-4 me-3 text-white" id="menu-toggle"></i>
+                           <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563"></span>
+                       <h2>VOTER PORTAL</h2>
+                   </div>                    
+                   <button id="button_toggle" class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                   <i class="fas fa-bars"></i>
+                   </button>
+                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                           <li class="nav-item dropdown">
+                               <a class="nav-link dropdown-toggle  text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                   <i class="fas fa-user me-2"></i><?= $fullname ?>
+                               </a>
+                               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                   <li><a class="dropdown-item" href="settings.php">Settings</a></li>
+                                   <li><a class="dropdown-item" href="im-a-candidate.php">I'm a Candidate</a></li>
+                                   <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
+                               </ul>
+                           </li>
+                       </ul>
+                   </div>
+               </nav>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user me-2"></i><?= $fullname ?>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="settings.php">Settings</a></li>
-                                    <li><a class="dropdown-item" href="im-a-candidate.php">I'm a Candidate</a></li>
-                                    <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
                 <div class="container-fluid px-4 my-4">
                     <?php if (isset($_GET['err'])) { ?>
                         <div class="alert alert-danger mt-3" role="alert">
@@ -152,17 +153,17 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                         </div>
                     <?php } ?>
                     <div class="row">
-                        <div class="col-md-9">
-                            <p class=""><em>Student Organization: <b><?= $_SESSION['org_name'] ?></b></em></p>
+                        <div class="col-md-12 text-center p-5">
+                            <h3>Meet the Candidates</h3>
                         </div>
                     </div>
-                    <p class="fs-4 text-left">Partylists</p>
-                    <div class="row text-center m-2">
+                    <div class="row text-center m-2 ">
                         <?php foreach ($partylists as $p) :
                             $candidates = SelectAll_Candidates($org_id, $p['pname']);
                         ?>
-                            <div class="shadow-sm d-flex mt-3 align-items-center rounded">
-                                <i class="fas fa-users fs-3 bg-gradient text-dark p-3"><?= $p['pname'] ?></i>
+                            <div class="d-flex mt-3 align-items-center pt-3  borderRed">
+                                <h4>Partylist: <?= $p['pname'] ?></h4>
+                                
                             </div>
                             <div id="owl" class="text-center container mt-2">
                                 <div class="slider owl-carousel">
@@ -215,7 +216,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
             <!-- /#page-content-wrapper -->
         </div>
 
-        <?php template_footer() ?>
+      
 
         </div>
         <!-- End of .container -->

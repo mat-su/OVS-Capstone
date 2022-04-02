@@ -38,7 +38,6 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>Candidate Page</title>
 
-        <link rel="stylesheet" href="style.css">
         <!-- Tab Logo -->
         <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
 
@@ -49,6 +48,9 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
+         <!--Font-->
+         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    
         <!--JQuery Link-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -56,6 +58,9 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="style.css">
+
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     </head>
 
@@ -75,8 +80,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                             <i class="fas fa-check fs-4 me-3"></i><span><?= $_GET['info'] ?></span>
                         </div>
                     <?php } ?>
-                    <div class="row bg-white m-2 p-3 shadow-lg justify-content-around align-items-center rounded border border-primary border-3">
-                        <div class=""><a href="dashboard.php" class="btn btn-secondary float-end">Back</a></div>
+                    <div class="row bg-white m-5 p-2 shadow-lg justify-content-around align-items-center rounded border border-3">
+                        <div class=""><a href="dashboard.php" class="btn float-end"><u>Back</u></a></div>
                         <div class="col-md-6 text-center">
                             <div>
                                 <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:10rem;">
@@ -106,7 +111,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                         </div>
 
                         <div class="divider div-transparent mb-3"></div>
-                        <div><button class="btn btn-secondary float-end mx-4 " id="btn-edit-platform">Edit <i class="fas fa-edit"></i></button></div>
+                        <div><button class="btn btn-red float-end mx-4 " id="btn-edit-platform">Edit <i class="fas fa-edit"></i></button></div>
                         <div class="col-md-12">
                             <div class="text-center">
                                 <i class="fas fa-bullhorn fs-1 primary-text  secondary-bg p-4"></i>
@@ -152,7 +157,6 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         </div>
 
 
-        <?= template_footer() ?>
 
 
         <script>
