@@ -4,53 +4,53 @@ include '../functions.php';
 $conn = MYSQL_DB_Connection();
 date_default_timezone_set('Asia/Hong_Kong');
 $current_date = date('Y-m-d H:i:s', time());
+if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['org_id']) && isset($_SESSION['org_name'])) {
+    $voter_id = $_SESSION['v_id'];
+    $stmt = $conn->prepare("SELECT v_id, v_status FROM tbl_voter_status WHERE v_id = :v_id");
+    $stmt->bindParam(':v_id', $voter_id, PDO::PARAM_INT);
+    $stmt->execute();
 
-$voter_id = $_SESSION['v_id'];
-$stmt = $conn->prepare("SELECT v_id, v_status FROM tbl_voter_status WHERE v_id = :v_id");
-$stmt->bindParam(':v_id', $voter_id, PDO::PARAM_INT);
-$stmt->execute();
-
-if ($stmt->rowCount() > 0) {
-    if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
-        header("Location: dashboard.php?err=Sorry you have already cast a vote!");
-    } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
-        header("Location: partylist.php?err=Sorry you have already cast a vote!");
+    if ($stmt->rowCount() > 0) {
+        if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
+            header("Location: dashboard.php?err=Sorry you have already cast a vote!");
+        } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
+            header("Location: partylist.php?err=Sorry you have already cast a vote!");
+        } else {
+            header("Location: rules_regulations.php?err=Sorry you have already cast a vote!");
+        }
     } else {
-        header("Location: rules_regulations.php?err=Sorry you have already cast a vote!");
-    }
-} else {
-    if (isset($_SESSION['v_id']) && isset($_SESSION['org_id'])) {
-        $id = $_SESSION['v_id'];
-        $org_id = $_SESSION['org_id'];
-        $sched = Select_VotingSched($org_id);
-        $target_s_date = $sched['startdate'];
-        $target_e_date = $sched['enddate'];
-        $target = $target_e_date;
-        /* $tempdate = date('Y-m-d H:i:s', strtotime($target_e_date));
+        if (isset($_SESSION['v_id']) && isset($_SESSION['org_id'])) {
+            $id = $_SESSION['v_id'];
+            $org_id = $_SESSION['org_id'];
+            $sched = Select_VotingSched($org_id);
+            $target_s_date = $sched['startdate'];
+            $target_e_date = $sched['enddate'];
+            $target = $target_e_date;
+            /* $tempdate = date('Y-m-d H:i:s', strtotime($target_e_date));
         $tempdate2 = new DateTime($tempdate);
         $tempdate2->add(new DateInterval('PT1M'));
         $target = $tempdate2->format('Y-m-d H:i:s'); */
-        //target == target_e_date
+            //target == target_e_date
 
-        if ($current_date < $target_s_date) { //not yet started
-            if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
-                header("Location: dashboard.php?err=Voting has not yet started!");
-            } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
-                header("Location: partylist.php?err=Voting has not yet started!");
-            } else {
-                header("Location: rules_regulations.php?err=Voting has not yet started!");
+            if ($current_date < $target_s_date) { //not yet started
+                if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
+                    header("Location: dashboard.php?err=Voting has not yet started!");
+                } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
+                    header("Location: partylist.php?err=Voting has not yet started!");
+                } else {
+                    header("Location: rules_regulations.php?err=Voting has not yet started!");
+                }
+            } else if ($current_date >= $target_s_date && $current_date <= $target) { //started but not yet finished
+                $org_struc = fetchAll_OrgStructure($org_id);
+            } else if ($current_date > $target) {
+                if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
+                    header("Location: dashboard.php?err=Voting has ended!");
+                } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
+                    header("Location: partylist.php?err=Voting has ended!");
+                } else {
+                    header("Location: rules_regulations.php?err=Voting has ended!");
+                }
             }
-        } else if ($current_date >= $target_s_date && $current_date <= $target) { //started but not yet finished
-            $org_struc = fetchAll_OrgStructure($org_id);
-        } else if ($current_date > $target) {
-            if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
-                header("Location: dashboard.php?err=Voting has ended!");
-            } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
-                header("Location: partylist.php?err=Voting has ended!");
-            } else {
-                header("Location: rules_regulations.php?err=Voting has ended!");
-            }
-        }
 
 ?>
         <!DOCTYPE html>
@@ -133,10 +133,37 @@ if ($stmt->rowCount() > 0) {
                                         <div class="col-12 rounded-bottom border border-dark ">
                                             <div class="container d-flex justify-content-center mt-2 fst-italic">
                                                 <?php
-                                                if ($o['seats'] > 1) {
-                                                    echo "--Choose up to " . $o['seats'] . " candidates--";
-                                                }
+                                                $can = fetchAll_CandidatesforBallot($org_id, $o['id']);
+                                                foreach ($can as $c) {
+                                                    if ($c['seats'] == 1) {
+
+                                                        $dir_img_file = './img-uploads/' . $c['img'];
+                                                        $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png';
                                                 ?>
+                                                        <div class="form-check mx-3 my-3">
+
+                                                            <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
+
+                                                            <input class="form-check-input" type="radio" name="<?= $o['position'] ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>">
+                                                            <label id="<?= $o['position'] ?>" class="form-check-label">
+                                                                <?= $c['cname'] ?>
+                                                            </label>
+                                                        </div>
+                                                    <?php
+                                                    } else {
+                                                        $dir_img_file = './img-uploads/' . $c['img'];
+                                                        $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png'; ?>
+                                                        <div class="form-check mx-3 my-3">
+
+                                                            <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
+
+                                                            <input class="form-check-input" type="checkbox" name="<?= $o['position'] . '[]' ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>" data-max="<?= $c['seats'] ?>">
+                                                            <label id="<?= $o['position'] ?>" class="form-check-label">
+                                                                <?= $c['cname'] ?>
+                                                            </label>
+                                                        </div>
+                                                <?php    }
+                                                }  ?>
                                             </div>
                                             <?php
                                             $can = fetchAll_CandidatesforBallot($org_id, $o['id']);
@@ -172,9 +199,8 @@ if ($stmt->rowCount() > 0) {
                                             <?php    }
                                             }  ?>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
+                                    <?php endforeach; ?>
+                                </div>
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end p-3">
                                 <button class="btn " id="submit" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="ballot" onclick="displayBallot()">Submit
@@ -183,13 +209,13 @@ if ($stmt->rowCount() > 0) {
                             </div>
                         </form>
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!--End Ballot-->
+                <!--End Ballot-->
 
-            <!--Ballot Preview Modal-->
+                <!--Ballot Preview Modal-->
 
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -207,52 +233,54 @@ if ($stmt->rowCount() > 0) {
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--End Ballot Preview Modal-->
+                <!--End Ballot Preview Modal-->
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 
-            <script src="../assets/js/ballot.js"></script>
-            <script>
-                function limit() {
-                    var count = 0;
-                    var boxes = document.querySelectorAll("input[type=checkbox]");
-                    for (var i = 0; i < boxes.length; i++) {
-                        if (boxes[i].checked && boxes[i].name == this.name) {
-                            count++;
+                <script src="../assets/js/ballot.js"></script>
+                <script>
+                    function limit() {
+                        var count = 0;
+                        var boxes = document.querySelectorAll("input[type=checkbox]");
+                        for (var i = 0; i < boxes.length; i++) {
+                            if (boxes[i].checked && boxes[i].name == this.name) {
+                                count++;
+                            }
+                        }
+                        if (count > this.getAttribute("data-max")) {
+                            this.checked = false;
+                            alert("Maximum of " + this.getAttribute("data-max") + ".");
                         }
                     }
-                    if (count > this.getAttribute("data-max")) {
-                        this.checked = false;
-                        alert("Maximum of " + this.getAttribute("data-max") + ".");
+                    window.onload = function() {
+                        var boxes = document.querySelectorAll("input[type=checkbox]");
+                        for (var i = 0; i < boxes.length; i++) {
+                            boxes[i].addEventListener('change', limit, false);
+                        }
                     }
-                }
-                window.onload = function() {
-                    var boxes = document.querySelectorAll("input[type=checkbox]");
-                    for (var i = 0; i < boxes.length; i++) {
-                        boxes[i].addEventListener('change', limit, false);
-                    }
-                }
-                $(document).ready(function() {
-                    $('.alert').delay(10000).slideUp(200, function() {
-                        $(this).alert('close');
+                    $(document).ready(function() {
+                        $('.alert').delay(10000).slideUp(200, function() {
+                            $(this).alert('close');
+                        });
                     });
-                });
-            </script>
+                </script>
 
-        </body>
+            </body>
 
-        </html>
+            </html>
 
 <?php
-    } else {
-        if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
-            header("Location: dashboard.php?err=There was an error!");
-        } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
-            header("Location: partylist.php?err=There was an error!");
         } else {
-            header("Location: rules_regulations.php?err=There was an error!");
+            if (isset($_SESSION['dashboard']) && $_SESSION['dashboard'] === true) {
+                header("Location: dashboard.php?err=There was an error!");
+            } elseif (isset($_SESSION['partylist']) && $_SESSION['partylist'] === true) {
+                header("Location: partylist.php?err=There was an error!");
+            } else {
+                header("Location: rules_regulations.php?err=There was an error!");
+            }
         }
     }
+} else {
+    header("Location: ../index.php");
 }
 ?>

@@ -406,7 +406,20 @@ $(document).ready(function () {
             $('input[name="lname"]').val('');
         }
     });
-
+    $('#studnum').blur(function (e) {
+        $('#response').remove();
+        const regexStudNum = /^PM-[0-9]{2}-[0-9]{5}-[A-Z]$/;
+        var x = document.querySelector('#studnum');
+        x.value = x.value.toUpperCase();
+        if (regexStudNum.test(x.value)) {
+            $('#searchdata').prop('disabled', false);
+        } else {
+            $('#searchdata').prop('disabled', true);
+            $('input[name="fname"]').val('');
+            $('input[name="mname"]').val('');
+            $('input[name="lname"]').val('');
+        }
+    });
     $('#searchdata').click(function (e) {
         e.preventDefault();
         var studnum = $('#studnum').val();
