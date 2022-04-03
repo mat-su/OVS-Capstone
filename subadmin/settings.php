@@ -437,16 +437,6 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
     </head>
 
     <body>
-        <!--Contacts Section-->
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container-fluid">
-                <ul class="navbar-nav ">
-                    <li class="nav-item py-2">
-                        <small>PAMANTASAN NG LUNGSOD NG MARIKINA</small>
-                    </li>
-                </ul>
-            </div>
-        </nav>
 
         <div class="">
             <div class="container w-container">
@@ -482,7 +472,6 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
         </div>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br>
-        <?= template_footer() ?>
         <!-- Modals -->
         <!-- Modal1-->
         <div class="modal fade" id="modalCE" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

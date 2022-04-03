@@ -1,3 +1,6 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
 /* Nav item color */
 .main-nav a {
   color: #3d3636 !important;
@@ -189,6 +192,7 @@
   -moz-transition: margin 0.25s ease-out;
   -o-transition: margin 0.25s ease-out;
   transition: margin 0.25s ease-out;
+  padding-top: 104px;
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -239,7 +243,7 @@
   }
 
   #wrapper.toggled #sidebar-wrapper {
-    margin-left: -17.7rem;
+    margin-left: -16rem;
   }
 }
 
@@ -342,3 +346,10 @@
     background-position: right calc(0.375em + 0.1875rem) center !important;
     background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
 }
+
+#menu-toggle:before {
+  content: "\f036";
+  margin-bottom: 14px;
+  display: inline-block;
+}
+

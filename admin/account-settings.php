@@ -21,15 +21,6 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
 
     <body>
         <!--Contacts Section-->
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container-fluid">
-                <ul class="navbar-nav ">
-                    <li class="nav-item py-2">
-                        <small>PAMANTASAN NG LUNGSOD NG MARIKINA</small>
-                    </li>
-                </ul>
-            </div>
-        </nav>
         <div class="container col col-md-6 offset-md-3 mt-3"><span class="fs-3">Administrator Account Settings</span>
             <div id="getDetails"></div>
         </div>
@@ -255,7 +246,6 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
             </div>
         </div>
         <br><br><br><br><br>
-        <?= template_footer() ?>
 
         <script>
             $(document).ready(function() {

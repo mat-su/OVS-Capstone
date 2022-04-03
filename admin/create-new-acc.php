@@ -10,26 +10,14 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
 ?>
 
     <body>
-        <!--Contacts Section-->
-        <nav class="navbar navbar-expand text-white py-0" style="background-color: #000000;">
-            <div class="container-fluid">
-                <ul class="navbar-nav ">
-                    <li class="nav-item py-2">
-                        <small>PAMANTASAN NG LUNGSOD NG MARIKINA</small>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav collapse navbar-collapse justify-content-end">
-                    <li class="nav-item"><span class="text-white">|</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="dashboard.php"><small>Back</small></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div class="container col col-md-6 offset-md-3 mt-3">
+            <a class="float-end btn btn-secondary" href="dashboard.php"><small>Back</small></a>
+        </div>
+        div
         <div class="container col col-md-6 offset-md-3 mt-3"><b class="fs-3">Create Successor</b>
             <div id="getDetails"></div>
         </div>
+
         <div class="container mt-3 mb-5">
             <div class="col col-md-6 offset-md-3 mb-4">
                 <div class="card rounded shadow mt-3">
@@ -59,7 +47,6 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                 </div>
             </div>
         </div>
-        <?= template_footer() ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function() {
@@ -112,8 +99,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                         var lname = $('#lname').val().trim();
                         var email = $('#email').val().trim();
                         var submit = $('#btnCA').val();
-                        $('#btnCA').text('').prop('disabled', true).append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating...');
-;
+                        $('#btnCA').text('').prop('disabled', true).append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating...');;
                         $('#loader').show();
 
                         $('#getDetails').load("mail_new_admin.php", {

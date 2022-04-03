@@ -6,7 +6,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
     $_SESSION['dashboard'] = true;
     $_SESSION['partylist'] = false;
     $id = $_SESSION['v_id'];
-    $stmt = $conn->prepare("SELECT CONCAT(v_fname, ' ', v_lname) AS fullname FROM tbl_voter WHERE v_id = :id");
+    $stmt = $conn->prepare("SELECT v_fname, CONCAT(v_fname, ' ', v_lname) AS fullname FROM tbl_voter WHERE v_id = :id");
     $stmt->bindParam(':id', $id, PDO::PARAM_STR);
     $stmt->execute();
     $voter = $stmt->fetch(PDO::FETCH_ASSOC);
