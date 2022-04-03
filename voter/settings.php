@@ -51,6 +51,11 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
         <!--Font Awesome CSS CDN-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
+        <!--Font-->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="style.css">
+
         <script>
             $(document).ready(function() {
                 $('#modalCE, #modalCU, #modalCP').on('hidden.bs.modal', function() {
@@ -309,8 +314,9 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
             .w-button {
                 display: inline-block;
                 /* padding: 9px 15px; */
-                background-color: #3898EC;
-                color: white;
+                border-color: #d00000;
+                background-color:#ffffff;
+                color: #d00000;
                 border: 0;
                 line-height: inherit;
                 text-decoration: none;
@@ -319,6 +325,10 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
                 width: 90px;
                 height: 40px;
             }
+            .w-button:hover{
+                    background-color:#d00000;
+                    color: #ffffff;
+                }
 
             input.w-button {
                 -webkit-appearance: button
@@ -383,6 +393,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
                 .w-button {
                     width: 90px;
                     height: 40px;
+
                 }
 
                 label {
@@ -456,6 +467,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
                     width: 70px;
                     height: 30px;
                 }
+               
 
                 label {
                     font-size: 12px;
@@ -506,7 +518,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
         <div class="">
             <div class="container w-container">
                 <div class="div-block-4">
-                    <div><a class="float-end btn btn-secondary" style="margin:10px;" href="dashboard.php">Back</a></div>
+                    <div><a class="float-end btn" style="margin:10px;" href="dashboard.php"><u>Back</u></a></div>
                 
                     <div class="form-block-2 w-form">
                         <form id="" name="" data-name="" method="" class="form-2">

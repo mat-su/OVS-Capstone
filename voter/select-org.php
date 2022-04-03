@@ -14,8 +14,13 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+
         <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+        <!--Font-->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="../css/style_ballotForm.css">
+            
         <!--FontAwesome Kit-->
         <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -48,8 +53,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
                                                 <?php endforeach; ?>
                                             </select>
                                         </p>
-                                        <button type="button" class="btn btn-danger" id="btn_back">Go back</button>
-                                        <button type="submit" class="btn btn-primary float-end" id="btn_ok">Okay</button>
+                                        <button type="button" class="btn btn-red" id="btn_back">Go back</button>
+                                        <button type="submit" class="btn btn-blue float-end" id="btn_ok">Okay</button>
                                     </form>
                                 </div>
                             </div>
