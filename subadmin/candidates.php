@@ -36,6 +36,9 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-white" id="sidebar-wrapper">
+                <div class="pt-5 text-center">
+                    <h3><b>MENU</b></h3>
+                </div>
                 <div class="list-group list-group-flush my-3">
                     <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Dashboard</a>
                     <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Students</a>

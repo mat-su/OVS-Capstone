@@ -32,41 +32,6 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
         <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/logo-png_Xt7bTS_7o.png?ik-sdk-version=javascript-1.4.3&updatedAt=1636213481504" />
         <!--JQuery Validation PlugIn-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
-        <script>
-            // $(document).ready(function() {
-            //     $(document).on('click', '.linkview', function() {
-            //         var org_id = $(this).attr("id");
-            //         $.ajax({
-            //             url: "view-org.php",
-            //             method: "POST",
-            //             data: {
-            //                 org_id: org_id
-            //             },
-            //             success: function(data) {
-            //                 $('#edit_modal').html(data);
-            //                 $('#staticBackdropView').modal('show');
-            //             }
-            //         });
-            //     });
-            //     $(document).on('click', '.linktrash', function() {
-            //         var org_id = $(this).attr("id");
-            //         $.ajax({
-            //             url: "delete-org.php",
-            //             method: "POST",
-            //             data: {
-            //                 org_id: org_id
-            //             },
-            //             success: function(data) {
-            //                 $('#delete_modal').html(data);
-            //                 $('#staticBackdropDelete').modal('show');
-            //             }
-            //         });
-            //     });
-            // $('#staticBackdropCreate').on('hidden.bs.modal', function() {
-            //     $(this).find('form').trigger('reset');
-            // });
-            // })
-        </script>
         <style>
             #org_name-error,
             #org_acronym-error,
@@ -82,6 +47,9 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-white" id="sidebar-wrapper">
+                <div class="pt-5 text-center">
+                    <h3><b>MENU</b></h3>
+                </div>
                 <div class="list-group list-group-flush my-3">
                     <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold "><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Enrolled Students</a>

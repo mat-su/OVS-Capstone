@@ -29,7 +29,7 @@ if (isset($_SESSION['sa_id']) && isset($_SESSION['sa_email'])) {
 
     <head>
         <meta charset="utf-8" />
-        <title>Settings</title>
+        <title>Account Settings</title>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
         <script type="text/javascript">

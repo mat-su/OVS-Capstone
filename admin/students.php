@@ -25,6 +25,9 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
         <div class="d-flex" id="wrapper">
             <!-- Sidebar -->
             <div class="bg-white" id="sidebar-wrapper">
+                <div class="pt-5 text-center">
+                    <h3><b>MENU</b></h3>
+                </div>
                 <div class="list-group list-group-flush my-3">
                     <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="students.php" class="active list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Enrolled Students</a>
