@@ -11,10 +11,10 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
 
     <body>
         <div class="container col col-md-6 offset-md-3 mt-3">
-            <a class="float-end btn btn-secondary" href="dashboard.php"><small>Back</small></a>
+            <a class="float-end text-dark" href="dashboard.php">Back</a>
         </div>
-        div
-        <div class="container col col-md-6 offset-md-3 mt-3"><b class="fs-3">Create Successor</b>
+        <div class="mt-5" style="visibility: hidden;">null</div>
+        <div class="container col col-md-12 text-center"><b class="fs-3">Create Successor</b>
             <div id="getDetails"></div>
         </div>
 

@@ -41,12 +41,8 @@ body{
     border-color: #d00000 !important;    
 }
 .btn-red:hover{
-<<<<<<< HEAD
-    background-color: #d00000e3 !important;    
-=======
     background-color: #d00000e3 !important;
     color: #ffffff !important;    
->>>>>>> rica-git
 }
 
 .btn-blue{

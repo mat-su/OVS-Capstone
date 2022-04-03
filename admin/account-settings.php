@@ -21,14 +21,17 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
 
     <body>
         <!--Contacts Section-->
-        <div class="container col col-md-6 offset-md-3 mt-3"><span class="fs-3">Administrator Account Settings</span>
+        <div class="container col col-md-6 offset-md-3 mt-5">
+            <a class="float-end text-dark me-5" href="dashboard.php">Back</a>
+        </div>
+        <div class="mt-5" style="visibility: hidden;">null</div>
+        <div class="container col col-md-6 offset-md-3 text-center pt-2"><span class="fs-3">Administrator Account Settings</span>
             <div id="getDetails"></div>
         </div>
         <div class="container mt-3 mb-5">
             <div class="row">
                 <div class="col col-md-6 offset-md-3 mb-4">
                     <div class="card rounded shadow mt-3">
-                    <div><a class="float-end btn btn-secondary mb-0" style="margin:15px" href="dashboard.php">Back</a></div>
                         <div class="card-body table-responsive">
                             <p class="display-5 fs-5">Account Information</p>
                             <table class="table table-bordered table-striped mt-3">

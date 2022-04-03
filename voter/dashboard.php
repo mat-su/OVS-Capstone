@@ -56,7 +56,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
 
         <!--Font-->
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
-    
+
 
         <!--FontAwesome Kit-->
         <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
@@ -81,7 +81,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
         <div class="d-flex " id="wrapper">
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
-               
+
                 <div class="list-group list-group-flush">
                     <a href="dashboard.php" class="bg-red fw-bold px-3 py-2 text-decoration-none active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="partylist.php" class="bg-blue fw-bold px-3 py-2 text-decoration-none"><i class="fas fa-fist-raised me-2"></i> Partylist</a>
@@ -91,7 +91,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                     <div class="container-fluid pt-5 text-center ">
 
                         <div class="rounded border text-white shadow py-5 text-center">
-                            <h6 class=" fw-bolder schedHead"><i class="far fa-calendar-alt"></i>  ELECTION SCHEDULE</h6>
+                            <h6 class=" fw-bolder schedHead"><i class="far fa-calendar-alt"></i> ELECTION SCHEDULE</h6>
                             <?php if (!empty($sched)) { ?>
                                 <div>
                                     <div class="mt-4">
@@ -120,14 +120,14 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
             <!-- /#sidebar-wrapper -->
             <!-- Page Content -->
             <div id="page-content-wrapper">
-                <nav  class="navbar navbar-expand-lg py-4 px-4">
+                <nav class="navbar navbar-expand-lg py-4 px-4">
                     <div id="upper-nav" class="d-flex align-items-center ">
                         <i class="fas fa-align-left fs-4 me-3 text-white" id="menu-toggle"></i>
-                            <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563"></span>
+                        <span class="navbar-brand fs-3 fw-bold"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-40/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563"></span>
                         <h2>VOTER PORTAL</h2>
-                    </div>                    
+                    </div>
                     <button id="button_toggle" class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
+                        <i class="fas fa-bars"></i>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -158,39 +158,39 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                     <img src="https://ik.imagekit.io/nwlfpk0xpdg/img/welcome_Cupeh9RV8.png?updatedAt=1636213495762" alt="" width="auto" height="200">
                                     <h3 class="fs-2">Welcome to OVS!</h3>
                                     <p class="fs-6">Hi <b><?= $voter['v_fname'] ?></b>! We are excited to have you here. Always exercise your right to vote and be part of the school affairs. Do it for the good change.</p>
-                                    <p style="color: #d00000;">Your STUDENT ORGANIZATION: <em><b><?= $_SESSION['org_name'] ?></b></em></p>                                  
+                                    <p style="color: #d00000;">Your STUDENT ORGANIZATION: <em><b><?= $_SESSION['org_name'] ?></b></em></p>
                                     <a href="#canpar" class="smoothScroll">
-                                    <p class=" py-5">Scroll more for updates.<i class="fa fa-angle-double-down" aria-hidden="true"></i></p>
+                                        <p class=" py-5">Scroll more for updates.<i class="fa fa-angle-double-down" aria-hidden="true"></i></p>
                                     </a>
                                 </div>
-                                
-                        </div>
-                            <!--No. of candidate and partylist-->
-                            <div  id="canpar"class="d-flex justify-content-around ">
-                                <div class="col-md-4 py-5 ">
-                                    <div class="bg-blue shadow-sm d-flex justify-content-around align-items-center rounded text-center p-5">
-                                        <div>
-                                            <h3 class="fs-2"><?= $countParty ?></h3>
-                                            <p class="fs-5">Partylist</p>
-                                        </div>
-                                       
-                                    </div>
-                                </div>
-                                <div class="col-md-4 py-5" >
-                                    <div class="bg-blue shadow-sm d-flex justify-content-around align-items-center rounded text-center p-5">
-                                        <div>
-                                            <h3 class="fs-2"><?= $countCandi ?></h3>
-                                            <p class="fs-5">Candidates</p>
-                                        </div>
-                                      
-                                    </div>
-                                </div>                        
                             </div>
-                          
-                        <!--End of No. of candidate and partylist--> 
-                        
+                        </div>
+                        <!--No. of candidate and partylist-->
+                        <div id="canpar" class="d-flex justify-content-around ">
+                            <div class="col-md-4 py-5 ">
+                                <div class="bg-blue shadow-sm d-flex justify-content-around align-items-center rounded text-center p-5">
+                                    <div>
+                                        <h3 class="fs-2"><?= $countParty ?></h3>
+                                        <p class="fs-5">Partylist</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 py-5">
+                                <div class="bg-blue shadow-sm d-flex justify-content-around align-items-center rounded text-center p-5">
+                                    <div>
+                                        <h3 class="fs-2"><?= $countCandi ?></h3>
+                                        <p class="fs-5">Candidates</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--End of No. of candidate and partylist-->
+
                         <div class="col-md-12 p-5" style="display: none;">
-                            <div id="v-turnout" class="p-3 shadow-sm rounded" >
+                            <div id="v-turnout" class="p-3 shadow-sm rounded">
                                 <div class="text-center">
                                     <div class="spinner-border text-primary" role="status">
                                         <span class="visually-hidden">Loading...</span>
@@ -219,7 +219,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                             <div id="EO" class="shadow-sm rounded bg-white"></div>
                         </div>
                         <!--/-end of elected officers-->
-                       
+
 
                     </div>
 
@@ -266,7 +266,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                     if (distance1 < 0 && now < countDownDate2) {
                         clearInterval(x);
                         $('#btn_vn').prop('disabled', false);
-                        $('.g-3 div:nth-child(2)').css("display", "block");
+                        $('.g-3 div:nth-child(3)').css("display", "block");
                     } else {
                         $('#btn_vn').prop('disabled', true);
                     }
@@ -280,8 +280,8 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                     var distance2 = countDownDate2 - now;
                     if (distance2 < 0) {
                         $('#btn_vn').prop('disabled', true);
-                        $('.g-3 div:nth-child(2)').css("display", "block");
                         $('.g-3 div:nth-child(3)').css("display", "block");
+                        $('.g-3 div:nth-child(4)').css("display", "block");
                         //$('.g-3 div:nth-child(4)').css("display", "block");
                         //$('#EO').load("elected-officers.php");
                         clearInterval(y);
@@ -292,10 +292,11 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                     }
                 }
             });
+            console.log(document.querySelector('.g-3 div:nth-child(3)'))
         </script>
         <script>
             //setup
-         
+
             <?php foreach ($positions as $p) :
                 $tally = ChartTally($org_id, $p['id']);
                 $name = array();
@@ -354,14 +355,19 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                             legend: {
                                 display: true,
                                 position: 'right',
-                                align: 'center'
+                                align: 'center',
+                                labels: {
+                                    font: {
+                                        
+                                        family: 'Montserrat, sans-serif'
+                                    }
+                                }
                             },
                             labels: {
                                 render: 'value',
                                 fontSize: 14,
                                 fontStyle: 'bold',
                                 fontColor: '#FFF',
-                                fontFamily: '"Lucida Console", Monaco, monospace'
                             }
                         },
 
