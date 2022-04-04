@@ -52,3 +52,11 @@ body{
 .btn-blue:hover{
     color: #ffc300 !important;    
 }
+
+#div-button-back {
+    text-align: right;
+    padding-top: 40px;  
+}
+#button-back {
+    color: #001d3d;
+  }

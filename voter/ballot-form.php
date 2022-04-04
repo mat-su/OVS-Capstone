@@ -94,16 +94,14 @@ if ($stmt->rowCount() > 0) {
         </head>
 
         <body>
-            <!--Main navbar-->
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg ">
-                <!-- Container wrapper -->
-                <div class="container-fluid" id="main-nav">
-                    <a class="nav-link d-flex flex-column text-center" aria-current="page" href="dashboard.php"><i class="fas fa-home text-dark"></i><span class="small text-dark">Back</span></a>
+          
+            
+                <div class="container px-5 my-4" id="div-button-back">
+                    <a href="dashboard.php" id="button-back" class="text-default">Back</a>
                 </div>
-                <!-- Container wrapper -->
-            </nav>
-            <!-- End Navbar -->
+              
+        
+
             <div class="d-flex justify-content-center" id="loader_section">
                 <div class="lds-ellipsis" id="loader">
                     <div></div>
@@ -112,8 +110,11 @@ if ($stmt->rowCount() > 0) {
                     <div></div>
                 </div>
             </div>
+            
             <!--Ballot-->
             <div class="container px-5 my-4">
+             
+                
                 <?php if (isset($_GET['err'])) { ?>
                     <div class="alert alert-danger mt-3" role="alert">
                         <i class="fas fa-times fs-4 me-3"></i><span><?= $_GET['err'] ?></span>
@@ -148,12 +149,11 @@ if ($stmt->rowCount() > 0) {
                                             ?>
                                                     <div class="form-check mx-3 my-3 d-flex">
 
-
-                                                        <input class="form-check-input" type="radio" name="<?= $o['position'] ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>">
-                                                        <img class="rounded-circle border img-fluid m-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
-
-                                                        <label id="<?= $o['position'] ?>" class="form-check-label">
-                                                            <?= $c['cname'] ?>
+                                                        <label id="<?= $o['position'] ?>" class="form-check-label d-flex">
+                                                            <input class="form-check-input" type="radio" name="<?= $o['position'] ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>">
+                                                            <img class="rounded-circle border img-fluid m-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
+                                                        
+                                                                <?= $c['cname'] ?>
                                                         </label>
                                                     </div>
                                                 <?php
