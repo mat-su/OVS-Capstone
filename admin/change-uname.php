@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
             $stmt->execute();
             $output = '
             <div class="alert alert-success mt-2" role="alert">
-            <i class="fa fa-check fs-4 me-2"></i><strong>Success..!</strong> Username was changed.
+            <i class="fa fa-check fs-4 me-2"></i><strong>Success!</strong> Username was changed.
             </div>'."<script>$('#frmNewUname, #btnCU').remove();</script>"; 
         } else {
             $output = '

@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
                     
                     $output = '
                     <div class="alert alert-success mt-2" role="alert">
-                    <i class="fa fa-check fs-4 me-2"></i><strong>Success..!</strong> Password was changed.
+                    <i class="fa fa-check fs-4 me-2"></i><strong>Success!</strong> Password was changed.
                     </div>'."<script>$('#frmNewPass, #btnCP').remove();"; 
                 }
             } else {
