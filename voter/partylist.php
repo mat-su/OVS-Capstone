@@ -174,7 +174,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
 
                                     ?>
                                         <div class="card p-3 btn_rm" id="<?= $c['cid'] ?>">
-                                            <div class="d-flex justify-content-center"><img src="<?= $candidate_img ?>" class="img-fluid mt-2" style="height: 130px; width: auto;" alt=""></div>
+                                            <div class="d-flex justify-content-center"><img src="<?= $candidate_img ?>" class="img-fluid rounded-circle mt-2" style="height: 130px; width: auto;" alt=""></div>
                                             <div class="content">
                                                 <div class="title fs-5"><?= $c['cname'] ?></div>
                                                 <p class="lead mb-0 fs-6"><?= $c['position'] ?></p>

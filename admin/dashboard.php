@@ -63,8 +63,8 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                 <div class="list-group list-group-flush my-3">
                     <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold active"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="students.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users me-2"></i>Enrolled Students</a>
-                    <a href="sub-admin.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users-cog me-2"></i>Sub Admin</a>
                     <a href="stud_org.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-sitemap me-2"></i>Student Organization</a>
+                    <a href="sub-admin.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-users-cog me-2"></i>Sub Admin</a>
                     <a href="v_sched.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="far fa-calendar-alt fs-5 me-2"></i></i>Voting Schedule</a>
                     <a href="import_file.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-file-import me-2"></i>Import file</a>
                 </div>
@@ -105,7 +105,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                     <div class="row g-3 my-2">
                         <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                                <div>
+                                <div class="text-center">
                                     <?php
                                     if (checkTblEnrExistence() == 0) {
                                         echo '<h3 class="fs-2">0</h3>';
@@ -115,37 +115,32 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                     ?>
                                     <p class="fs-5">Enrolled Students</p>
                                 </div>
-                                <i class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                                <div>
+                            <div class="text-center">
                                     <h3 class="fs-2"><?= $num_voter ?></h3>
                                     <p class="fs-5">Total Voters</p>
                                 </div>
-                                <i class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                                <div>
+                                <div class="text-center">
                                     <h3 class="fs-2"><?= $num_sa ?></h3>
                                     <p class="fs-5">Sub Admins</p>
                                 </div>
-                                <i class="fas fa-users-cog fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                                <div>
+                            <div class="text-center">
                                     <h3 class="fs-2"><?= $num_orgs ?></h3>
                                     <p class="fs-5">Student Orgs</p>
                                 </div>
-
-                                <i class="fas fa-sitemap fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                             </div>
                         </div>
 

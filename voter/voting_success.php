@@ -5,21 +5,6 @@ template_header('Voted Successfully');
 ?>
 
 <body>
-
-    <!--Main navbar-->
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <!-- Container wrapper -->
-        <div class="container-fluid" id="main-nav">
-            <!-- Navbar brand -->
-            <div class="container col-12">
-                <a class="navbar-brand mb-0 text-wrap" href="index.php"><img src="https://ik.imagekit.io/nwlfpk0xpdg/img/tr:w-50,h-50/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" alt="">
-                    <span class="brand">PLMAR Online Voting System</span></a>
-            </div>
-        </div>
-        <!-- Container wrapper -->
-    </nav>
-    <!-- End Navbar -->
     <div class="container gap-5 mt-5">
         <div class="row">
             <div class="col col-md-6 offset-md-3">
