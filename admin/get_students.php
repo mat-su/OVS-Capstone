@@ -12,10 +12,8 @@ if ($stmt->rowCount() == 1) {
 
     $search_where = "";
     if (!empty($search)) {
-        $search_where = "  WHERE ";
-        $search_where .= " (enr_fname LIKE '%{$search['value']}%' ";
-        $search_where .= " OR enr_mname LIKE '%{$search['value']}%' ";
-        $search_where .= " OR enr_lname LIKE '%{$search['value']}%' ";
+        $search_where = "  HAVING ";
+        $search_where .= " (name LIKE '%{$search['value']}%' ";
         $search_where .= " OR enr_studnum LIKE '%{$search['value']}%' ";
         $search_where .= " OR enr_course LIKE '%{$search['value']}%' ";
         $search_where .= " OR enr_yrlevel LIKE '%{$search['value']}%') ";

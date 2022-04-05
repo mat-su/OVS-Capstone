@@ -14,20 +14,18 @@ $stmt = $conn->prepare("SHOW TABLES LIKE 'tbl_enr_stud'");
 $stmt->execute();
 
 if ($stmt->rowCount() == 1) {
-    $stmt = "SELECT CONCAT(enr_fname, ' ', enr_mname, ' ', enr_lname) as name , enr_studnum as studnum, enr_yrlevel as ylvl, (CASE WHEN v_id IS NULL THEN 'non-voter' ELSE 'voter' END) as Class FROM tbl_enr_stud LEFT JOIN tbl_voter ON tbl_enr_stud.enr_studnum = tbl_voter.v_studnum WHERE enr_course = '{$orginfo['course']}'";
+    $stmt = "SELECT CONCAT(enr_fname, ' ', enr_mname, ' ', enr_lname) as name , enr_studnum as studnum, enr_yrlevel as ylvl, (CASE WHEN v_id IS NULL THEN 'non-voter' ELSE 'voter' END) as Class, enr_course FROM tbl_enr_stud LEFT JOIN tbl_voter ON tbl_enr_stud.enr_studnum = tbl_voter.v_studnum HAVING enr_course = '{$orginfo['course']}'";
     $totalCount = $conn->query($stmt)->rowCount();
 
     $search_where = "";
     if (!empty($search)) {
         $search_where = "  AND ";
-        $search_where .= " (enr_fname LIKE '%{$search['value']}%' ";
-        $search_where .= " OR enr_mname LIKE '%{$search['value']}%' ";
-        $search_where .= " OR enr_lname LIKE '%{$search['value']}%' ";
+        $search_where .= " (name LIKE '%{$search['value']}%' ";
         $search_where .= " OR enr_studnum LIKE '%{$search['value']}%' ";
         $search_where .= " OR enr_yrlevel LIKE '%{$search['value']}%') ";
     }
     if ($searchByClass != '') {
-        $search_where .= " HAVING (class='" . $searchByClass . "') ";
+        $search_where .= " AND (class='" . $searchByClass . "') ";
     }
     if ($searchByYrlevel != '') {
         $search_where .= " AND (enr_yrlevel='" . $searchByYrlevel . "') ";

@@ -5,12 +5,10 @@ extract($_POST);
 $totalCount = $conn->query("SELECT s.sa_id AS id, CONCAT(s.sa_fname, ' ', s.sa_lname) AS 'Name', s.sa_email AS Email, CONCAT(o.org_name, ' (', o.org_acronym, ')') AS Org_Name FROM tbl_subadmin s LEFT JOIN tbl_stud_orgs o ON s.sa_org_id = o.org_id")->rowCount();
 $search_where = "";
 if (!empty($search)) {
-    $search_where = " where ";
-    $search_where .= " sa_fname LIKE '%{$search['value']}%' ";
-    $search_where .= " OR sa_lname LIKE '%{$search['value']}%' ";
+    $search_where = " HAVING ";
+    $search_where .= " Name LIKE '%{$search['value']}%' ";
     $search_where .= " OR sa_email LIKE '%{$search['value']}%' ";
     $search_where .= " OR org_name LIKE '%{$search['value']}%' ";
-    $search_where .= " OR org_acronym LIKE '%{$search['value']}%' ";
 }
 $columns_arr = array(
     "Name",
