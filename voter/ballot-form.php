@@ -61,7 +61,7 @@ if ($stmt->rowCount() > 0) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
             <title>Ballot Form</title>
             <!-- Tab Logo -->
-            <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563"/>
+            <link rel="shortcut icon" type="image/jpg" href="https://ik.imagekit.io/nwlfpk0xpdg/img/ovs_logo_x6ne_tPjZ7.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648299575563" />
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
             <!--<link rel="stylesheet" href="../assets/bootstrap/css/style.css">-->
@@ -69,7 +69,7 @@ if ($stmt->rowCount() > 0) {
 
             <!--Font-->
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
- 
+
 
             <!--FontAwesome Kit-->
             <script src="https://kit.fontawesome.com/8acebfc2d4.js" crossorigin="anonymous"></script>
@@ -94,13 +94,13 @@ if ($stmt->rowCount() > 0) {
         </head>
 
         <body>
-          
-            
-                <div class="container px-5 my-4" id="div-button-back">
-                    <a href="dashboard.php" id="button-back" class="text-default">Back</a>
-                </div>
-              
-        
+
+
+            <div class="container px-5 my-4" id="div-button-back">
+                <a href="dashboard.php" id="button-back" class="text-default">Back</a>
+            </div>
+
+
 
             <div class="d-flex justify-content-center" id="loader_section">
                 <div class="lds-ellipsis" id="loader">
@@ -110,11 +110,11 @@ if ($stmt->rowCount() > 0) {
                     <div></div>
                 </div>
             </div>
-            
+
             <!--Ballot-->
             <div class="container px-5 my-4">
-             
-                
+
+
                 <?php if (isset($_GET['err'])) { ?>
                     <div class="alert alert-danger mt-3" role="alert">
                         <i class="fas fa-times fs-4 me-3"></i><span><?= $_GET['err'] ?></span>
@@ -152,20 +152,20 @@ if ($stmt->rowCount() > 0) {
                                                         <label id="<?= $o['position'] ?>" class="form-check-label d-flex">
                                                             <input class="form-check-input" type="radio" name="<?= $o['position'] ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>">
                                                             <img class="rounded-circle border img-fluid m-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
-                                                        
-                                                                <?= $c['cname'] ?>
+
+                                                            <?= $c['cname'] ?>
                                                         </label>
                                                     </div>
                                                 <?php
                                                 } else {
                                                     $dir_img_file = './img-uploads/' . $c['img'];
                                                     $candidate_img = (!empty($c['img'])) ? $dir_img_file  : '../assets/img/default_candi.png'; ?>
-                                                    <div class="form-check mx-3 my-3">
+                                                    <div class="form-check mx-3 my-3 d-flex">
 
-                                                        <img class="rounded-circle border img-fluid my-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
+                                                        <label id="<?= $o['position'] ?>" class="form-check-label d-flex">
+                                                            <input class="form-check-input" type="checkbox" name="<?= $o['position'] . '[]' ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>" data-max="<?= $c['seats'] ?>">
+                                                            <img class="rounded-circle border img-fluid m-3" src="<?= $candidate_img ?>" alt="" style="width: auto; height:5rem;">
 
-                                                        <input class="form-check-input" type="checkbox" name="<?= $o['position'] . '[]' ?>" value="<?= $c['cid'] ?>" id="<?= $c['cname'] ?>" data-max="<?= $c['seats'] ?>">
-                                                        <label id="<?= $o['position'] ?>" class="form-check-label">
                                                             <?= $c['cname'] ?>
                                                         </label>
                                                     </div>

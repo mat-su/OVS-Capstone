@@ -159,6 +159,7 @@ $(function () {
             $(element).addClass("is-valid").removeClass("is-invalid");
         },
         submitHandler: function () {
+            $('.alert-danger').remove();
             $('#cancel-btn').remove();
             $('#staticBackdropCreate button[form="frm_create_sub"]').text("");
             $('#staticBackdropCreate button').attr('disabled', true);
