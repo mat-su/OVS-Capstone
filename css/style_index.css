@@ -184,6 +184,11 @@ body {
     }
 }
 
+@media only screen and (max-width: 768px) {
+    #hiw img{
+        width:50%;
+    }
+}
 /*response.php file */
 #response_unsuccessful h3,
 h6,
@@ -199,7 +204,9 @@ h6,
 }
 
 #btn_ok:hover {
-    color: #001d3d;
+    color:#d00000;
+    background-color:#ffffff;
+    border-color:  #d00000;
     transition-duration: 0.4s;
 }
 

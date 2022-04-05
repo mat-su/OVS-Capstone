@@ -16,7 +16,9 @@ if (isset($_POST['otp']) && !empty($_POST['otp']) && !empty($_SESSION['user_emai
         if (password_verify($otp, $u_otp)) {
             $stmt = $conn->prepare("UPDATE tbl_emailotp SET stats = ? WHERE email = ?");
             $stmt->execute(["verified", $_SESSION['user_email']]);
-            $output = '<b class="text-success">Verified!!</b>' . "<script>$('#btn_sendOTP, #v_input_group, #getdetails').remove();</script>";
+            $output = '<b class="text-success">Verified!!</b>' . "<script>$('#btn_sendOTP, #getdetails').remove();
+            $('#v_input_group').css('display','none');
+            </script>";
             session_unset();
             session_destroy();
         } else {

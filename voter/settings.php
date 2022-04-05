@@ -518,7 +518,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email'])) {
         <div class="">
             <div class="container w-container">
                 <div class="div-block-4">
-                    <div><a class="float-end" style="margin:10px;" href="dashboard.php"><u>Back</u></a></div>
+                    <div><a class="float-end text-dark px-3" style="margin:10px;" href="dashboard.php"><u>Back</u></a></div>
                 
                     <div class="form-block-2 w-form">
                         <form id="" name="" data-name="" method="" class="form-2">
