@@ -110,7 +110,7 @@ if (isset($_SESSION['v_id']) && isset($_SESSION['v_email']) && isset($_SESSION['
                                     msg.setAttribute('role', 'alert');
                                     $(msg).html(`<i class="fa fa-times-circle fs-4 me-3"></i><small>${resp.action}</small>`);
                                     $('input[name=email]').addClass("is-invalid").removeClass("is-valid");
-                                    $('input[name=password]').addClass("is-invalid").removeClass("is-valid");
+                                    $('input[name=password]').addClass("is-invalid").removeClass("is-valid").val("");
                                     $('#frmSignIn button[type=submit]').text("Sign In");
                                 }
                             }

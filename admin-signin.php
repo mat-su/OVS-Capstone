@@ -84,7 +84,7 @@ if (!isset($_SESSION['a_id']) && !isset($_SESSION['a_email'])) {
                                     
                                     $('select[name=access]').addClass("is-invalid").removeClass("is-valid");
                                     $('input[name=username]').addClass("is-invalid").removeClass("is-valid");
-                                    $('input[name=password]').addClass("is-invalid").removeClass("is-valid");
+                                    $('input[name=password]').addClass("is-invalid").removeClass("is-valid").val("");
                                 }
                             }
                         });
