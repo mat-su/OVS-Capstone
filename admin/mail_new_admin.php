@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
             $mail->isHTML(true);
             //Email body
             $mail->Body = "Good day! <b>" . $name . "</b> 
-                <br>A request has been offered for you to be an administrator in PLMAR Online Voting System.<br><br><a href=\"https://localhost:3000/new-admin.php?continue=" . $hashID . $salty . "\">Process my account.</a>";
+                <br>A request has been offered for you to become an administrator in PLMAR Online Voting System.<br><br><a href=\"https://localhost:3000/new-admin.php?continue=" . $hashID . $salty . "\">Process my account.</a>";
             //Add recipient
             $mail->addAddress($email, 'Receiver');
             $mail->addReplyTo('educpurponly101@gmail.com', '1VOTE 4PLMAR Online-Voting System');
@@ -49,11 +49,13 @@ if (isset($_POST['submit'])) {
             //Finally send email
             if ($mail->Send()) {
                 $output = '<div class="alert alert-success alert-dismissible fade show mt-2" role="alert"> 
-                <b>Success..!</b> Account details were sent to his/her email. 
+                <b>Success!</b> Account details were sent to his/her email. 
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>' . "<script>$('#fname').val('');$('#mname').val('');$('#lname').val('');
                 $('#email').val('');
-                $('input').removeClass('is-valid');</script>";
+                $('input').removeClass('is-valid'); $('div.container.col').remove(); $('#frmCA').remove(); $('.card-footer').remove(); setTimeout(function(){
+                    location = 'dashboard.php'
+                },3000);</script>";
                 $mail->smtpClose();
             } else {
                 $output = '
@@ -87,7 +89,7 @@ if (isset($_POST['submit'])) {
             $mail->isHTML(true);
             //Email body
             $mail->Body = "Good day! <b>" . $name . "</b> 
-                <br>A request has been offered for you to be an administrator in PLMAR Online Voting System.<br><br><a href=\"https://localhost:3000/new-admin.php?continue=" . $hashID . $salty . "\">Process my account.</a>";
+                <br>A request has been offered for you to become an administrator in PLMAR Online Voting System.<br><br><a href=\"https://localhost:3000/new-admin.php?continue=" . $hashID . $salty . "\">Process my account.</a>";
             //Add recipient
             $mail->addAddress($email, 'Receiver');
             $mail->addReplyTo('educpurponly101@gmail.com', '1VOTE 4PLMAR Online-Voting System');
@@ -95,11 +97,13 @@ if (isset($_POST['submit'])) {
             //Finally send email
             if ($mail->Send()) {
                 $output = '<div class="alert alert-success alert-dismissible fade show mt-2" role="alert"> 
-                <b>Success..!</b> Account details were sent to his/her email. 
+                <b>Success!</b> Account details were sent to his/her email. 
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>' . "<script>$('#fname').val('');$('#mname').val('');$('#lname').val('');
                 $('#email').val('');
-                $('input').removeClass('is-valid');</script>";
+                $('input').removeClass('is-valid'); $('div.container.col').remove(); $('#frmCA').remove(); $('.card-footer').remove(); setTimeout(function(){
+                    location = 'dashboard.php'
+                },3000);</script>";
                 $mail->smtpClose();
             } else {
                 $output = '
@@ -132,7 +136,7 @@ if (isset($_POST['submit'])) {
 $output .= "<script>$('#btnCA').text('Create Account').prop('disabled', false); $('#loader').hide()
 
 
-$('.alert').delay(4000).slideUp(200, function() {
+$('.alert').delay(9000).slideUp(200, function() {
     $(this).alert('close');
 });
 

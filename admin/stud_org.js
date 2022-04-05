@@ -141,7 +141,7 @@ $(function () {
         messages: {
             org_name: {
                 required: "Please enter student organization name",
-                validateName: "Please enter a student organization name"
+                validateName: "Please enter a valid student organization name"
             },
             org_acronym: {
                 required: "Please enter your lastname",
@@ -268,10 +268,10 @@ $(function () {
         messages: {
             org_name: {
                 required: "Please enter student organization name",
-                validateName: "Please enter a student organization name"
+                validateName: "Please enter a valid student organization name"
             },
             org_acronym: {
-                required: "Please enter your lastname",
+                required: "Please enter student organization acronym",
                 validateName: "Please enter a valid organization acronym"
             },
             course_id: {

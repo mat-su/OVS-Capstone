@@ -15,7 +15,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
         </div>
         <div class="mt-5" style="visibility: hidden;">null</div>
         <div class="container col col-md-12 text-center"><b class="fs-3">Create Successor</b>
-            <div id="getDetails"></div>
+            
         </div>
 
         <div class="container mt-3 mb-5">
@@ -30,6 +30,7 @@ if (isset($_SESSION['a_id']) && isset($_SESSION['a_email'])) {
                                 <div></div>
                             </div>
                         </div>
+                        <div id="getDetails"></div>
                         <form action="mail_new_admin.php" method="POST" id="frmCA">
                             <label for="fname" class="form-label">First Name</label>
                             <input type="text" class="form-control mb-2" placeholder="" name="fname" id="fname" required>

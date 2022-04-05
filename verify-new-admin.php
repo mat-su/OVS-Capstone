@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
     if (empty($_POST['fname']) || empty($_POST['mname']) || empty($_POST['lname']) || empty($_POST['email'])) {
         $output = '
         <div class="alert alert-danger role="alert">
-        <i class="fa fa-times fs-4 me-2"></i><strong>Error..!</strong> The link was broken.
+        <i class="fa fa-times fs-4 me-2"></i><strong>Error!</strong> The link was broken.
         <script>$("#frmNA, .modal-footer").remove(); setTimeout(function(){
             location = \'index.php\'
         },2000)</script>
